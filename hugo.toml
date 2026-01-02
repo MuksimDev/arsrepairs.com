@@ -1,0 +1,376 @@
+# ============================================================================
+# Basic Site Configuration
+# ============================================================================
+baseURL = 'https://arsrepairs.com/'
+languageCode = 'en-us'
+title = 'ARS Repair Inc.'
+theme = 'arsrepairs-theme'
+
+# ============================================================================
+# Build & Processing Configuration
+# ============================================================================
+
+[build]
+writeStats = false
+buildDrafts = true
+
+# Minification configuration for production builds
+[minify]
+# Enable minification for all output formats
+disableHTML = false
+disableCSS = false
+disableJS = false
+disableJSON = false
+disableSVG = false
+disableXML = false
+
+# CSS minification options
+[minify.tdew]
+keepConditionalComments = false
+keepDefaultAttr = false
+keepDocumentTags = false
+keepEndTags = false
+keepWhitespace = false
+
+# JS minification options
+[minify.js]
+keepVarNames = false
+noComments = true
+
+[imaging]
+# Resample filter used for resizing. Default is Box
+# Options: Box, NearestNeighbor, Linear, Cubic, Lanczos, MitchellNetravali
+resampleFilter = "Lanczos"
+# Default quality setting (1-100). Only used for JPEG images.
+quality = 85
+# Anchor used when cropping. Default is "Smart"
+# Options: Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight, Smart
+anchor = "Smart"
+
+[markup.goldmark.renderer]
+# Controls how post excerpts are generated
+unsafe = true
+hardWraps = false
+xHTML = false
+
+[markup.goldmark.extensions.toc]
+# Enable table of contents generation
+auto = true
+ordered = false
+startLevel = 2
+endLevel = 4
+
+# ============================================================================
+# Output Formats
+# ============================================================================
+
+[outputFormats.LLMTXT]
+mediaType = 'text/plain'
+baseName = 'llms'
+isPlainText = true
+notAlternative = true
+
+# ============================================================================
+# Sitemap Configuration
+# ============================================================================
+
+[sitemap]
+# Maximum number of URLs per sitemap file (default: 50000)
+changefreq = 'monthly'
+priority = 0.5
+filename = 'sitemap.xml'
+
+# ============================================================================
+# Site Parameters
+# ============================================================================
+
+[params]
+# Production base URL (used for llm.txt and other production-specific URLs)
+productionBaseURL = 'https://arsrepairs.com'
+# Company Information
+companyName = 'ARS Repair Inc.'
+tagline = 'Proudly Serving Miami & Southern Florida'
+phone = '(954) 376-3086'
+email = 'info@arsrepairs.com'
+booking_email = 'booking@arsrepairs.com'
+contact_email = 'info@arsrepairs.com'
+parts_email = 'parts@arsrepairs.com'
+feedback_email = 'feedback@arsrepairs.com'
+career_email = 'careers@arsrepairs.com'
+reviews_email = 'reviews@arsrepairs.com'
+web3forms_access_key = 'c638808e-230b-4f7a-892e-0a7693364bf7'
+ctaText = 'Book Online'
+address = '5000 SW 52nd Street, Suite 513, Davie, FL 33314'
+latitude = '26.0629'
+longitude = '-80.2331'
+
+# Social Media Links
+facebook = 'https://www.facebook.com/arsrepairs'
+instagram = 'https://www.instagram.com/arsrepairs'
+google = 'https://g.page/arsrepairs'
+youtube = 'https://www.youtube.com/@arsrepairs'
+
+# Opening Hours Specification
+[[params.openingHours]]
+dayOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+opens = "09:00"
+closes = "17:00"
+
+# Saturday and Sunday are closed, so they are omitted from openingHours
+
+# Navigation Settings
+# Enable/disable navGroup functionality in navigation dropdowns
+# When enabled, pages with navGroup param will be grouped together in dropdowns
+# When disabled, all pages will be displayed in a flat list without grouping
+enableNavGroup = true
+
+# Service Areas
+serviceAreas = [
+  'Miami',
+  'Fort Lauderdale',
+  'Boca Raton',
+  'West Palm Beach',
+  'Hollywood',
+  'Coral Gables',
+  'Doral',
+  'Hialeah',
+  'Pompano Beach',
+  'Delray Beach',
+  'Aventura',
+  'Jupiter',
+  'Kendall',
+  'Key Biscayne',
+  'Deerfield Beach',
+  'Homestead',
+  'Sunrise',
+  'Palm Beach Gardens',
+  'North Miami'
+]
+
+# Geolocation API Settings
+# API key for BigDataCloud IP Geolocation service
+# Get your free key at: https://www.bigdatacloud.com/
+# Optional: If not provided, the API will work without a key (basic tier)
+# SECURITY: In production, set GEOLOCATION_API_KEY environment variable in Netlify.
+# Hugo will automatically use the environment variable if set, otherwise falls back to this value.
+# For local development, you can set GEOLOCATION_API_KEY in your environment or use this fallback.
+# IMPORTANT: Rotate this key after setting it in Netlify environment variables.
+geolocationApiKey = 'bdc_df90f264b44345a79fe776f6974e8e22'  # Fallback for local dev - set env var in production
+
+# Content Settings
+# Default excerpt length in characters (if no <!--more--> separator is found)
+# Can be overridden per page with .Params.excerpt or <!--more--> separator
+# Hugo automatically creates summaries from content before <!--more--> or first paragraph
+excerptLength = 160
+# Whether to show "Read more" links in excerpts
+showReadMore = true
+
+# Site Verification (for Search Console and Webmaster Tools)
+# Uncomment and add your verification codes to verify site ownership
+[params.verification]
+# Google Search Console - Verification code from Google Search Console
+google = "KsNy_8Y1aiODQKCzfdjiI71r6nbpUjNY0gSlyBBWR9Y"
+
+# Bing Webmaster Tools - Verification code from Bing Webmaster Tools
+bing = "1CB17F78E2C40EEB077F7726BF233A64"
+
+# Tracking and Analytics Configuration
+[params.tracking]
+  # Google Tag Manager - Container ID (e.g., "GTM-XXXXXXX")
+googleTagManager = "G-SKQD2L3MQE"
+
+# SEO Configuration
+[params.seo]
+# Site-wide SEO settings
+# Default image dimensions for og:image
+og_image_width = "1200"
+og_image_height = "630"
+
+# Site name for Open Graph (defaults to companyName or title)
+site_name = "ARS Repair Inc."
+
+# Default Open Graph type (website, article, product, etc.)
+og_type = "website"
+
+# Locale for Open Graph (e.g., "en_US", "en_CA")
+locale = "en_US"
+
+# Default robots meta tag
+robots = "index, follow"
+
+# Author name
+author = "ARS Repair Inc."
+
+# Twitter Card Configuration
+# Card type: "summary", "summary_large_image", "app", or "player"
+twitter_card = "summary_large_image"
+
+# Theme color for mobile browsers
+theme_color = "#ffffff"
+
+# Apple Mobile Web App settings
+apple_mobile_web_app_capable = "yes"
+apple_mobile_web_app_status_bar_style = "default"
+
+[params.reviews]
+googleReviewUrl = 'https://g.page/arsrepairs'
+endpointUrl = ''
+ratingThreshold = '2'
+
+# ============================================================================
+# Front Matter Defaults
+# ============================================================================
+
+[[cascade]]
+[cascade._target]
+path = '/'
+# Default author fallback for all pages (keep in sync with params.companyName)
+author = 'ARS Repair Inc.'
+
+# Exclude taxonomy/term pages (blog categories and tags) from sitemap and search engines
+[[cascade]]
+[cascade._target]
+kind = 'taxonomy'
+[cascade.sitemap]
+disable = true
+[cascade.seo]
+robots = 'noindex, nofollow'
+
+[[cascade]]
+[cascade._target]
+kind = 'term'
+[cascade.sitemap]
+disable = true
+[cascade.seo]
+robots = 'noindex, nofollow'
+
+# ============================================================================
+# Navigation Menu
+# ============================================================================
+
+[menus]
+# Home
+[[menus.main]]
+name = 'Home'
+url = '/'
+weight = 10
+
+# Our Services
+[[menus.main]]
+name = 'Our Services'
+url = '/our-services/'
+weight = 20
+[menus.main.params]
+auto_populate = true
+auto_populate_section = '/our-services/'
+dropdown_layout = '2'
+dropdown_feature_image = '/images/appliance-repair-technician-using-multimeter-on-appliance-electronics.webp'
+dropdown_feature_title = 'Need an expert fast?'
+dropdown_feature_text = 'Book appliance repair across Miami & South Florida.'
+dropdown_feature_link_text = 'View all services'
+dropdown_feature_link_url = '/our-services/'
+
+# Service Areas (auto-populated from content files)
+[[menus.main]]
+name = 'Service Areas'
+url = '/service-areas/'
+weight = 30
+[menus.main.params]
+auto_populate = true
+auto_populate_section = '/service-areas/'
+title_prefix = 'Appliance Repair in '
+dropdown_layout = '4'
+enable_nav_group = true
+# Custom order for navGroups in dropdown (groups not listed will appear alphabetically after)
+nav_group_order = [
+  'Miami-Dade County',
+  'Broward County',
+  'Palm Beach County'
+]
+dropdown_feature_image = '/images/appliance-repair-technician-using-multimeter-on-appliance-electronics.webp'
+dropdown_feature_title = 'Need an expert fast?'
+dropdown_feature_text = 'Book appliance repair across Miami & South Florida.'
+dropdown_feature_link_text = 'View all service areas'
+dropdown_feature_link_url = '/service-areas/'
+
+# Brands We Serve
+[[menus.main]]
+name = 'Brands We Serve'
+url = '/brands-we-serve/'
+weight = 45
+[menus.main.params]
+auto_populate = true
+auto_populate_section = '/brands-we-serve/'
+dropdown_layout = '2'
+dropdown_feature_image = '/images/appliance-repair-technician-using-multimeter-on-appliance-electronics.webp'
+dropdown_feature_title = 'Need an expert fast?'
+dropdown_feature_text = 'Book appliance repair across Miami & South Florida.'
+dropdown_feature_link_text = 'View all brands'
+dropdown_feature_link_url = '/brands-we-serve/'
+
+# Other Pages
+[[menus.main]]
+name = 'Client Portal'
+identifier = 'client-portal'
+url = '/client-portal/'
+weight = 70
+
+[[menus.main]]
+name = 'Track Repair'
+url = '/track-repair/'
+parent = 'client-portal'
+weight = 75
+
+[[menus.main]]
+name = 'Track Technician'
+url = '/track-technician/'
+parent = 'client-portal'
+weight = 80
+
+[[menus.main]]
+name = 'Make a Payment'
+url = '/payment/'
+parent = 'client-portal'
+weight = 86
+
+[[menus.main]]
+name = 'About Us'
+identifier = 'about-us'
+url = '/about-us/'
+weight = 80
+
+[[menus.main]]
+name = 'Blog'
+url = '/blog/'
+parent = 'about-us'
+weight = 81
+
+[[menus.main]]
+name = 'FAQ'
+url = '/faq/'
+parent = 'about-us'
+weight = 81
+
+[[menus.main]]
+name = 'Careers'
+url = '/careers/'
+parent = 'about-us'
+weight = 82
+
+[[menus.main]]
+name = 'Reviews'
+url = '/reviews/'
+parent = 'about-us'
+weight = 83
+
+[[menus.main]]
+name = 'FAQ'
+url = '/repair-faqs/'
+parent = 'about-us'
+weight = 84
+
+[[menus.main]]
+name = 'Parts'
+url = '/parts/'
+parent = 'about-us'
+weight = 85

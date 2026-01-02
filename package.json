@@ -1,0 +1,42 @@
+{
+  "name": "arsrepairs.com",
+  "version": "1.0.0",
+  "description": "ARS Repair Inc. website built with Hugo",
+  "scripts": {
+    "dev": "hugo server -D",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "tsc --noEmit --watch",
+    "build": "node themes/arsrepairs-theme/scripts/build.js",
+    "build:production": "node themes/arsrepairs-theme/scripts/build.js --production",
+    "build:skip-typecheck": "hugo --minify",
+    "clean": "hugo --cleanDestinationDir",
+    "generate:netlify-files": "node themes/arsrepairs-theme/scripts/generate-netlify-files.js",
+    "check:unused-images": "node themes/arsrepairs-theme/scripts/remove-unused-images.js --dry-run",
+    "postinstall": "node -e \"process.env.NETLIFY ? console.log('Skipping mise installer on Netlify - using Netlify-provided Hugo') : console.log('Running postinstall locally')\""
+  },
+  "keywords": [
+    "hugo",
+    "static-site"
+  ],
+  "author": "ARS Repair Inc.",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^6.0.0",
+    "@iarna/toml": "^2.2.5",
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
+    "gray-matter": "^4.0.3",
+    "hugo-bin": "^0.149.2",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "fuse.js": "^7.0.0",
+    "php": "^1.1.0"
+  },
+  "hugo-bin": {
+    "buildTags": "extended"
+  }
+}
