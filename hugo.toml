@@ -23,7 +23,7 @@ theme = 'arsrepairs-theme'
     languageName = 'Español'
     languageCode = 'es'
     weight = 2
-    contentDir = 'content'
+    contentDir = 'content/es'
 
 # ============================================================================
 # Build & Processing Configuration
@@ -266,20 +266,24 @@ disable = true
 robots = 'noindex, nofollow'
 
 # ============================================================================
-# Navigation Menu
+# Navigation Menu (Combined English & Spanish)
 # ============================================================================
 
 [menus]
 # Home
 [[menus.main]]
 name = 'Home'
+name_es = 'Inicio'
 url = '/'
+url_es = '/es/'
 weight = 10
 
 # Our Services
 [[menus.main]]
 name = 'Our Services'
+name_es = 'Nuestros Servicios'
 url = '/our-services/'
+url_es = '/es/nuestros-servicios/'
 weight = 20
 [menus.main.params]
 auto_populate = true
@@ -287,19 +291,26 @@ auto_populate_section = '/our-services/'
 dropdown_layout = '2'
 dropdown_feature_image = '/images/appliance-repair-technician-using-multimeter-on-appliance-electronics.webp'
 dropdown_feature_title = 'Need an expert fast?'
+dropdown_feature_title_es = '¿Necesita un experto rápido?'
 dropdown_feature_text = 'Book appliance repair across Miami & South Florida.'
+dropdown_feature_text_es = 'Reserve reparación de electrodomésticos en Miami y el Sur de la Florida.'
 dropdown_feature_link_text = 'View all services'
+dropdown_feature_link_text_es = 'Ver todos los servicios'
 dropdown_feature_link_url = '/our-services/'
+dropdown_feature_link_url_es = '/es/nuestros-servicios/'
 
 # Service Areas (auto-populated from content files)
 [[menus.main]]
 name = 'Service Areas'
+name_es = 'Áreas de Servicio'
 url = '/service-areas/'
+url_es = '/es/areas-de-servicio/'
 weight = 30
 [menus.main.params]
 auto_populate = true
 auto_populate_section = '/service-areas/'
 title_prefix = 'Appliance Repair in '
+title_prefix_es = 'Reparación de Electrodomésticos en '
 dropdown_layout = '4'
 enable_nav_group = true
 # Custom order for navGroups in dropdown (groups not listed will appear alphabetically after)
@@ -308,16 +319,27 @@ nav_group_order = [
   'Broward County',
   'Palm Beach County'
 ]
+nav_group_order_es = [
+  'Condado de Miami-Dade',
+  'Condado de Broward',
+  'Condado de Palm Beach'
+]
 dropdown_feature_image = '/images/appliance-repair-technician-using-multimeter-on-appliance-electronics.webp'
 dropdown_feature_title = 'Need an expert fast?'
+dropdown_feature_title_es = '¿Necesita un experto rápido?'
 dropdown_feature_text = 'Book appliance repair across Miami & South Florida.'
+dropdown_feature_text_es = 'Reserve reparación de electrodomésticos en Miami y el Sur de la Florida.'
 dropdown_feature_link_text = 'View all service areas'
+dropdown_feature_link_text_es = 'Ver todas las áreas de servicio'
 dropdown_feature_link_url = '/service-areas/'
+dropdown_feature_link_url_es = '/es/areas-de-servicio/'
 
 # Brands We Serve
 [[menus.main]]
 name = 'Brands We Serve'
+name_es = 'Marcas Que Servimos'
 url = '/brands-we-serve/'
+url_es = '/es/marcas-que-servimos/'
 weight = 45
 [menus.main.params]
 auto_populate = true
@@ -325,156 +347,59 @@ auto_populate_section = '/brands-we-serve/'
 dropdown_layout = '2'
 dropdown_feature_image = '/images/appliance-repair-technician-using-multimeter-on-appliance-electronics.webp'
 dropdown_feature_title = 'Need an expert fast?'
+dropdown_feature_title_es = '¿Necesita un experto rápido?'
 dropdown_feature_text = 'Book appliance repair across Miami & South Florida.'
+dropdown_feature_text_es = 'Reserve reparación de electrodomésticos en Miami y el Sur de la Florida.'
 dropdown_feature_link_text = 'View all brands'
+dropdown_feature_link_text_es = 'Ver todas las marcas'
 dropdown_feature_link_url = '/brands-we-serve/'
+dropdown_feature_link_url_es = '/es/marcas-que-servimos/'
 
 # About Us
 [[menus.main]]
 name = 'About Us'
+name_es = 'Sobre Nosotros'
 identifier = 'about-us'
 url = '/about-us/'
+url_es = '/es/sobre-nosotros/'
 weight = 80
 
 [[menus.main]]
 name = 'Blog'
+name_es = 'Blog'
 url = '/blog/'
-parent = 'about-us'
-weight = 81
-
-[[menus.main]]
-name = 'Blog'
-url = '/blog/'
+url_es = '/es/blog/'
 parent = 'about-us'
 weight = 81
 
 [[menus.main]]
 name = 'FAQ'
-url = '/faq/'
+name_es = 'Preguntas Frecuentes'
+url = '/repair-faqs/'
+url_es = '/es/preguntas-frecuentes/'
 parent = 'about-us'
 weight = 81
 
 [[menus.main]]
 name = 'Careers'
+name_es = 'Carreras'
 url = '/careers/'
+url_es = '/es/carreras/'
 parent = 'about-us'
 weight = 82
 
 [[menus.main]]
 name = 'Reviews'
+name_es = 'Reseñas'
 url = '/reviews/'
+url_es = '/es/reseñas/'
 parent = 'about-us'
 weight = 83
 
 [[menus.main]]
 name = 'Parts'
+name_es = 'Piezas'
 url = '/parts/'
+url_es = '/es/piezas/'
 parent = 'about-us'
 weight = 84
-
-# ============================================================================
-# Spanish Navigation Menu
-# ============================================================================
-
-[languages.es.menus]
-# Inicio
-[[languages.es.menus.main]]
-name = 'Inicio'
-url = '/es/'
-weight = 10
-
-# Nuestros Servicios
-[[languages.es.menus.main]]
-name = 'Nuestros Servicios'
-url = '/es/nuestros-servicios/'
-weight = 20
-[languages.es.menus.main.params]
-auto_populate = true
-auto_populate_section = '/our-services/'
-dropdown_layout = '2'
-dropdown_feature_image = '/images/appliance-repair-technician-using-multimeter-on-appliance-electronics.webp'
-dropdown_feature_title = '¿Necesita un experto rápido?'
-dropdown_feature_text = 'Reserve reparación de electrodomésticos en Miami y el Sur de la Florida.'
-dropdown_feature_link_text = 'Ver todos los servicios'
-dropdown_feature_link_url = '/es/nuestros-servicios/'
-
-# Áreas de Servicio (auto-populated from content files)
-[[languages.es.menus.main]]
-name = 'Áreas de Servicio'
-url = '/es/areas-de-servicio/'
-weight = 30
-[languages.es.menus.main.params]
-auto_populate = true
-auto_populate_section = '/service-areas/'
-title_prefix = 'Reparación de Electrodomésticos en '
-dropdown_layout = '4'
-enable_nav_group = true
-# Custom order for navGroups in dropdown (groups not listed will appear alphabetically after)
-nav_group_order = [
-  'Condado de Miami-Dade',
-  'Condado de Broward',
-  'Condado de Palm Beach'
-]
-dropdown_feature_image = '/images/appliance-repair-technician-using-multimeter-on-appliance-electronics.webp'
-dropdown_feature_title = '¿Necesita un experto rápido?'
-dropdown_feature_text = 'Reserve reparación de electrodomésticos en Miami y el Sur de la Florida.'
-dropdown_feature_link_text = 'Ver todas las áreas de servicio'
-dropdown_feature_link_url = '/es/areas-de-servicio/'
-
-# Marcas Que Servimos
-[[languages.es.menus.main]]
-name = 'Marcas Que Servimos'
-url = '/es/marcas-que-servimos/'
-weight = 45
-[languages.es.menus.main.params]
-auto_populate = true
-auto_populate_section = '/brands-we-serve/'
-dropdown_layout = '2'
-dropdown_feature_image = '/images/appliance-repair-technician-using-multimeter-on-appliance-electronics.webp'
-dropdown_feature_title = '¿Necesita un experto rápido?'
-dropdown_feature_text = 'Reserve reparación de electrodomésticos en Miami y el Sur de la Florida.'
-dropdown_feature_link_text = 'Ver todas las marcas'
-dropdown_feature_link_url = '/es/marcas-que-servimos/'
-
-# Sobre Nosotros
-[[languages.es.menus.main]]
-name = 'Sobre Nosotros'
-identifier = 'about-us'
-url = '/es/sobre-nosotros/'
-weight = 80
-
-[[languages.es.menus.main]]
-name = 'Blog'
-url = '/es/blog/'
-parent = 'about-us'
-weight = 81
-
-[[languages.es.menus.main]]
-name = 'Preguntas Frecuentes'
-url = '/es/faq/'
-parent = 'about-us'
-weight = 81
-
-[[languages.es.menus.main]]
-name = 'Carreras'
-url = '/es/carreras/'
-parent = 'about-us'
-weight = 82
-
-[[languages.es.menus.main]]
-name = 'Reseñas'
-url = '/es/reviews/'
-parent = 'about-us'
-weight = 83
-
-[[languages.es.menus.main]]
-name = 'Preguntas Frecuentes'
-url = '/es/repair-faqs/'
-parent = 'about-us'
-weight = 84
-
-[[languages.es.menus.main]]
-name = 'Piezas'
-url = '/es/parts/'
-parent = 'about-us'
-weight = 85

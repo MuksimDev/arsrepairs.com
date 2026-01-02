@@ -20,7 +20,10 @@
     - intro               (string)  – optional custom intro text
 */ -}}
 
-{{- $redirectLowTo := .Get "redirect_low_to" | default "/give-feedback/" -}}
+{{- $lang := .Page.Language.Lang | default "en" -}}
+{{- $isSpanish := eq $lang "es" -}}
+
+{{- $redirectLowTo := .Get "redirect_low_to" | default (cond $isSpanish "/es/give-feedback/" "/give-feedback/") -}}
 {{- $ratingThreshold := .Get "rating_threshold" | default (site.Params.reviews.ratingThreshold | default "2") -}}
 
 {{- $googleFromShortcode := .Get "google_review_url" -}}
@@ -31,8 +34,8 @@
 {{- $endpointFromParams := site.Params.reviews.endpointUrl | default "" -}}
 {{- $endpointURL := $endpointFromShortcode | default $endpointFromParams -}}
 
-{{- $title := .Get "title" | default "How was your recent experience with us?" -}}
-{{- $intro := .Get "intro" | default "Share your experience in under 60 seconds. If anything wasn't great, we'll guide you to our support form so we can help." -}}
+{{- $title := .Get "title" | default (cond $isSpanish "¿Cómo fue su experiencia reciente con nosotros?" "How was your recent experience with us?") -}}
+{{- $intro := .Get "intro" | default (cond $isSpanish "Comparta su experiencia en menos de 60 segundos. Si algo no estuvo bien, lo guiaremos a nuestro formulario de soporte para que podamos ayudar." "Share your experience in under 60 seconds. If anything wasn't great, we'll guide you to our support form so we can help.") -}}
 
 <section
   class="reviews-form"
@@ -62,13 +65,13 @@
       <input type="hidden" name="access_key" value="{{ .Site.Params.web3forms_access_key }}">
       
       <!-- Redirect after successful submission -->
-      <input type="hidden" name="redirect" value="/reviews/thank-you/">
+      <input type="hidden" name="redirect" value="{{ cond $isSpanish "/es/reviews/thank-you/" "/reviews/thank-you/" }}">
 
       <!-- Honeypot field - hidden checkbox (invisible to users, bots may check it) -->
       <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" aria-hidden="true">
       
       <!-- Subject for email notification -->
-      <input type="hidden" name="subject" value="New Review Submission">
+      <input type="hidden" name="subject" value="{{ cond $isSpanish "Nueva Reseña" "New Review Submission" }}">
 
       <!-- Top-level status messages -->
       <div
@@ -91,8 +94,8 @@
         <!-- Satisfaction slider -->
         <div class="contact-form__field">
           <label for="reviews-rating" class="contact-form__label">
-            Overall, how satisfied are you with your recent experience?
-            <span class="contact-form__required" aria-label="required">*</span>
+            {{ cond $isSpanish "En general, ¿qué tan satisfecho está con su experiencia reciente?" "Overall, how satisfied are you with your recent experience?" }}
+            <span class="contact-form__required" aria-label="{{ cond $isSpanish "requerido" "required" }}">*</span>
           </label>
 
           <div class="reviews-form__rating">
@@ -122,7 +125,7 @@
 
             <div class="reviews-form__rating-meta">
               <span id="reviews-rating-value" class="reviews-form__rating-value" data-reviews-rating-value>3</span>
-              <span id="reviews-rating-label" class="reviews-form__rating-label" data-reviews-rating-label>Okay</span>
+              <span id="reviews-rating-label" class="reviews-form__rating-label" data-reviews-rating-label>{{ cond $isSpanish "Regular" "Okay" }}</span>
             </div>
           </div>
 
@@ -138,8 +141,8 @@
         <!-- Name -->
         <div class="contact-form__field contact-form__field--half">
           <label for="reviews-name" class="contact-form__label">
-            Name
-            <span class="contact-form__required" aria-label="required">*</span>
+            {{ cond $isSpanish "Nombre" "Name" }}
+            <span class="contact-form__required" aria-label="{{ cond $isSpanish "requerido" "required" }}">*</span>
           </label>
           <input
             type="text"
@@ -164,8 +167,8 @@
         <!-- Email -->
         <div class="contact-form__field contact-form__field--half">
           <label for="reviews-email" class="contact-form__label">
-            Email
-            <span class="contact-form__required" aria-label="required">*</span>
+            {{ cond $isSpanish "Correo Electrónico" "Email" }}
+            <span class="contact-form__required" aria-label="{{ cond $isSpanish "requerido" "required" }}">*</span>
           </label>
           <input
             type="email"
@@ -190,7 +193,7 @@
         <!-- Phone (optional, preferred for follow-up) -->
         <div class="contact-form__field contact-form__field--half">
           <label for="reviews-phone" class="contact-form__label">
-            Phone <span class="contact-form__help">(optional, but helpful if we need to follow up)</span>
+            {{ cond $isSpanish "Teléfono" "Phone" }} <span class="contact-form__help">({{ cond $isSpanish "opcional, pero útil si necesitamos hacer seguimiento" "optional, but helpful if we need to follow up" }})</span>
           </label>
           <input
             type="tel"
@@ -201,7 +204,7 @@
             autocomplete="tel"
             pattern="[0-9\\s\\-\\+\\(\\)]+"
             maxlength="20"
-            placeholder="(416) 555-1234"
+            placeholder="{{ cond $isSpanish "(954) 376-3086" "(416) 555-1234" }}"
           />
           <span
             class="contact-form__error"
@@ -218,7 +221,7 @@
             class="btn btn--primary contact-form__submit"
             data-reviews-continue
           >
-            <span class="btn__text">Continue</span>
+            <span class="btn__text">{{ cond $isSpanish "Continuar" "Continue" }}</span>
           </button>
         </div>
       </fieldset>
@@ -234,15 +237,15 @@
         style="display: none;"
       >
         <legend class="contact-form__label">
-          Step 2 &mdash; Optional details for your review
+          {{ cond $isSpanish "Paso 2 — Detalles opcionales para su reseña" "Step 2 &mdash; Optional details for your review" }}
         </legend>
 
 
         <!-- City Required -->
         <div class="contact-form__field contact-form__field--half">
           <label for="reviews-city" class="contact-form__label">
-            City
-            <span class="contact-form__required" aria-label="required">*</span>
+            {{ cond $isSpanish "Ciudad" "City" }}
+            <span class="contact-form__required" aria-label="{{ cond $isSpanish "requerido" "required" }}">*</span>
           </label>
           <select
             id="reviews-city"
@@ -253,7 +256,7 @@
             aria-describedby="reviews-city-error"
             autocomplete="off"
           >
-            <option value="" disabled selected>Select your city...</option>
+            <option value="" disabled selected>{{ cond $isSpanish "Seleccione su ciudad..." "Select your city..." }}</option>
             {{- $cities := site.Data.cities.knownCities -}}
             {{- range $city := $cities }}
               <option value="{{ . }}">{{ . }}</option>
@@ -271,8 +274,8 @@
         <!-- Appliance or service -->
         <div class="contact-form__field contact-form__field--half">
           <label for="reviews-appliance" class="contact-form__label">
-            Appliance or service
-            <span class="contact-form__required" aria-label="required">*</span>
+            {{ cond $isSpanish "Electrodoméstico o servicio" "Appliance or service" }}
+            <span class="contact-form__required" aria-label="{{ cond $isSpanish "requerido" "required" }}">*</span>
           </label>
           <select
             id="reviews-appliance"
@@ -283,7 +286,7 @@
             aria-describedby="reviews-appliance-error"
             autocomplete="off"
           >
-            <option value="">Select (optional)</option>
+            <option value="">{{ cond $isSpanish "Seleccionar (opcional)" "Select (optional)" }}</option>
             {{ with site.GetPage "section" "our-services" }}
               {{ with .Params.servicesBento.services }}
                 {{ range . }}
@@ -293,15 +296,15 @@
                 {{ end }}
               {{ end }}
             {{ end }}
-            <option value="other">Other</option>
+            <option value="other">{{ cond $isSpanish "Otro" "Other" }}</option>
           </select>
         </div>
 
         <!-- Free-text feedback -->
         <div class="contact-form__field">
           <label for="reviews-message" class="contact-form__label">
-            Anything you'd like to highlight about your experience?
-            <span class="contact-form__required" aria-label="required">*</span>
+            {{ cond $isSpanish "¿Hay algo que le gustaría destacar sobre su experiencia?" "Anything you'd like to highlight about your experience?" }}
+            <span class="contact-form__required" aria-label="{{ cond $isSpanish "requerido" "required" }}">*</span>
           </label>
           <textarea
             id="reviews-message"
@@ -309,7 +312,7 @@
             class="contact-form__textarea"
             rows="4"
             maxlength="2000"
-            placeholder="Optional, but helpful for other homeowners reading your review."
+            placeholder="{{ cond $isSpanish "Opcional, pero útil para otros propietarios que lean su reseña." "Optional, but helpful for other homeowners reading your review." }}"
             required
             aria-required="true"
             aria-describedby="reviews-message-error"
@@ -330,11 +333,10 @@
             class="btn btn--primary contact-form__submit"
             data-reviews-submit
           >
-            <span class="btn__text">Submit review</span>
+            <span class="btn__text">{{ cond $isSpanish "Enviar reseña" "Submit review" }}</span>
           </button>
           <small class="text--size-xs text-muted flex-1">
-            By submitting this review, you agree to allow {{ site.Params.companyName | default site.Title }} to use your comments
-            (with your first name and city, where appropriate) as part of public reviews or testimonials.
+            {{ cond $isSpanish "Al enviar esta reseña, acepta permitir que" "By submitting this review, you agree to allow" }} {{ site.Params.companyName | default site.Title }} {{ cond $isSpanish "use sus comentarios (con su primer nombre y ciudad, cuando corresponda) como parte de reseñas o testimonios públicos." "to use your comments (with your first name and city, where appropriate) as part of public reviews or testimonials." }}
         </small>
         </div>
       </fieldset>

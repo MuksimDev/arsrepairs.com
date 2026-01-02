@@ -30,6 +30,13 @@
       <description>This page could not be found. Let us help you get back to the right appliance repair or service information. Browse our services, schedule repair, or contact our team for assistance.</description>
     </item>
     <item>
+      <title>404 - Página No Encontrada</title>
+      <link>http://localhost:1313/es/404/</link>
+      <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/404/</guid>
+      <description>Esta página no se pudo encontrar. Permítanos ayudarle a volver a la información correcta de reparación o servicio de electrodomésticos. Explore nuestros servicios, programe reparación o contacte a nuestro equipo para asistencia.</description>
+    </item>
+    <item>
       <title>AGA Repair</title>
       <link>http://localhost:1313/brands-we-serve/aga-appliance-repair/</link>
       <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
@@ -213,6 +220,13 @@
     </item>
     <item>
       <title>Miami</title>
+      <link>http://localhost:1313/es/areas-de-servicio/areas-de-servicio/reparacion-de-electrodomesticos-miami/</link>
+      <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/areas-de-servicio/areas-de-servicio/reparacion-de-electrodomesticos-miami/</guid>
+      <description>Reparación de confianza de electrodomésticos en Miami para hogares, condominios, alquileres y espacios comerciales. Técnicos certificados para todas las marcas principales.</description>
+    </item>
+    <item>
+      <title>Miami</title>
       <link>http://localhost:1313/service-areas/appliance-repair-miami/</link>
       <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/service-areas/appliance-repair-miami/</guid>
@@ -259,6 +273,13 @@
       <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/service-areas/appliance-repair-pompano-beach/</guid>
       <description>Trusted appliance repair in Pompano Beach for homes, condos, rentals, and commercial spaces. Certified technicians for all major brands.</description>
+    </item>
+    <item>
+      <title>Programar Servicio</title>
+      <link>http://localhost:1313/es/programar-servicio/</link>
+      <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/es/programar-servicio/</guid>
+      <description>Reserve su servicio de reparación de electrodomésticos en línea con ARS Repairs. Elija su electrodoméstico, seleccione una hora y conéctese rápidamente con un técnico certificado local. Servicio el mismo día disponible.</description>
     </item>
     <item>
       <title>Range Hood Repair</title>

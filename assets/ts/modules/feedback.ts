@@ -8,6 +8,23 @@
 
 import { onDOMReady } from "../utils/dom";
 
+// Language detection
+const isSpanish = document.documentElement.lang === "es";
+
+// Translations
+const translations = {
+  progressNotStarted: isSpanish ? "Progreso de comentarios: No iniciado" : "Feedback progress: Not started",
+  progressQuestions: (answered: number, total: number) =>
+    isSpanish
+      ? `Progreso de comentarios: ${answered} de ${total} preguntas respondidas`
+      : `Feedback progress: ${answered} of ${total} questions answered`,
+  stepNotStarted: isSpanish ? "No iniciado" : "Not started",
+  stepProgress: (step: number, total: number) =>
+    isSpanish ? `Paso ${step} de ${total}` : `Step ${step} of ${total}`,
+  feedbackSent: isSpanish ? "¡Comentarios enviados con éxito! Redirigiendo..." : "Feedback sent successfully! Redirecting...",
+  submitFeedback: isSpanish ? "Enviar Comentarios" : "Submit Feedback",
+};
+
 type Nullable<T> = T | null;
 
 interface FeedbackElements {
@@ -360,12 +377,12 @@ function setProgress(step: number, els: FeedbackElements): void {
 
   const label =
     answered === 0
-      ? "Feedback progress: Not started"
-      : "Feedback progress: " + answered + " of " + total + " questions answered";
+      ? translations.progressNotStarted
+      : translations.progressQuestions(answered, total);
   progressRoot.setAttribute("aria-label", label);
   if (progressStepText) {
     progressStepText.textContent =
-      clampedStep === 0 ? "Not started" : "Step " + clampedStep + " of " + totalSteps;
+      clampedStep === 0 ? translations.stepNotStarted : translations.stepProgress(clampedStep, totalSteps);
   }
 
   Array.prototype.forEach.call(progressSteps, (stepEl: HTMLElement) => {
@@ -624,7 +641,7 @@ function initValidation(els: FeedbackElements): void {
         if (data.success) {
           // Success - redirect to thank you page
           if (liveRegion) {
-            liveRegion.textContent = "Feedback sent successfully! Redirecting...";
+            liveRegion.textContent = translations.feedbackSent;
           }
           const redirectInput = form.querySelector<HTMLInputElement>(
             'input[name="redirect"]'
@@ -655,7 +672,7 @@ function initValidation(els: FeedbackElements): void {
           submitButton.classList.remove("contact-form__submit--loading");
           submitButton.disabled = false;
           const btnText = submitButton.querySelector(".btn__text");
-          if (btnText) btnText.textContent = "Submit Feedback";
+          if (btnText) btnText.textContent = translations.submitFeedback;
         }
       });
   });

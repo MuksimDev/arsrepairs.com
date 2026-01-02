@@ -33,13 +33,26 @@ interface ReviewsFormElements {
 const STORAGE_KEY = "ars_reviews_stage1";
 const STORAGE_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
-const RATING_LABELS: Record<number, string> = {
+const RATING_LABELS_EN: Record<number, string> = {
   1: "Not great",
   2: "Could be better",
   3: "Okay",
   4: "Great",
   5: "Amazing",
 };
+
+const RATING_LABELS_ES: Record<number, string> = {
+  1: "No está bien",
+  2: "Podría ser mejor",
+  3: "Regular",
+  4: "Excelente",
+  5: "Increíble",
+};
+
+function getRatingLabels(): Record<number, string> {
+  const lang = document.documentElement.lang || "en";
+  return lang.startsWith("es") ? RATING_LABELS_ES : RATING_LABELS_EN;
+}
 
 function getDatasetNumber(value: string | null | undefined, fallback: number): number {
   if (!value) return fallback;
@@ -173,10 +186,13 @@ function showStatus(
 function validateStageOne(els: ReviewsFormElements): boolean {
   let isValid = true;
 
+  const lang = document.documentElement.lang || "en";
+  const isSpanish = lang.startsWith("es");
+  
   const ratingRaw = els.ratingInput?.value;
   const rating = ratingRaw ? parseInt(ratingRaw, 10) : NaN;
   if (!ratingRaw || Number.isNaN(rating)) {
-    setFieldError(els, "rating", "Please select how satisfied you are.");
+    setFieldError(els, "rating", isSpanish ? "Por favor seleccione qué tan satisfecho está." : "Please select how satisfied you are.");
     isValid = false;
   } else {
     setFieldError(els, "rating", null);
@@ -184,10 +200,10 @@ function validateStageOne(els: ReviewsFormElements): boolean {
 
   const nameVal = els.nameInput?.value?.trim() || "";
   if (!nameVal) {
-    setFieldError(els, "name", "Please enter your name.");
+    setFieldError(els, "name", isSpanish ? "Por favor ingrese su nombre." : "Please enter your name.");
     isValid = false;
   } else if (nameVal.length < 2) {
-    setFieldError(els, "name", "Name should be at least 2 characters.");
+    setFieldError(els, "name", isSpanish ? "El nombre debe tener al menos 2 caracteres." : "Name should be at least 2 characters.");
     isValid = false;
   } else {
     setFieldError(els, "name", null);
@@ -195,12 +211,12 @@ function validateStageOne(els: ReviewsFormElements): boolean {
 
   const emailVal = els.emailInput?.value?.trim() || "";
   if (!emailVal) {
-    setFieldError(els, "email", "Please enter your email.");
+    setFieldError(els, "email", isSpanish ? "Por favor ingrese su correo electrónico." : "Please enter your email.");
     isValid = false;
   } else {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailVal)) {
-      setFieldError(els, "email", "Please enter a valid email address.");
+      setFieldError(els, "email", isSpanish ? "Por favor ingrese un correo electrónico válido." : "Please enter a valid email address.");
       isValid = false;
     } else {
       setFieldError(els, "email", null);
@@ -211,7 +227,7 @@ function validateStageOne(els: ReviewsFormElements): boolean {
   if (phoneVal) {
     const digitsOnly = phoneVal.replace(/\D/g, "");
     if (digitsOnly.length > 0 && digitsOnly.length < 10) {
-      setFieldError(els, "phone", "Please enter a valid phone number.");
+      setFieldError(els, "phone", isSpanish ? "Por favor ingrese un número de teléfono válido." : "Please enter a valid phone number.");
       isValid = false;
     } else {
       setFieldError(els, "phone", null);
@@ -224,7 +240,7 @@ function validateStageOne(els: ReviewsFormElements): boolean {
     showStatus(
       els,
       "error",
-      "Please fix the highlighted fields before continuing."
+      isSpanish ? "Por favor corrija los campos resaltados antes de continuar." : "Please fix the highlighted fields before continuing."
     );
     const firstErrorField = els.form.querySelector<HTMLElement>(
       '[aria-invalid="true"]'
@@ -284,15 +300,17 @@ function setSubmitLoading(els: ReviewsFormElements, isLoading: boolean): void {
   if (!btn) return;
 
   const textSpan = btn.querySelector<HTMLElement>(".btn__text");
+  const lang = document.documentElement.lang || "en";
+  const isSpanish = lang.startsWith("es");
 
   if (isLoading) {
     btn.classList.add("contact-form__submit--loading");
     btn.disabled = true;
-    if (textSpan) textSpan.textContent = "Sending...";
+    if (textSpan) textSpan.textContent = isSpanish ? "Enviando..." : "Sending...";
   } else {
     btn.classList.remove("contact-form__submit--loading");
     btn.disabled = false;
-    if (textSpan) textSpan.textContent = "Submit review";
+    if (textSpan) textSpan.textContent = isSpanish ? "Enviar reseña" : "Submit review";
   }
 }
 
@@ -342,11 +360,14 @@ async function handleSubmit(
   els: ReviewsFormElements,
   config: ReviewsFormConfig
 ): Promise<void> {
+  const lang = document.documentElement.lang || "en";
+  const isSpanish = lang.startsWith("es");
+  
   if (!config.endpointUrl) {
     showStatus(
       els,
       "error",
-      "Review endpoint is not configured yet. Please try again later or use the Google review link."
+      isSpanish ? "El endpoint de reseñas aún no está configurado. Por favor intente más tarde o use el enlace de reseña de Google." : "Review endpoint is not configured yet. Please try again later or use the Google review link."
     );
     return;
   }
@@ -363,7 +384,7 @@ async function handleSubmit(
 
   try {
     setSubmitLoading(els, true);
-    showStatus(els, "success", "Sending your review...");
+    showStatus(els, "success", isSpanish ? "Enviando su reseña..." : "Sending your review...");
 
     const response = await fetch(config.endpointUrl, {
       method: "POST",
@@ -379,7 +400,7 @@ async function handleSubmit(
       showStatus(
         els,
         "error",
-        "We couldn't send your review right now. Please try again in a moment."
+        isSpanish ? "No pudimos enviar su reseña en este momento. Por favor intente nuevamente en un momento." : "We couldn't send your review right now. Please try again in a moment."
       );
       return;
     }
@@ -387,14 +408,14 @@ async function handleSubmit(
     showStatus(
       els,
       "success",
-      "Thank you for sharing your experience! Your review has been submitted."
+      isSpanish ? "¡Gracias por compartir su experiencia! Su reseña ha sido enviada." : "Thank you for sharing your experience! Your review has been submitted."
     );
   } catch (error) {
     logger.error("Review submission error:", error);
     showStatus(
       els,
       "error",
-      "Something went wrong while sending your review. Please try again shortly."
+      isSpanish ? "Algo salió mal al enviar su reseña. Por favor intente nuevamente en breve." : "Something went wrong while sending your review. Please try again shortly."
     );
   } finally {
     setSubmitLoading(els, false);
@@ -414,7 +435,8 @@ function initSlider(els: ReviewsFormElements): void {
     }
 
     if (els.ratingLabel) {
-      els.ratingLabel.textContent = RATING_LABELS[clamped] || "";
+      const labels = getRatingLabels();
+      els.ratingLabel.textContent = labels[clamped] || "";
     }
 
     els.ratingInput?.setAttribute("aria-valuenow", String(clamped));
@@ -499,9 +521,12 @@ function attachEvents(els: ReviewsFormElements, config: ReviewsFormConfig): void
         return;
       }
 
+      const lang = document.documentElement.lang || "en";
+      const isSpanish = lang.startsWith("es");
+      
       // Rating 3-4: redirect to thank you page
       if (rating === 3 || rating === 4) {
-        window.location.href = "/reviews/thank-you/";
+        window.location.href = isSpanish ? "/es/reviews/thank-you/" : "/reviews/thank-you/";
         return;
       }
 
@@ -511,7 +536,7 @@ function attachEvents(els: ReviewsFormElements, config: ReviewsFormConfig): void
         showStatus(
           els,
           "success",
-          "Thanks! You can optionally add a few details below before submitting your review."
+          isSpanish ? "¡Gracias! Opcionalmente puede agregar algunos detalles a continuación antes de enviar su reseña." : "Thanks! You can optionally add a few details below before submitting your review."
         );
         return;
       }
@@ -533,11 +558,14 @@ function attachEvents(els: ReviewsFormElements, config: ReviewsFormConfig): void
     const isValid = validateStageOne(els);
     if (!isValid) return;
     
+    const lang = document.documentElement.lang || "en";
+    const isSpanish = lang.startsWith("es");
+    
     // Prepare form data for Web3Forms
     const formData = new FormData(els.form);
     
     setSubmitLoading(els, true);
-    showStatus(els, "success", "Sending your review...");
+    showStatus(els, "success", isSpanish ? "Enviando su reseña..." : "Sending your review...");
     
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -550,11 +578,11 @@ function attachEvents(els: ReviewsFormElements, config: ReviewsFormConfig): void
           const redirectInput = els.form.querySelector<HTMLInputElement>(
             'input[name="redirect"]'
           );
-          const redirectUrl = redirectInput?.value || "/reviews/thank-you/";
+          const redirectUrl = redirectInput?.value || (isSpanish ? "/es/reviews/thank-you/" : "/reviews/thank-you/");
           window.location.replace(redirectUrl);
         } else {
           // Handle error from Web3Forms
-          throw new Error(data.message || "Failed to send review");
+          throw new Error(data.message || (isSpanish ? "Error al enviar la reseña" : "Failed to send review"));
         }
       })
       .catch((error) => {
@@ -562,7 +590,7 @@ function attachEvents(els: ReviewsFormElements, config: ReviewsFormConfig): void
         const errorMessage =
           error instanceof Error
             ? error.message
-            : "Something went wrong while sending your review. Please try again shortly.";
+            : (isSpanish ? "Algo salió mal al enviar su reseña. Por favor intente nuevamente en breve." : "Something went wrong while sending your review. Please try again shortly.");
         showStatus(els, "error", errorMessage);
         setSubmitLoading(els, false);
       });
