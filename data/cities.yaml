@@ -1,0 +1,24 @@
+# Known South Florida cities for dynamic header personalization
+# These cities will be used to personalize the header text based on visitor location
+# If a detected city matches one of these, it will be used; otherwise falls back to "Miami"
+knownCities:
+  - Aventura
+  - Boca Raton
+  - Coral Gables
+  - Deerfield Beach
+  - Delray Beach
+  - Doral
+  - Fort Lauderdale
+  - Hialeah
+  - Hollywood
+  - Homestead
+  - Jupiter
+  - Kendall
+  - Key Biscayne
+  - Miami
+  - Miami Beach
+  - North Miami
+  - Palm Beach Gardens
+  - Pompano Beach
+  - Sunrise
+  - West Palm Beach

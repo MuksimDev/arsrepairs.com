@@ -1,0 +1,514 @@
+pageHeader:
+  rating: 4.9
+  count: 118
+reviews:
+- text: I was worried about having the oven repaired soon, as my guests were arriving first thing in the morning. It was a delight when you repaired it in the evening. It saved me from a lot of embarrassment in front of my guests. Thank you for your considerate and sensitive attitude towards my problem.
+  author: Kathy Palmer
+  location: Toronto
+  rating: 5
+  date: '2024-05-12'
+  serviceType: oven
+- text: I am SO happy with your repair service and the cost!!! You care for our appliances more than we do. GREAT JOB by the appliance repair service centre for saving our precious time. We respect your ethics.
+  author: John Palin
+  location: Oakville
+  rating: 5
+  date: '2024-04-05'
+  serviceType: dishwasher
+- text: Thank you for the work performed on my dryer. I know that it was difficult to repair. It was a big deal to me. I just appreciate that your company was willing to come and perform the service. Many companies would not even provide me an estimate because they said the job was too critical.
+  author: Timothy M. Floyd
+  location: Barrie
+  rating: 5
+  date: '2024-03-10'
+  serviceType: dryer
+- text: Thanks for the great service you provided us. Not to mention the excellent customer service that came along with it. Thank you!
+  author: Randy Price
+  location: Hamilton
+  rating: 5
+  date: '2024-02-20'
+  serviceType: washer
+- text: We are very satisfied with your services. Our experience was superb in getting our appliances repaired by you. Your free estimate helps us to keep our budget balanced and continue using our old devices.
+  author: Mark Davidson
+  location: Bolton
+  rating: 5
+  date: '2024-01-15'
+  serviceType: fridge
+- text: Many thanks to Michael for his service and assistance. He is a highly professional technician. Both thumbs up!
+  author: Claire
+  date: '2025-05-12'
+  rating: 5
+  location: Toronto
+- text: Rodrigo was professional and knowledgeable. He quickly diagnosed the problem with our fridge and repaired it. He was a pleasure to have in our home. My husband enjoyed his conversation with him. I would highly recommend ARS.
+  author: Heidi J
+  date: '2025-04-30'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: ARS Tech came over and replaced my LG refrigerator compressor. He also updated the software. He was very knowledgeable, professional, and courteous. I have dealt with ARS Appliance Repair Services 5 years ago. They are still an outstanding company. Everyone I have dealt with was fantastic, from administration to scheduling my appointment. Thank you once again for your great customer service. Frank
+  author: Frank Cola
+  date: '2025-04-23'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: Yesterday we had technician Aamir, who came in response to our issue with our new dryer. Well, I could not be happier with the outcome. He was extremely polite, patient, and informative. He listened to our concerns. He proceeded to show us what was actually wrong with the dryer. If anyone asks me about an appliance repair company, I will definitely recommend ARS!!
+  author: Bob Kurylo
+  date: '2025-03-08'
+  rating: 5
+  location: Toronto
+  serviceType: dryer
+- text: Needed a price quote. They delivered a transparent quote in the timeframe they said it would take. If you need to talk to someone, it's easy to reach a polite, competent employee. Happy with the interaction.
+  author: Adam
+  date: '2025-03-03'
+  rating: 5
+  location: Toronto
+- text: Andre was pleasant, courteous, and fast. Our range was experiencing problems with the burners. He was able to quickly assess the problem, fix it, and be on his way in less than an hour. We appreciated his manner. He gave us some tips on how to avoid this issue in the future!
+  author: Marc Schwartz
+  date: '2025-02-14'
+  rating: 5
+  location: Toronto
+  serviceType: oven
+- text: Recently got my Blomberg dishwasher repaired. Very professional service. Detected the problem, which was a faulty drain pump. Got the part and repaired it within 10 days. Highly recommend ARS.
+  author: Pradeep Kumar
+  date: '2025-02-06'
+  rating: 5
+  location: Toronto
+  brand: Blomberg
+  serviceType: dishwasher
+- text: Had a young technician come over to replace a dishwasher door cover that was damaged in shipping. He was polite, professional, and quick. If all their staff are as good as he was, this company will be going places!
+  author: Glenn Gardin
+  date: '2024-12-21'
+  rating: 5
+  location: Toronto
+  serviceType: dishwasher
+- text: We purchased new appliances one month ago that developed a tear in the rubber boot of the clothes washer. As it was under its warranty, we were given the opportunity to have it repaired for free. The technician did a great job all by himself. He gave us advice on the old dryer, which turned out to be exactly the problem we were having. Thank you very much for your professionalism.
+  author: Ruth Salloum
+  date: '2024-11-30'
+  rating: 5
+  location: Toronto
+  serviceType: washer
+- text: We had wonderful service from Eric Round in Kingston, Ont. He helped fix our fridge. He was knowledgeable, kind, and offered great advice. Great experience!
+  author: Ekta Singh
+  date: '2024-09-11'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: I was very impressed with the service from beginning to end. I made an appointment to have the compressor replaced on my LG refrigerator. I was contacted with a date to confirm it suited me. They contacted me the day before to be sure I would be home. The day of, I got the tech's schedule showing where my appointment was in his queue. I got a call from the tech Raman telling me he was on the way. Raman was extremely polite and very efficient. I would recommend this company to anyone needing their services.
+  author: Sharon
+  date: '2024-08-09'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: Amazing service. Raman was very professional, kind, and did the job with a smile. He took all the time necessary to make sure the problem was solved. Thank you, Raman.
+  author: Abdi Fuad
+  date: '2024-07-19'
+  rating: 5
+  location: Toronto
+- text: We booked a service call with ARS because the broiler in our electric oven was not working. The technician Eric called an hour before our appointment slot. He offered to come early as his previous call completed earlier than expected. In doing his diagnostics, he confirmed all the electronics were fine. Then he found one loose connection, fixed that, and re-tested everything. We restarted the broiler and it worked. He did a final thorough check to confirm everything was working, which it was. The range needed some height adjustment to fit back into its place safely and to conform to proper installation standards. Eric assisted with that adjustment. He was courteous, friendly, efficient, and took care to protect our appliance and the kitchen counter and floor as he did his work. An excellent service call all around.
+  author: Greg Williams
+  date: '2024-07-18'
+  rating: 5
+  location: Toronto
+  serviceType: oven
+- text: Thank you, ARS, for the service you provided me. Aamir the technician fixed my gas stove element in a very reasonable timeframe. He was very pleasant, knowledgeable, and answered all my questions with helpful tips. Wouldn't hesitate to use ARS in the future. Thanks, Aamir, for a job well done!!
+  author: Zelia M.
+  date: '2024-07-08'
+  rating: 5
+  location: Toronto
+  serviceType: oven
+- text: I recently bought an LG washer, and it worked perfectly for an entire year. Then out of nowhere it began to leak. Unfortunately, it struggled to clean our clothes. We hired a technician through a Google ad. They came in and did NOT resolve our problem. I would argue they made it worse. Fortunately for us, we contacted ARS directly. They came in for a service call. Then they came back on a prompt second visit with the part we needed to fix the washer. Between talking to Catherine from Dispatch and Deron the technician, they fixed our washer. It works better than ever. Thank you so much. What an incredible company. We will be recommending ARS to everyone.
+  author: Sarah J
+  date: '2024-03-04'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: washer
+- text: Absolutely amazing service! Thank you so much.
+  author: Janet Belford
+  date: '2024-03-01'
+  rating: 5
+  location: Toronto
+- text: Excellent service. We had our washer repaired. Everything they said was exact. The charge to come out - if you go with the repair, they deduct that charge from your bill. They call you to book the appt. Then the repairman calls when he is on his way. Awesome service technicians. Overall great service. Highly recommend.
+  author: Pamela Baird
+  date: '2024-01-18'
+  rating: 5
+  location: Toronto
+  serviceType: washer
+- text: Thank you so much, Lijo, for your excellent service! Our LG needed a new compressor. He also fixed our dispenser very promptly! Lijo was polite, friendly, and kind. 100% recommend!
+  author: Memi
+  date: '2023-09-27'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: Excellent service. Came first to investigate the issue. Rescheduled for the following week as he needed a part. The part came in faster than expected. It was completely fixed by the next call. Really appreciate the great service set up by LG.
+  author: Laurie Lavoie
+  date: '2023-09-20'
+  rating: 5
+  location: Toronto
+  brand: lg
+- text: The technician from Kingston came to replace the compressor in our LG fridge. He updated the firmware on the logic board. He was very personable and professional. I would enjoy dealing with him again.
+  author: Frank Groth
+  date: '2023-09-08'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: Fantastic service. Punctual, polite, professional, neat, and tidy. Also quite time-efficient. We were impressed.
+  author: Judy
+  date: '2023-07-20'
+  rating: 5
+  location: Brighton
+- text: My LG fridge has been beeping like the door is open, but it was not. So no ice or water and the annoying beep every 30 seconds. It started on the holiday Monday. So I called LG warranty on Tuesday. They said someone would come on Friday. They could not tell me the name of the company, though. LG warranty also did not supply the repair company with my cell or proof of age of the fridge. So the ticket was cancelled. Spoke with Gila first thing Friday morning. Dealt with LG service again. Gila made magic happen. She got a technician to come out on a Friday afternoon between other calls to fix my fridge. A mental lifesaver for me, especially having had to listen to the incessant beep every 30 seconds, 24 hours a day. Thank you to the techs. But big thanks to Gila for fitting me in and understanding the necessity. This is the service that AI can never provide; the personal touch makes the difference.
+  author: Marsha Appleby
+  date: '2023-05-26'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: Thank you, Abi, for repairing our refrigerator and cleaning it too. You are definitely the most pleasant and kind repair person EVER!!! Thank you so very much.
+  author: Sue Delplavignano
+  date: '2023-04-05'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: ARS provided immediate and excellent service repairing an LG washing machine. Technician Andreii was very professional and efficient. He assessed the situation. He explained the problem. He fixed the washing machine in a very timely manner. He also took the time to explain how to use the washing machine. He gave us some tips to help us keep it in good condition. We are very happy with the service. We would definitely recommend ARS to anyone in need of a repair.
+  author: Elysse Morris
+  date: '2023-03-28'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: washer
+- text: Appointment kept on time as promised for LG washer repair. Assessed and explained alternatives. Completed the work in a very professional and timely manner. Wonderful technician.
+  author: John C
+  date: '2023-03-13'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: washer
+- text: Our service tech, Ilya, was fantastic! Highly recommended. Fast and professional with a great attitude. He took the time to explain the work to us. He gave us tips to help ensure our washing machine works better in the future. Great service!
+  author: Craig Smith
+  date: '2022-10-13'
+  rating: 5
+  location: Toronto
+  serviceType: washer
+- text: I recommend their services. My French door fridge had a crazy sound. These guys, through LG, came through for my family. The gentleman made two trips without extra charges. He fixed our fridge. Up to this very day we remain grateful. Davis, Ontario
+  author: Davis Lukwago
+  date: '2022-05-02'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: I was very satisfied with the service that I received. The technician Hardeep Singh was professional and very knowledgeable. He was very courteous. I was quite impressed with his work. He was able to fix the problem in a very timely manner. Great service!
+  author: Jose Brasil
+  date: '2022-04-25'
+  rating: 5
+  location: Toronto
+- text: The administration was quick to book us a fast appointment to get our LG fridge looked at. A second appointment to repair it, all in 3 days. The technician Taranveer, who was on site for the 2 visits, was over and above great. The repair was completed. We now can live a normal life again. I must say this was a great experience. I truly recommend these people. Again, I thank Taranveer for his great personality and high-quality work. Please share this with him as he deserves it. Thank you.
+  author: Dale Lusk
+  date: '2022-04-22'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: As we prepare to move into our home after a disaster spanning since last summer, our brand new refrigerator was not making ice (in the door water and ice maker). An ARS technician (Daniel) attended. We THOUGHT that it was fixed when Daniel left. However, there was another issue. We called ARS. The dispatcher connected us with Daniel. He had another job after ours but returned well after hours, on the Easter weekend, to ensure that our new fridge was repaired. We are very appreciative of Daniel's dedication and integrity to ensure that we have a working appliance. We would definitely recommend ARS and Daniel for any frustrations involving appliances!
+  author: Stephen Sclater
+  date: '2022-04-18'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: ARS provided great service from beginning to end. Very thorough, detailed, and great use of email/phone, etc., to keep in touch and communicate. I appreciated this, as I had been burned by another company previously.
+  author: Anita
+  date: '2022-03-04'
+  rating: 5
+  location: Toronto
+- text: We would like to thank Alexander D. and his student for their repair of our LG dishwasher. They arrived on schedule. They worked efficiently and very neatly, placing plastic on the floor to protect it. At the time of the repair of a cracked control panel, Alexander heard a problem with the sump pump. He organised the new parts. He did the pump replacement within a week. Many thanks to Alexander and your company.
+  author: Paul Elliott
+  date: '2022-02-27'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: dishwasher
+- text: Ilya S. was my service person. He was totally professional, polite, and explained everything he was doing. He said that he would not leave until the issue was resolved and I was satisfied with the repair. I felt very comfortable with him. I would recommend him to anyone who asked. As my son is in the home service profession as well, I would hope he would treat all his clients the same way Ilya did me. I felt that from start to finish, ARS was totally professional. They emailed me everything for my records.
+  author: Mark Bradley
+  date: '2022-02-13'
+  rating: 5
+  location: Toronto
+- text: The technician, Eli, was very quick and attentive. The service was professional and friendly. 5 stars. Thank you.
+  author: Connor
+  date: '2022-01-31'
+  rating: 5
+  location: Toronto
+- text: We had a Wolf stove that was making a clicking noise. ARS responded within 48 hours. They fixed it on the first visit. This was better than the authorised Wolf servicer. The authorised servicer charged more and had a longer wait time. ARS is now my go-to repair company.
+  author: Pat
+  date: '2021-11-29'
+  rating: 5
+  location: Toronto
+  brand: Wolf
+  serviceType: oven
+- text: Best appliance repair experience in 40 years. Professional, fast, and efficient. They fixed our dishwasher quickly. ARS is now my go-to company.
+  author: Steve Prentice
+  date: '2021-11-10'
+  rating: 5
+  location: Toronto
+  serviceType: dishwasher
+- text: My new stove had a problem with the igniter. ARS sent a technician who diagnosed and fixed it quickly. He was helpful and knowledgeable. The process was tolerable thanks to him.
+  author: Shaun Y
+  date: '2021-09-16'
+  rating: 5
+  location: Toronto
+  serviceType: oven
+- text: Excellent communication from start to finish. The technician was polite and efficient. He fixed our refrigerator quickly. Highly recommend this company.
+  author: Allison
+  date: '2021-09-13'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: My Samsung fridge door was making a noise. I called Samsung. I was directed to ARS. ARS technician, namely Rahul, came in. In a polite and soft-spoken tone, he explained the problem. He changed the hinges of the problematic door. Unfortunately, the problem reappeared. ARS sent Rahul again. This time too, he changed the parts. The problem continued. Rahul spoke with the manager. He sent him pictures of the fridge door and explained the problem. Apparently, there was some manufacturing defect. ARS liaised with Samsung. They arranged to replace the fridge since it was well under the warranty period. The problem was not resolvable. My sincere thanks to ARS, particularly to Rahul and his manager, for resolving my problem without much hassle.
+  author: Shivdas Pai
+  date: '2021-08-25'
+  rating: 5
+  location: Toronto
+  brand: samsung
+  serviceType: fridge
+- text: I cannot say thank you enough to everyone I dealt with in this company. From Sarine, who took my calls and was very helpful, to my tech Taranveer. He was so informative. He took the time to explain everything and was honest with me. I am a bit out of their area. But they were the only company that said they would come out and fix my LG fridge. I am just so grateful.
+  author: Linda
+  date: '2021-08-19'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: Fast and efficient.
+  author: Cheryl Graston
+  date: '2021-08-13'
+  rating: 5
+  location: Toronto
+- text: We were having an issue with our Samsung fridge. The freezer wasn't working. Rahul arrived promptly. He was super knowledgeable and professional. He gave excellent service. He also provided me with many helpful tips on how to get optimum performance from my freezer. I am so pleased. I would not hesitate to call ARS for any future repairs. I will ask for Rahul if possible!
+  author: Nicola Griffith
+  date: '2021-08-12'
+  rating: 5
+  location: Toronto
+  brand: samsung
+  serviceType: fridge
+- text: Your serviceman, Rahul, was prompt, courteous, and very knowledgeable. You should be proud to have a young man like Rahul working for you. We think a raise should be in order for him. Or send him to trade school. Thank you for sending us this fine young man. He represents your company well. Thank you.
+  author: Barry And Sandra Jordan
+  date: '2021-08-10'
+  rating: 5
+  location: Toronto
+- text: Your service was well organised. On time, competent technician, and good job. I was appreciative of your performance. I recommend ARS to all friends and contacts.
+  author: Mohammed Reza Sardashti
+  date: '2021-08-08'
+  rating: 5
+  location: Toronto
+- text: Thank you so much, Nikandra R., for your exceptional and very professional customer service you provided me in repairing the LG television!!!! You are an expert in your field. You are extremely confident in your ability. This makes you an amazing ambassador for ARS!!!! They are very lucky to have you as part of their team!!!! All the best, Nikandra R.!!!!
+  author: Michael Piotrowski
+  date: '2021-08-06'
+  rating: 5
+  location: Toronto
+  brand: lg
+- text: Great service and customer experience! Tech was right on time. He took care of the issues very professionally.
+  author: Jay Choi
+  date: '2021-08-05'
+  rating: 5
+  location: Toronto
+- text: I recently had a situation with a stovetop that was not working. ARS provided a repair estimate and quotes to have the stovetop fixed. It is a very long story. However, I would like to have on record that Amy Amran of ARS reviewed the entire experience. She provided a solution that was a 'TEN' in customer service. It guaranteed that I would be comfortable using their service in the future. This is a company that listens to their clients. They do whatever is required to ensure total satisfaction.
+  author: Vivienne Sweezey
+  date: '2021-06-10'
+  rating: 5
+  location: Toronto
+  serviceType: oven
+- text: ARS has incredible customer service. The use of online tools to track the progress of parts ordering and service techs' time of arrival is excellent. I had help from Amy. She worked very hard while dealing with an issue related to ordering parts from LG. Thank you, ARS Team.
+  author: Chris Harlow
+  date: '2021-06-10'
+  rating: 5
+  location: Toronto
+  brand: lg
+- text: We have a Dacor dual-fuel oven where the broiler had quit working. We scheduled a service call with ARS. The process was simple. A 3-hour window was set. An update was sent prior to the technician arriving. The technician sent, Natalino, was courteous and respectful, given the pandemic conditions. He was quick to diagnose the issue. He ordered the required parts before leaving. The return visit to install the new ignitor was the same as the first visit. Natalino was very efficient and professional when completing the repair. We have dealt with ARS a few times. We would not hesitate to use them again.
+  author: Rick Laur
+  date: '2021-06-08'
+  rating: 5
+  location: Toronto
+  brand: Dacor
+  serviceType: oven
+- text: We were so pleased with our repairman from ARS. He arrived promptly. He wore a mask while in our home. He was very patient with the process of repairing our fridge. It took a while for him to defrost everything. But he remained professional and patient. We were very grateful for his service.
+  author: Gail
+  date: '2021-05-31'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: I had a technician diagnose my fridge. I was very happy with the service from the office dispatcher and the tech that visited my house. Everyone was friendly. They explained my options clearly. Very good service. I would not hesitate to call them again.
+  author: Carrie Patterson
+  date: '2021-05-24'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: He is really efficient. He gave me lots of advice. Love his service.
+  author: Mia
+  date: '2021-05-07'
+  rating: 5
+  location: Toronto
+- text: ARS provided prompt, efficient, and absolutely excellent service for our 15-year-old (though otherwise lightly used and gently cared for) LG washing machine. Other companies have repaired my appliances in the past with less than satisfying results. So when I called ARS, I was already a tough customer. I was especially delighted that ARS delivered great service! Not only were the technicians terrific. But ARS also has outstanding, especially helpful customer service representatives handling phone calls. I would definitely trust ARS with any future appliance repairs!
+  author: C Clarke In Southwest Ontario
+  date: '2021-05-06'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: washer
+- text: I would like to acknowledge Nicola for his excellent level of service. I was impressed with his professionalism and expertise. His work was meticulous. He was both obliging and friendly. I believe he is a credit to the company. I would not hesitate to engage his services in the future.
+  author: Cheryl Coplevitch
+  date: '2021-05-03'
+  rating: 5
+  location: Toronto
+- text: Had Ari at my home today. Unfortunately the LG fridge I have was not repairable. Not his fault, nor is it ARS's fault. But Ari provided fantastic customer service. He was very knowledgeable. In the past, the unit was serviced by Northern Appliances (not at my request). After 5 years of problems and service to this LG fridge, it was all a waste of time and large monies. The issue with the fridge could have been resolved a couple of years ago. But Northern staff obviously had a different agenda. I will request ARS in the future. But hope this is the last time an appliance in my home will have to be serviced!
+  author: Joe La Penna
+  date: '2021-04-20'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: Great service. (Max) was very pleasant. He changed the screen on my LG OLED65C8PUA TV. I will recommend this company.
+  author: Tom Christie
+  date: '2021-04-01'
+  rating: 5
+  location: Toronto
+  brand: lg
+- text: Excellent service. Technician was on time. He got the job done promptly.
+  author: Heather Milik
+  date: '2021-03-25'
+  rating: 5
+  location: Toronto
+- text: Great service from technician Qaiser. He came with the parts he needed. He fixed our oven. This was after another company had come four times without fixing the problem.
+  author: Michael O
+  date: '2021-03-09'
+  rating: 5
+  location: Toronto
+  serviceType: oven
+- text: I have had the pleasure of dealing with ARS for the past year. Overall, I am very impressed with their professionalism and customer service approach. Rahul was our technician. He was very thorough. He took the time to explain how to use the appliance going forward. I also had the pleasure of dealing with Sarine. She was extremely helpful and professional. I would highly recommend ARS!
+  author: Kareema A
+  date: '2021-03-08'
+  rating: 5
+  location: Toronto
+- text: Excellent service. Technician Moses Karim was knowledgeable, on time, courteous, and professional. Highly recommended!
+  author: Mabel Tse
+  date: '2021-03-08'
+  rating: 5
+  location: Toronto
+- text: After a few attempts to have my appliances (fridge and stove) repaired, I finally had ARS at my door. Qaiser the tech took his time to thoroughly check each of the complaint areas pointed out with the appliances. We have had parts replaced by others. What appeared to be adjustments made, to no conclusive satisfaction. Qaiser took pieces out. He realigned them. He cleaned them up a bit. He made fine adjustments. To which we can finally say, Success. Thank you to ARS and Qaiser for finally fixing the issues that we thought would never be done.
+  author: Richard Renz
+  date: '2021-03-05'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: Very satisfying experience with a knowledgeable technician, Richard Macintosh.
+  author: Don Limerick
+  date: '2021-03-04'
+  rating: 5
+  location: Toronto
+- text: Hi, We had our LG front-loading washer serviced by ARS several months ago. I am pleased and relieved to report that the washer is working well. I want to give special thanks to the gentleman who made the repairs, Qaiser. He was professional and courteous. He did the work efficiently with a great deal of care. Thank you.
+  author: Rita Chimienti
+  date: '2021-03-01'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: washer
+- text: We are very satisfied with the service we received. The technician was a real professional and very knowledgeable. He was very courteous. We were quite impressed.
+  author: Fred
+  date: '2021-02-25'
+  rating: 5
+  location: Toronto
+- text: We are very impressed with ARS at all levels. They quickly identified the problem. The repairman was very courteous and professional. He replaced the compressor of our LG fridge. The billing was fair. The company was very accommodating. Highly recommended!
+  author: Terry Coughlin
+  date: '2021-02-15'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: Really good experience with service call. Qaiser got here on Friday night at 7:46 in the middle of a major snowstorm. He fixed our fridge quickly and efficiently. Thank you so much. I would have him back for any repairs in the future.
+  author: Martha Forbes
+  date: '2021-02-14'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: Very professional; would recommend!
+  author: Steven
+  date: '2021-02-12'
+  rating: 5
+  location: Toronto
+- text: The tech that arrived to service my fridge was friendly and professional. He efficiently diagnosed the issue. The best part was they had the part on hand. They were able to complete the repair in one visit. The tracking system to see where in line you are for that day's service calls is a very helpful feature. It allowed me to minimize the time spent waiting for the technician to arrive. Overall, I would highly recommend ARS.
+  author: Jared
+  date: '2021-02-11'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: Our LG fridge stopped cooling. LG referred us to ARS to repair our fridge. They were very helpful. They booked our service to the earliest date possible. The technician was very friendly and professional. Within hours, the compressor was changed. The fridge was fixed. It was working like new. Great job, ARS!
+  author: Miajan Aryan
+  date: '2021-02-11'
+  rating: 5
+  location: Toronto
+  brand: lg
+  serviceType: fridge
+- text: I had a problem with the fridge. The ARS repairmen arrived on time. They did the job very professionally. Highly recommended.
+  author: Le
+  date: '2021-02-11'
+  rating: 5
+  location: Toronto
+  serviceType: fridge
+- text: We were all set to purchase another stove when we remembered ARS repair. They arrived when expected. They resolved our problem, saving us hundreds of dollars. We'd highly recommend them for any appliance repair.
+  author: Steven Baine
+  date: '2021-02-11'
+  rating: 5
+  location: Toronto
+  serviceType: oven
+- text: What great customer service! We had an issue with ice forming in our Samsung fridge since the water was not draining out as it should. We reached out to Samsung Canada to resolve the issue. Samsung Canada referred us to ARS. We are so glad they did. They promptly scheduled an appointment. Andre, the technician, did a great job. He arrived on time. He finished the work promptly. He also shared some tips to keep the fridge working efficiently. The issue was resolved. The fridge is working properly. We're very happy and thankful for the great service.
+  author: Jasmine
+  date: '2021-02-05'
+  rating: 5
+  location: Toronto
+  brand: samsung
+  serviceType: fridge
+- text: We had a simple repair. There were no issues. The repairman arrived when promised. He was polite. He did the job as expected. I would use ARS again.
+  author: Gary
+  date: '2021-02-05'
+  rating: 5
+  location: Toronto
+- text: Your technician, Andre, came on time to fix the washing machine that did not spin properly. He was very efficient and knowledgeable. I also liked his attitude. He was very thorough. He explained where the problem was. He proceeded to fix it. I was very satisfied with the service. The technician was indeed well-trained and competent.
+  author: Elvira Romano Fenili
+  date: '2021-02-04'
+  rating: 5
+  location: Toronto
+  serviceType: washer
+- text: The ARS technician Qaiser was friendly and very knowledgeable. He came to assess my washing machine. He asked a lot of questions to help him understand the issue. He stayed for a full spin cycle to make sure I knew what the problem was. This left me feeling very confident that it was fixed. He shared good advice too. I will call ARS again and ask for Qaiser in the future. I have already recommended him to family.
+  author: Jennifer M.
+  date: '2021-01-20'
+  rating: 5
+  location: Toronto
+  serviceType: washer
+- text: Technician was on time, courteous, informative, and quick.
+  author: Richard Pounds
+  date: '2021-01-14'
+  rating: 5
+  location: Toronto
+- text: Thank you for great service. The issue was with the Samsung ice maker. Then more issues were added. Everything was broken. Basically, the fridge and freezer warmed up. So after a few times fixing and figuring out what's wrong with it, everything works perfectly now. Thanks to the knowledgeable technician.
+  author: Mo
+  date: '2020-07-13'
+  rating: 5
+  location: Toronto
+  brand: samsung
+  serviceType: fridge
+- text: (4/5) Thank you, ARS, for amazing service.
+  author: Gina
+  date: '2020-06-08'
+  rating: 4
+  location: Toronto
+- text: Amazing service. This Samsung fridge has had an issue with the ice maker since I bought it. After multiple complaints to Samsung and multiple companies coming to my house wasting my time. They just thawed it out and said it's a design flaw. I almost gave up. Then I gave it one more chance. ARS was the company that came and finally solved my problem. The technician was super nice. You could tell he knew what he was doing. The ice maker has never worked better, no more freezing!!!!!! Thanks, ARS; you did an awesome job.
+  author: Mike
+  date: '2020-06-02'
+  rating: 5
+  location: Toronto
+  brand: samsung
+  serviceType: fridge
+- text: The service is always fantastic. The serviceman is very knowledgeable and respectful.
+  author: Manon Martin
+  date: '2019-12-06'
+  rating: 5
+  location: Toronto

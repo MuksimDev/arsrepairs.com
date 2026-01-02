@@ -1,0 +1,9 @@
+<svg width="88" height="100" viewBox="0 0 88 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M55 100L9 0H0L46 100H55Z" fill="white"/>
+<g style="mix-blend-mode:soft-light">
+<path d="M64 100L18 0H9L55 100H64Z" fill="white"/>
+</g>
+<g style="mix-blend-mode:soft-light" opacity="0.5">
+<path d="M72 100L26 0H18L64 100H72Z" fill="white"/>
+</g>
+</svg>

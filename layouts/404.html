@@ -1,0 +1,54 @@
+{{- define "main" -}}
+  {{- /* Get the 404 content page, try multiple lookup methods */ -}}
+  {{- $page404 := site.GetPage "/404" -}}
+  {{- if not $page404 -}}
+    {{- $page404 = site.GetPage "page" "404" -}}
+  {{- end -}}
+  {{- if not $page404 -}}
+    {{- $page404 = site.GetPage "page" "/404" -}}
+  {{- end -}}
+  {{- if not $page404 -}}
+    {{- /* Fallback to 404 context if page not found */ -}}
+    {{- $page404 = . -}}
+  {{- end -}}
+
+  {{- /* Page header component - automatically uses page title and section, or use pageHeader params to customize */ -}}
+  {{- partial "page-header.html" $page404 -}}
+
+  <section class="section">
+    <div class="container">
+      <div class="page-layout">
+        <main class="page-content">
+          <div class="prose">
+            {{- $page404.Content -}}
+          </div>
+        </main>
+        {{- if and (not $page404.IsHome) (ne ($page404.Params.sidebar | default true) false) -}}
+          {{- /* Check if any sidebar widgets are enabled */ -}}
+          {{- $sidebarParams := $page404.Params.sidebar | default dict -}}
+          {{- $showCTA := $sidebarParams.cta | default true -}}
+          {{- $showRelated := $sidebarParams.related | default true -}}
+          {{- $showNav := $sidebarParams.nav | default true -}}
+          {{- if or $showCTA $showRelated $showNav -}}
+            <aside class="page-sidebar">
+              {{- partial "sidebar.html" $page404 -}}
+            </aside>
+          {{- end -}}
+        {{- end -}}
+      </div>
+    </div>
+  </section>
+
+  {{- if $page404.Params.serviceAreas_section | default true -}}
+    {{- partial "service-areas.html" $page404 -}}
+  {{- end -}}
+
+  {{- if $page404.Params.faq_section -}}
+    {{- partial "faq.html" $page404 -}}
+  {{- end -}}
+
+  {{- if and (not $page404.IsHome) (ne ($page404.Params.tldr_section | default true) false) -}}
+    {{- partial "tldr.html" $page404 -}}
+  {{- end -}}
+{{- end -}}
+

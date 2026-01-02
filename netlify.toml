@@ -1,0 +1,3433 @@
+[build]
+  # Install npm dependencies first, then build with Hugo
+  command = "npm ci && hugo --minify --environment production"
+  # Directory where Hugo outputs the built site
+  publish = "public"
+
+[build.environment]
+  # Use specific Hugo version to match what mise was trying to install
+  HUGO_VERSION = "0.152.2"
+  # Enable extended Hugo version (for SCSS/SASS support)
+  HUGO_EXTENDED = "true"
+  HUGO_ENABLEGITINFO = "true"
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.jsdelivr.net https://unpkg.com https://connect.facebook.net https://www.clarity.ms https://static.cloudflareinsights.com https://cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: https://www.facebook.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://www.bigdatacloud.net https://api.bigdatacloud.net https://www.clarity.ms https://unpkg.com https://static.cloudflareinsights.com https://cloudflareinsights.com; frame-src 'self' https://www.googletagmanager.com https://sched.rossware.net https://web.na.bambora.com https://booking.rossware.com; object-src 'none'; base-uri 'self'; form-action 'self';"
+
+# Cache static assets
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Redirects for blog posts (old site URLs to new site URLs)
+[[redirects]]
+  from = "/10-years-of-mastery"
+  to = "/blog/10-years-of-mastery"
+  status = 301
+
+[[redirects]]
+  from = "/3-common-dishwasher-problems-and-repairs"
+  to = "/blog/3-common-dishwasher-problems-and-repairs"
+  status = 301
+
+[[redirects]]
+  from = "/3-signs-my-microwave-is-not-heating"
+  to = "/blog/3-signs-my-microwave-is-not-heating"
+  status = 301
+
+[[redirects]]
+  from = "/6-clever-bbq-cleaning-hacks"
+  to = "/blog/6-clever-bbq-cleaning-hacks"
+  status = 301
+
+[[redirects]]
+  from = "/6-essential-appliance-maintenance-tips"
+  to = "/blog/6-essential-appliance-maintenance-tips"
+  status = 301
+
+[[redirects]]
+  from = "/a-brief-history-of-sunbeam-appliances"
+  to = "/blog/a-brief-history-of-sunbeam-appliances"
+  status = 301
+
+[[redirects]]
+  from = "/air-fryer-repair-faults"
+  to = "/blog/air-fryer-repair-faults"
+  status = 301
+
+[[redirects]]
+  from = "/all-you-need-to-know-about-a-wine-cooler"
+  to = "/blog/all-you-need-to-know-about-a-wine-cooler"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-care"
+  to = "/blog/appliance-care"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-dent-repair"
+  to = "/blog/appliance-dent-repair"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-faults-reliable"
+  to = "/blog/appliance-faults-reliable"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-faults-signs"
+  to = "/blog/appliance-faults-signs"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-advanced-troubleshooting"
+  to = "/blog/appliance-repair-advanced-troubleshooting"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-cost-efficiency"
+  to = "/blog/appliance-repair-cost-efficiency"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-early-malfunctions"
+  to = "/blog/appliance-repair-early-malfunctions"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-faults-blog"
+  to = "/blog/appliance-repair-faults-blog"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-holiday-helles"
+  to = "/blog/appliance-repair-holiday-helles"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-parts-diagonsis"
+  to = "/blog/appliance-repair-parts-diagonsis"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-troubleshooting-issues-blog"
+  to = "/blog/appliance-troubleshooting-issues-blog"
+  status = 301
+
+[[redirects]]
+  from = "/bbq-maintenance-and-repair"
+  to = "/blog/bbq-maintenance-and-repair"
+  status = 301
+
+[[redirects]]
+  from = "/best-refrigerator-brands"
+  to = "/blog/best-refrigerator-brands"
+  status = 301
+
+[[redirects]]
+  from = "/best-tips-to-clean-and-maintain-a-range-hood"
+  to = "/blog/best-tips-to-clean-and-maintain-a-range-hood"
+  status = 301
+
+[[redirects]]
+  from = "/can-an-oven-thermostat-be-repaired"
+  to = "/blog/can-an-oven-thermostat-be-repaired"
+  status = 301
+
+[[redirects]]
+  from = "/can-you-put-shoes-into-washing-machine"
+  to = "/blog/can-you-put-shoes-into-washing-machine"
+  status = 301
+
+[[redirects]]
+  from = "/certified-appliance-service-technician"
+  to = "/blog/certified-appliance-service-technician"
+  status = 301
+
+[[redirects]]
+  from = "/che-e-error-code"
+  to = "/blog/che-e-error-code"
+  status = 301
+
+[[redirects]]
+  from = "/check-the-compressor"
+  to = "/blog/check-the-compressor"
+  status = 301
+
+[[redirects]]
+  from = "/common-appliance-faults"
+  to = "/blog/common-appliance-faults"
+  status = 301
+
+[[redirects]]
+  from = "/common-bosch-dishwasher-problems"
+  to = "/blog/common-bosch-dishwasher-problems"
+  status = 301
+
+[[redirects]]
+  from = "/common-dryer-problems"
+  to = "/blog/common-dryer-problems"
+  status = 301
+
+[[redirects]]
+  from = "/common-problems-for-refrigerator-not-working"
+  to = "/blog/common-problems-for-refrigerator-not-working"
+  status = 301
+
+[[redirects]]
+  from = "/common-washer-repair-info-guide"
+  to = "/blog/common-washer-repair-info-guide"
+  status = 301
+
+[[redirects]]
+  from = "/common-washing-machine-problems-and-repairs"
+  to = "/blog/common-washing-machine-problems-and-repairs"
+  status = 301
+
+[[redirects]]
+  from = "/cord-replacement"
+  to = "/blog/cord-replacement"
+  status = 301
+
+[[redirects]]
+  from = "/costco-appliance-repair"
+  to = "/blog/costco-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/countertop-protection-film"
+  to = "/blog/countertop-protection-film"
+  status = 301
+
+[[redirects]]
+  from = "/cut-electricity-bills-on-refrigerator-usage"
+  to = "/blog/cut-electricity-bills-on-refrigerator-usage"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-buyers-guide"
+  to = "/blog/dishwasher-buyers-guide"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-clogged-blog"
+  to = "/blog/dishwasher-clogged-blog"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-drainage-blog"
+  to = "/blog/dishwasher-drainage-blog"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-error-codes-with-ars"
+  to = "/blog/dishwasher-error-codes-with-ars"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-isnt-cleaning-dishes"
+  to = "/blog/dishwasher-isnt-cleaning-dishes"
+  status = 301
+
+[[redirects]]
+  from = "/diy-appliance-repair-should-you"
+  to = "/blog/diy-appliance-repair-should-you"
+  status = 301
+
+[[redirects]]
+  from = "/diy-is-it-safe"
+  to = "/blog/diy-is-it-safe"
+  status = 301
+
+[[redirects]]
+  from = "/diy-monitor-repair"
+  to = "/blog/diy-monitor-repair"
+  status = 301
+
+[[redirects]]
+  from = "/does-your-home-need-a-humidifier"
+  to = "/blog/does-your-home-need-a-humidifier"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-maintenance"
+  to = "/blog/dryer-maintenance"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-not-drying"
+  to = "/blog/dryer-not-drying"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-running-but-not-heating"
+  to = "/blog/dryer-running-but-not-heating"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-vent-lint-cleaning"
+  to = "/blog/dryer-vent-lint-cleaning"
+  status = 301
+
+[[redirects]]
+  from = "/easy-methods-to-defrost-your-freezer"
+  to = "/blog/easy-methods-to-defrost-your-freezer"
+  status = 301
+
+[[redirects]]
+  from = "/eco-friendly-appliance-maintenance-gta"
+  to = "/blog/eco-friendly-appliance-maintenance-gta"
+  status = 301
+
+[[redirects]]
+  from = "/eco-friendly-appliance-repair"
+  to = "/blog/eco-friendly-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/electrical-safety-appliance-repair"
+  to = "/blog/electrical-safety-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/energy-efficient-appliance-repair"
+  to = "/blog/energy-efficient-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/expert-advice-for-moving-heavy-appliances"
+  to = "/blog/expert-advice-for-moving-heavy-appliances"
+  status = 301
+
+[[redirects]]
+  from = "/f1-error-code-blog"
+  to = "/blog/f1-error-code-blog"
+  status = 301
+
+[[redirects]]
+  from = "/fe-error-samsung-dishwasher"
+  to = "/blog/fe-error-samsung-dishwasher"
+  status = 301
+
+[[redirects]]
+  from = "/first-time-home-buyer"
+  to = "/blog/first-time-home-buyer"
+  status = 301
+
+[[redirects]]
+  from = "/fixing-f3-error-code"
+  to = "/blog/fixing-f3-error-code"
+  status = 301
+
+[[redirects]]
+  from = "/freezer-burn-fault"
+  to = "/blog/freezer-burn-fault"
+  status = 301
+
+[[redirects]]
+  from = "/freezer-not-working"
+  to = "/blog/freezer-not-working"
+  status = 301
+
+[[redirects]]
+  from = "/freezer-repair-and-health"
+  to = "/blog/freezer-repair-and-health"
+  status = 301
+
+[[redirects]]
+  from = "/fridge-error-codes-with-ars"
+  to = "/blog/fridge-error-codes-with-ars"
+  status = 301
+
+[[redirects]]
+  from = "/fridge-making-loud-buzzing-clicking-sounds"
+  to = "/blog/fridge-making-loud-buzzing-clicking-sounds"
+  status = 301
+
+[[redirects]]
+  from = "/fridge-seal-replacement-and-repair"
+  to = "/blog/fridge-seal-replacement-and-repair"
+  status = 301
+
+[[redirects]]
+  from = "/fridge-smell-tips"
+  to = "/blog/fridge-smell-tips"
+  status = 301
+
+[[redirects]]
+  from = "/frigidaire-gallery-repair"
+  to = "/blog/frigidaire-gallery-repair"
+  status = 301
+
+[[redirects]]
+  from = "/front-load-vs-top-load-washer"
+  to = "/blog/front-load-vs-top-load-washer"
+  status = 301
+
+[[redirects]]
+  from = "/gas-stove-low-flame"
+  to = "/blog/gas-stove-low-flame"
+  status = 301
+
+[[redirects]]
+  from = "/gas-stove-not-sparking"
+  to = "/blog/gas-stove-not-sparking"
+  status = 301
+
+[[redirects]]
+  from = "/gas-vs-electric-appliances"
+  to = "/blog/gas-vs-electric-appliances"
+  status = 301
+
+[[redirects]]
+  from = "/guide-to-buy-a-refrigerator"
+  to = "/blog/guide-to-buy-a-refrigerator"
+  status = 301
+
+[[redirects]]
+  from = "/handling-appliance-maintenance"
+  to = "/blog/handling-appliance-maintenance"
+  status = 301
+
+[[redirects]]
+  from = "/hanukkah-appliance-repair-tips"
+  to = "/blog/hanukkah-appliance-repair-tips"
+  status = 301
+
+[[redirects]]
+  from = "/happy-appliance-repair-new-year-2024"
+  to = "/blog/happy-appliance-repair-new-year-2024"
+  status = 301
+
+[[redirects]]
+  from = "/happy-halloween-2023"
+  to = "/blog/happy-halloween-2023"
+  status = 301
+
+[[redirects]]
+  from = "/happy-holidays-from-ars"
+  to = "/blog/happy-holidays-from-ars"
+  status = 301
+
+[[redirects]]
+  from = "/hidden-appliance-features"
+  to = "/blog/hidden-appliance-features"
+  status = 301
+
+[[redirects]]
+  from = "/how-can-a-smart-refrigerator-benefit-your-home"
+  to = "/blog/how-can-a-smart-refrigerator-benefit-your-home"
+  status = 301
+
+[[redirects]]
+  from = "/how-does-an-air-fryer-work"
+  to = "/blog/how-does-an-air-fryer-work"
+  status = 301
+
+[[redirects]]
+  from = "/how-long-does-a-dishwasher-last"
+  to = "/blog/how-long-does-a-dishwasher-last"
+  status = 301
+
+[[redirects]]
+  from = "/how-much-does-vacuum-repair-cost"
+  to = "/blog/how-much-does-vacuum-repair-cost"
+  status = 301
+
+[[redirects]]
+  from = "/how-much-is-a-service-call-for-appliance-repair"
+  to = "/blog/how-much-is-a-service-call-for-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-clean-a-cook-top"
+  to = "/blog/how-to-clean-a-cook-top"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-clean-a-dryer-vent"
+  to = "/blog/how-to-clean-a-dryer-vent"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-clean-your-washing-machine"
+  to = "/blog/how-to-clean-your-washing-machine"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-deep-clean-your-dryer"
+  to = "/blog/how-to-deep-clean-your-dryer"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-fix-my-microwave-magnetron"
+  to = "/blog/how-to-fix-my-microwave-magnetron"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-get-the-most-out-of-your-washing-machine"
+  to = "/blog/how-to-get-the-most-out-of-your-washing-machine"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-install-defrost-timer-part-215846602"
+  to = "/blog/how-to-install-defrost-timer-part-215846602"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-maintain-your-refrigerator"
+  to = "/blog/how-to-maintain-your-refrigerator"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-prevent-shrinking-clothes"
+  to = "/blog/how-to-prevent-shrinking-clothes"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-replace-dryer-thermal-fuse-part-279816-w279816-wp-279816"
+  to = "/blog/how-to-replace-dryer-thermal-fuse-part-279816-w279816-wp-279816"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-replace-dryer-thermal-fuse-part-3392519"
+  to = "/blog/how-to-replace-dryer-thermal-fuse-part-3392519"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-replace-refrigerator-defrost-timer-part-wr9x489"
+  to = "/blog/how-to-replace-refrigerator-defrost-timer-part-wr9x489"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-replace-refrigerator-drain-pipe-part-w10619951"
+  to = "/blog/how-to-replace-refrigerator-drain-pipe-part-w10619951"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-replace-washer-lid-switch-part-3949238"
+  to = "/blog/how-to-replace-washer-lid-switch-part-3949238"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-replace-washing-machine-drive-belt-part-wpw10006384"
+  to = "/blog/how-to-replace-washing-machine-drive-belt-part-wpw10006384"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-replace-water-pump-for-washer-part-3363394"
+  to = "/blog/how-to-replace-water-pump-for-washer-part-3363394"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-select-an-appliance-repair-service"
+  to = "/blog/how-to-select-an-appliance-repair-service"
+  status = 301
+
+[[redirects]]
+  from = "/how-to-unlock-a-locked-oven-door"
+  to = "/blog/how-to-unlock-a-locked-oven-door"
+  status = 301
+
+[[redirects]]
+  from = "/illuminating-diwali"
+  to = "/blog/illuminating-diwali"
+  status = 301
+
+[[redirects]]
+  from = "/is-appliance-repair-worth-it"
+  to = "/blog/is-appliance-repair-worth-it"
+  status = 301
+
+[[redirects]]
+  from = "/kitchen-maintenance-blog-2023"
+  to = "/blog/kitchen-maintenance-blog-2023"
+  status = 301
+
+[[redirects]]
+  from = "/kitchen-nightmare-appliance-repair-blog"
+  to = "/blog/kitchen-nightmare-appliance-repair-blog"
+  status = 301
+
+[[redirects]]
+  from = "/landlord-appliance-repair"
+  to = "/blog/landlord-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/laundry-repair-service"
+  to = "/blog/laundry-repair-service"
+  status = 301
+
+[[redirects]]
+  from = "/leaking-dishwasher"
+  to = "/blog/leaking-dishwasher"
+  status = 301
+
+[[redirects]]
+  from = "/leaky-ice-maker"
+  to = "/blog/leaky-ice-maker"
+  status = 301
+
+[[redirects]]
+  from = "/lg-washing-machine-error"
+  to = "/blog/lg-washing-machine-error"
+  status = 301
+
+[[redirects]]
+  from = "/looking-for-linear-compressors-for-lg-fridge"
+  to = "/blog/looking-for-linear-compressors-for-lg-fridge"
+  status = 301
+
+[[redirects]]
+  from = "/maximizing-appliance-lifespan"
+  to = "/blog/maximizing-appliance-lifespan"
+  status = 301
+
+[[redirects]]
+  from = "/maytag-washer-error-codes"
+  to = "/blog/maytag-washer-error-codes"
+  status = 301
+
+[[redirects]]
+  from = "/merry-christmas-appliance-repair"
+  to = "/blog/merry-christmas-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/microwave-faults-to-look-out-for"
+  to = "/blog/microwave-faults-to-look-out-for"
+  status = 301
+
+[[redirects]]
+  from = "/microwave-oven-repair-guide"
+  to = "/blog/microwave-oven-repair-guide"
+  status = 301
+
+[[redirects]]
+  from = "/my-dishwasher-wont-drain"
+  to = "/blog/my-dishwasher-wont-drain"
+  status = 301
+
+[[redirects]]
+  from = "/my-stove-burner-is-not-working"
+  to = "/blog/my-stove-burner-is-not-working"
+  status = 301
+
+[[redirects]]
+  from = "/my-stove-top-keeps-clicking"
+  to = "/blog/my-stove-top-keeps-clicking"
+  status = 301
+
+[[redirects]]
+  from = "/need-blender-repair"
+  to = "/blog/need-blender-repair"
+  status = 301
+
+[[redirects]]
+  from = "/noisy-washer"
+  to = "/blog/noisy-washer"
+  status = 301
+
+[[redirects]]
+  from = "/optimal-fridge-temperature"
+  to = "/blog/optimal-fridge-temperature"
+  status = 301
+
+[[redirects]]
+  from = "/oven-not-heating-up-properly"
+  to = "/blog/oven-not-heating-up-properly"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-evolution"
+  to = "/blog/oven-repair-evolution"
+  status = 301
+
+[[redirects]]
+  from = "/parts-to-inspect-when-your-microwave-oven-isnt-working"
+  to = "/blog/parts-to-inspect-when-your-microwave-oven-isnt-working"
+  status = 301
+
+[[redirects]]
+  from = "/parts-to-inspect-when-your-washer-wont-fill"
+  to = "/blog/parts-to-inspect-when-your-washer-wont-fill"
+  status = 301
+
+[[redirects]]
+  from = "/post-holiday-appliance-maintenance"
+  to = "/blog/post-holiday-appliance-maintenance"
+  status = 301
+
+[[redirects]]
+  from = "/professional-washer-repair"
+  to = "/blog/professional-washer-repair"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-appliance-repair-faults"
+  to = "/blog/refrigerator-appliance-repair-faults"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-compressor-blog"
+  to = "/blog/refrigerator-compressor-blog"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-compressor-repair-cost"
+  to = "/blog/refrigerator-compressor-repair-cost"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-issues"
+  to = "/blog/refrigerator-issues"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repairman"
+  to = "/blog/refrigerator-repairman"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-thermostat-repair"
+  to = "/blog/refrigerator-thermostat-repair"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-water-filter"
+  to = "/blog/refrigerator-water-filter"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-water-filter-repair"
+  to = "/blog/refrigerator-water-filter-repair"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-with-water-and-ice-dispenser"
+  to = "/blog/refrigerator-with-water-and-ice-dispenser"
+  status = 301
+
+[[redirects]]
+  from = "/repair-or-replace"
+  to = "/blog/repair-or-replace"
+  status = 301
+
+[[redirects]]
+  from = "/repair-your-washer-vs-buy-a-new-washer"
+  to = "/blog/repair-your-washer-vs-buy-a-new-washer"
+  status = 301
+
+[[redirects]]
+  from = "/replace-your-microwave"
+  to = "/blog/replace-your-microwave"
+  status = 301
+
+[[redirects]]
+  from = "/replacing-stove-elements"
+  to = "/blog/replacing-stove-elements"
+  status = 301
+
+[[redirects]]
+  from = "/replacing-the-refrigerator-main-control-board-ge-part-wr55x10942"
+  to = "/blog/replacing-the-refrigerator-main-control-board-ge-part-wr55x10942"
+  status = 301
+
+[[redirects]]
+  from = "/samsung-dryer-error-codes"
+  to = "/blog/samsung-dryer-error-codes"
+  status = 301
+
+[[redirects]]
+  from = "/samsung-dryer-not-drying"
+  to = "/blog/samsung-dryer-not-drying"
+  status = 301
+
+[[redirects]]
+  from = "/samsung-oven-error-codes"
+  to = "/blog/samsung-oven-error-codes"
+  status = 301
+
+[[redirects]]
+  from = "/samsung-washer-direct-drive-motor-not-working"
+  to = "/blog/samsung-washer-direct-drive-motor-not-working"
+  status = 301
+
+[[redirects]]
+  from = "/sears-appliance-repair"
+  to = "/blog/sears-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/self-cleaning-oven"
+  to = "/blog/self-cleaning-oven"
+  status = 301
+
+[[redirects]]
+  from = "/small-appliances-repair-replace"
+  to = "/blog/small-appliances-repair-replace"
+  status = 301
+
+[[redirects]]
+  from = "/smart-appliance-repair-blog"
+  to = "/blog/smart-appliance-repair-blog"
+  status = 301
+
+[[redirects]]
+  from = "/smart-fridge-appliance-repair"
+  to = "/blog/smart-fridge-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/spring-appliance-repair-blog"
+  to = "/blog/spring-appliance-repair-blog"
+  status = 301
+
+[[redirects]]
+  from = "/squeaking-dryer"
+  to = "/blog/squeaking-dryer"
+  status = 301
+
+[[redirects]]
+  from = "/stove-element-smoking"
+  to = "/blog/stove-element-smoking"
+  status = 301
+
+[[redirects]]
+  from = "/stove-making-clicking-noise"
+  to = "/blog/stove-making-clicking-noise"
+  status = 301
+
+[[redirects]]
+  from = "/stove-not-heating"
+  to = "/blog/stove-not-heating"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-guide"
+  to = "/blog/stove-repair-guide"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-happy-customer"
+  to = "/blog/stove-repair-happy-customer"
+  status = 301
+
+[[redirects]]
+  from = "/stove-top-cleaning"
+  to = "/blog/stove-top-cleaning"
+  status = 301
+
+[[redirects]]
+  from = "/stove-top-light-wont-turn-off"
+  to = "/blog/stove-top-light-wont-turn-off"
+  status = 301
+
+[[redirects]]
+  from = "/temporarily-fix-oven-door-seal"
+  to = "/blog/temporarily-fix-oven-door-seal"
+  status = 301
+
+[[redirects]]
+  from = "/tenant-appliance-repair"
+  to = "/blog/tenant-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/thanksgiving-cooking-2024"
+  to = "/blog/thanksgiving-cooking-2024"
+  status = 301
+
+[[redirects]]
+  from = "/the-health-of-your-microwave"
+  to = "/blog/the-health-of-your-microwave"
+  status = 301
+
+[[redirects]]
+  from = "/tips-for-keeping-your-dishwasher-up-and-running"
+  to = "/blog/tips-for-keeping-your-dishwasher-up-and-running"
+  status = 301
+
+[[redirects]]
+  from = "/tips-to-enhance-longevity-of-your-microwave-oven"
+  to = "/blog/tips-to-enhance-longevity-of-your-microwave-oven"
+  status = 301
+
+[[redirects]]
+  from = "/toaster-oven-repair"
+  to = "/blog/toaster-oven-repair"
+  status = 301
+
+[[redirects]]
+  from = "/top-5-energy-saving-tips-to-follow-on-your-home-electronics"
+  to = "/blog/top-5-energy-saving-tips-to-follow-on-your-home-electronics"
+  status = 301
+
+[[redirects]]
+  from = "/top-5-reasons-to-repair-oven"
+  to = "/blog/top-5-reasons-to-repair-oven"
+  status = 301
+
+[[redirects]]
+  from = "/top-7-most-common-refrigerator-faults"
+  to = "/blog/top-7-most-common-refrigerator-faults"
+  status = 301
+
+[[redirects]]
+  from = "/top-chef-inspired-solutions"
+  to = "/blog/top-chef-inspired-solutions"
+  status = 301
+
+[[redirects]]
+  from = "/top-load-vs-front-load-washer"
+  to = "/blog/top-load-vs-front-load-washer"
+  status = 301
+
+[[redirects]]
+  from = "/top-reasons-why-your-washer-is-moving-or-shaking"
+  to = "/blog/top-reasons-why-your-washer-is-moving-or-shaking"
+  status = 301
+
+[[redirects]]
+  from = "/troubleshooting-common-dishwasher-malfunctions"
+  to = "/blog/troubleshooting-common-dishwasher-malfunctions"
+  status = 301
+
+[[redirects]]
+  from = "/troubleshooting-guide-for-your-washing-machine-drainage-issues"
+  to = "/blog/troubleshooting-guide-for-your-washing-machine-drainage-issues"
+  status = 301
+
+[[redirects]]
+  from = "/tv-not-working"
+  to = "/blog/tv-not-working"
+  status = 301
+
+[[redirects]]
+  from = "/tv-repair-tips"
+  to = "/blog/tv-repair-tips"
+  status = 301
+
+[[redirects]]
+  from = "/vacuum-repair-guide"
+  to = "/blog/vacuum-repair-guide"
+  status = 301
+
+[[redirects]]
+  from = "/vintage-appliances"
+  to = "/blog/vintage-appliances"
+  status = 301
+
+[[redirects]]
+  from = "/vital-emergency-appliance-repair"
+  to = "/blog/vital-emergency-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/washer-isnt-cleaning-your-clothes"
+  to = "/blog/washer-isnt-cleaning-your-clothes"
+  status = 301
+
+[[redirects]]
+  from = "/washer-squeaking-blog"
+  to = "/blog/washer-squeaking-blog"
+  status = 301
+
+[[redirects]]
+  from = "/washing-machine-repair-problems-and-their-causes"
+  to = "/blog/washing-machine-repair-problems-and-their-causes"
+  status = 301
+
+[[redirects]]
+  from = "/washing-machine-tub-repair"
+  to = "/blog/washing-machine-tub-repair"
+  status = 301
+
+[[redirects]]
+  from = "/washing-machine-wont-agitate"
+  to = "/blog/washing-machine-wont-agitate"
+  status = 301
+
+[[redirects]]
+  from = "/what-should-i-do-if-my-samsung-refrigerator-is-not-cooling"
+  to = "/blog/what-should-i-do-if-my-samsung-refrigerator-is-not-cooling"
+  status = 301
+
+[[redirects]]
+  from = "/what-to-do-when-your-dishwasher-detergent-wont-dissolve"
+  to = "/blog/what-to-do-when-your-dishwasher-detergent-wont-dissolve"
+  status = 301
+
+[[redirects]]
+  from = "/when-to-replace-stove-and-oven-elements"
+  to = "/blog/when-to-replace-stove-and-oven-elements"
+  status = 301
+
+[[redirects]]
+  from = "/whirlpool-washer-error-codes"
+  to = "/blog/whirlpool-washer-error-codes"
+  status = 301
+
+[[redirects]]
+  from = "/whirlpool-washing-machine-draining-repair"
+  to = "/blog/whirlpool-washing-machine-draining-repair"
+  status = 301
+
+[[redirects]]
+  from = "/who-makes-lg-appliances"
+  to = "/blog/who-makes-lg-appliances"
+  status = 301
+
+[[redirects]]
+  from = "/why-best-buy-falls-short"
+  to = "/blog/why-best-buy-falls-short"
+  status = 301
+
+[[redirects]]
+  from = "/why-dishwasher-jets-spraying-weakly"
+  to = "/blog/why-dishwasher-jets-spraying-weakly"
+  status = 301
+
+[[redirects]]
+  from = "/why-does-a-washing-machine-produce-a-bad-smell-and-how-to-clean-it"
+  to = "/blog/why-does-a-washing-machine-produce-a-bad-smell-and-how-to-clean-it"
+  status = 301
+
+[[redirects]]
+  from = "/why-is-my-electric-stove-not-working"
+  to = "/blog/why-is-my-electric-stove-not-working"
+  status = 301
+
+[[redirects]]
+  from = "/why-is-my-maytag-dryer-not-drying"
+  to = "/blog/why-is-my-maytag-dryer-not-drying"
+  status = 301
+
+[[redirects]]
+  from = "/why-is-my-whirlpool-dishwasher-not-cleaning"
+  to = "/blog/why-is-my-whirlpool-dishwasher-not-cleaning"
+  status = 301
+
+[[redirects]]
+  from = "/why-repair-your-kitchenaid-hand-mixer"
+  to = "/blog/why-repair-your-kitchenaid-hand-mixer"
+  status = 301
+
+[[redirects]]
+  from = "/why-your-dishwasher-isnt-cleaning-well"
+  to = "/blog/why-your-dishwasher-isnt-cleaning-well"
+  status = 301
+
+[[redirects]]
+  from = "/wine-cooler-not-cooling"
+  to = "/blog/wine-cooler-not-cooling"
+  status = 301
+
+[[redirects]]
+  from = "/winter-appliance-repair-and-maintenance"
+  to = "/blog/winter-appliance-repair-and-maintenance"
+  status = 301
+
+
+
+[[redirects]]
+  from = "/about"
+  to = "/about-us"
+  status = 301
+
+[[redirects]]
+  from = "/sub-zero-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/brands"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/aeg-appliance-repair"
+  to = "/brands-we-serve/aeg-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/amana-appliance-repair"
+  to = "/brands-we-serve/amana-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/bertazzoni-appliance-repair"
+  to = "/brands-we-serve/bertazzoni-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/blomberg-appliance-repair"
+  to = "/brands-we-serve/blomberg-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/electrolux-appliance-repair"
+  to = "/brands-we-serve/electrolux-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/fisher-and-paykel-appliance-repair"
+  to = "/brands-we-serve/fisher-and-paykel-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/frigidaire-appliance-repair"
+  to = "/brands-we-serve/frigidaire-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/gaggenau-appliance-repair"
+  to = "/brands-we-serve/gaggenau-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/ge-appliance-repair"
+  to = "/brands-we-serve/ge-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/haier-appliance-repair"
+  to = "/brands-we-serve/haier-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/hotpoint-appliance-repair"
+  to = "/brands-we-serve/hotpoint-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/inglis-appliance-repair"
+  to = "/brands-we-serve/inglis-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/jenn-air-appliance-repair"
+  to = "/brands-we-serve/jennair-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/kenmore-appliance-repair"
+  to = "/brands-we-serve/kenmore-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/lg-appliance-repair"
+  to = "/brands-we-serve/lg-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/magic-chef-appliance-repair"
+  to = "/brands-we-serve/magic-chef-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/marvel-appliance-repair"
+  to = "/brands-we-serve/marvel-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/maytag-appliance-repair"
+  to = "/brands-we-serve/maytag-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/moffat-appliance-repair"
+  to = "/brands-we-serve/moffat-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/samsung-appliance-repair"
+  to = "/brands-we-serve/samsung-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/thermador-appliance-repair"
+  to = "/brands-we-serve/thermador-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/viking-appliance-repair"
+  to = "/brands-we-serve/viking-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/whirlpool-appliance-repair"
+  to = "/brands-we-serve/whirlpool-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/services"
+  to = "/our-services"
+  status = 301
+
+[[redirects]]
+  from = "/air-conditioning-repair"
+  to = "/our-services"
+  status = 301
+
+[[redirects]]
+  from = "/bbq-gas-line-installation"
+  to = "/our-services/bbq-gas-line-installation"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair"
+  to = "/our-services/refrigerator-repair"
+  status = 301
+
+[[redirects]]
+  from = "/vacuum-repair"
+  to = "/our-services/vacuum-repair"
+  status = 301
+
+[[redirects]]
+  from = "/wine-cooler-repair"
+  to = "/our-services/wine-cooler-repair"
+  status = 301
+
+[[redirects]]
+  from = "/service-area"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-aurora"
+  to = "/service-areas/appliance-repair-aurora"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-aurora"
+  to = "/service-areas/appliance-repair-aurora"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-aurora"
+  to = "/service-areas/appliance-repair-aurora"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-aurora"
+  to = "/service-areas/appliance-repair-aurora"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-aurora"
+  to = "/service-areas/appliance-repair-aurora"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-aurora"
+  to = "/service-areas/appliance-repair-aurora"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-aurora"
+  to = "/service-areas/appliance-repair-aurora"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-aurora"
+  to = "/service-areas/appliance-repair-aurora"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-barrie"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-barrie"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-barrie"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-barrie"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-barrie"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-barrie"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-barrie"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-bolton"
+  to = "/service-areas/appliance-repair-bolton"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-bolton"
+  to = "/service-areas/appliance-repair-bolton"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-bolton"
+  to = "/service-areas/appliance-repair-bolton"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-bolton"
+  to = "/service-areas/appliance-repair-bolton"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-bolton"
+  to = "/service-areas/appliance-repair-bolton"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-bolton"
+  to = "/service-areas/appliance-repair-bolton"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-bolton"
+  to = "/service-areas/appliance-repair-bolton"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-bradford"
+  to = "/service-areas/appliance-repair-bradford"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-bradford"
+  to = "/service-areas/appliance-repair-bradford"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-brampton"
+  to = "/service-areas/appliance-repair-brampton"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-brampton"
+  to = "/service-areas/appliance-repair-brampton"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-brampton"
+  to = "/service-areas/appliance-repair-brampton"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-brampton"
+  to = "/service-areas/appliance-repair-brampton"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-brampton"
+  to = "/service-areas/appliance-repair-brampton"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-brampton"
+  to = "/service-areas/appliance-repair-brampton"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-brampton"
+  to = "/service-areas/appliance-repair-brampton"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-brampton"
+  to = "/service-areas/appliance-repair-brampton"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-brantford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-brantford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-bradford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-bradford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-bradford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-bradford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-bradford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-bradford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-burlington"
+  to = "/service-areas/appliance-repair-burlington"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-burlington"
+  to = "/service-areas/appliance-repair-burlington"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-burlington"
+  to = "/service-areas/appliance-repair-burlington"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-burlington"
+  to = "/service-areas/appliance-repair-burlington"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-burlington"
+  to = "/service-areas/appliance-repair-burlington"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-burlington"
+  to = "/service-areas/appliance-repair-burlington"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-burlington"
+  to = "/service-areas/appliance-repair-burlington"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-cambridge"
+  to = "/service-areas/appliance-repair-cambridge"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-cambridge"
+  to = "/service-areas/appliance-repair-cambridge"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-cambridge"
+  to = "/service-areas/appliance-repair-cambridge"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-cambridge"
+  to = "/service-areas/appliance-repair-cambridge"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-cambridge"
+  to = "/service-areas/appliance-repair-cambridge"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-cambridge"
+  to = "/service-areas/appliance-repair-cambridge"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-cambridge"
+  to = "/service-areas/appliance-repair-cambridge"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-etobicoke"
+  to = "/service-areas/appliance-repair-etobicoke"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-etobicoke"
+  to = "/service-areas/appliance-repair-etobicoke"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-etobicoke"
+  to = "/service-areas/appliance-repair-etobicoke"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-etobicoke"
+  to = "/service-areas/appliance-repair-etobicoke"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-etobicoke"
+  to = "/service-areas/appliance-repair-etobicoke"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-etobicoke"
+  to = "/service-areas/appliance-repair-etobicoke"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-etobicoke"
+  to = "/service-areas/appliance-repair-etobicoke"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-georgetown"
+  to = "/service-areas/appliance-repair-georgetown"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-georgetown"
+  to = "/service-areas/appliance-repair-georgetown"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-georgetown"
+  to = "/service-areas/appliance-repair-georgetown"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-georgetown"
+  to = "/service-areas/appliance-repair-georgetown"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-georgetown"
+  to = "/service-areas/appliance-repair-georgetown"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-georgetown"
+  to = "/service-areas/appliance-repair-georgetown"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-georgetown"
+  to = "/service-areas/appliance-repair-georgetown"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-guelph"
+  to = "/service-areas/appliance-repair-guelph"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-halton-hills"
+  to = "/service-areas/appliance-repair-halton-hills"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-hamilton"
+  to = "/service-areas/appliance-repair-hamilton"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-innisfil"
+  to = "/service-areas/appliance-repair-innisfil"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-kitchener"
+  to = "/service-areas/appliance-repair-kitchener"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-kleinburg"
+  to = "/service-areas/appliance-repair-kleinburg"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-markham"
+  to = "/service-areas/appliance-repair-markham"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-markham"
+  to = "/service-areas/appliance-repair-markham"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-mississauga"
+  to = "/service-areas/appliance-repair-mississauga"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-mississauga"
+  to = "/service-areas/appliance-repair-mississauga"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-newmarket"
+  to = "/service-areas/appliance-repair-newmarket"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-newmarket"
+  to = "/service-areas/appliance-repair-newmarket"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-niagara-falls"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-niagara"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-north-york"
+  to = "/service-areas/appliance-repair-north-york"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-north-york"
+  to = "/service-areas/appliance-repair-north-york"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-oakville"
+  to = "/service-areas/appliance-repair-oakville"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-oakville"
+  to = "/service-areas/appliance-repair-oakville"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-oshawa"
+  to = "/service-areas/appliance-repair-oshawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-ottawa"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-ottawa"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-ottawa"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-ottawa"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-osgoode-ottawa"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-old-ottawa-south"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-old-ottawa-east"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-downtown-ottawa"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-chinatown-ottawa"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-pickering"
+  to = "/service-areas/appliance-repair-pickering"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-richmond-hill"
+  to = "/service-areas/appliance-repair-richmond-hill"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-richmond"
+  to = "/service-areas/appliance-repair-richmond-hill"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-richmond-hill"
+  to = "/service-areas/appliance-repair-richmond-hill"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-scarborough"
+  to = "/service-areas/appliance-repair-scarborough"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-st-catharines"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-thornhill"
+  to = "/service-areas/appliance-repair-thornhill"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-thornhill"
+  to = "/service-areas/appliance-repair-thornhill"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-toronto"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/air-conditioning-repair-toronto"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-toronto"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-moss-park"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-mirvish-village"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-midtown-young-eglinton"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-university"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-trinity-bellwoods"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-trefann-court"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-the-junction"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-lytton-park"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-little-tibet"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-little-portugal"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-little-japan"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-little-italy"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-liberty-village"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-lawrence-park"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-kensington-market"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-high-park"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-harbourfront"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-harbord-village"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-garden-district"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-fashion-district"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-entertainment-district"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-east-bayfront"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-dufferin-grove"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-dovercourt-park"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-the-annex"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-summerhill"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-discovery-district"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-davisville-village"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-danforth"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-corso-italia"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-corktown"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-cityplace"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-church-and-wellesley"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-chaplin-estates"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-carleton-village"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-cabbagetown"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-brockton-village"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-brancondale-hill"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-bloor-west-runnymede"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-bedford-park"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-swansea"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/furnace-repair-toronto"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-toronto"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-vaughan"
+  to = "/service-areas/appliance-repair-vaughan"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-wasaga-beach"
+  to = "/service-areas/appliance-repair-wasaga-beach"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-waterloo"
+  to = "/service-areas/appliance-repair-waterloo"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-welland"
+  to = "/service-areas/appliance-repair-welland"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-whitby"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-stouffville"
+  to = "/service-areas/appliance-repair-whitchurch-stouffville"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-woodbridge"
+  to = "/service-areas/appliance-repair-woodbridge"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-woodstock"
+  to = "/service-areas/appliance-repair-woodstock"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-king-city"
+  to = "/service-areas/king-city-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-king-city"
+  to = "/service-areas/king-city-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-london"
+  to = "/service-areas/london-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-london"
+  to = "/service-areas/london-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-london"
+  to = "/service-areas/london-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-london"
+  to = "/service-areas/london-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-london"
+  to = "/service-areas/london-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-london"
+  to = "/service-areas/london-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-london"
+  to = "/service-areas/london-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-windsor"
+  to = "/service-areas/windsor-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/zephyr-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair"
+  to = "/our-services/stove-cooktop-repair"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-champlain-park"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/kitchenaid-appliance-repair"
+  to = "/brands-we-serve/kitchenaid-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/bosch-appliance-repair"
+  to = "/brands-we-serve/bosch-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/miele-appliance-repair-backup"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair"
+  to = "/our-services/washer-repair"
+  status = 301
+
+[[redirects]]
+  from = "/commercial-appliance-repair"
+  to = "/our-services/commercial-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/speed-queen-appliance-repair"
+  to = "/brands-we-serve/speed-queen-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/range-hood-repair"
+  to = "/our-services/range-hood-repair"
+  status = 301
+
+[[redirects]]
+  from = "/wolf-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair"
+  to = "/our-services/oven-range-repair"
+  status = 301
+
+[[redirects]]
+  from = "/gas-appliance-repair"
+  to = "/our-services/gas-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair"
+  to = "/our-services/dryer-repair"
+  status = 301
+
+[[redirects]]
+  from = "/signature-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/falmec-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-kanata"
+  to = "/service-areas/appliance-repair-kanata"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-claremont"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-stittsville"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-horseshoe-valley"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-nobleton"
+  to = "/service-areas/king-city-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-waterdown"
+  to = "/service-areas/appliance-repair-waterdown"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-osgoode"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-craighurst"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-st-clair"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-holland-landing"
+  to = "/service-areas/appliance-repair-newmarket"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-gloucester"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-rideau"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-sarnia"
+  to = "/service-areas/appliance-repair-sarnia"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-st-marys"
+  to = "/service-areas/london-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-midhurst"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-west-carleton"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-napanee"
+  to = "/service-areas/appliance-repair-kingston"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-springwater"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-brooklin"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-cumberland"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-bloomington"
+  to = "/service-areas/appliance-repair-whitchurch-stouffville"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-chatham"
+  to = "/service-areas/appliance-repair-chatham"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-concord"
+  to = "/service-areas/appliance-repair-vaughan"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-grimsby"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-ajax"
+  to = "/service-areas/ajax-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/vent-a-hood-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/roper-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/westinghouse-appliance-repair"
+  to = "/brands-we-serve/westinghouse-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/summit-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/hisense-appliance-repair"
+  to = "/brands-we-serve/hisense-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/hobart-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/kelvinator-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/aga-appliance-repair"
+  to = "/brands-we-serve/aga-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/heartland-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/dacor-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/avantgarde-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/fulgor-milano-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/fhiaba-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/faber-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/avanti-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/beaumark-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/brada-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/cove-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/asko-appliance-repair"
+  to = "/brands-we-serve/asko-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/admiral-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/ariston-appliance-repair"
+  to = "/brands-we-serve"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-installation"
+  to = "/our-services/appliance-installation"
+  status = 301
+
+[[redirects]]
+  from = "/microwave-repair"
+  to = "/our-services/microwave-repair"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair"
+  to = "/our-services/dishwasher-repair"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-st-james-town"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-convent-glen"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-cardinal-heights"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/coffee-maker-repair"
+  to = "/our-services/small-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/sound-bar-repair"
+  to = "/our-services/small-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-chatham"
+  to = "/service-areas/appliance-repair-chatham"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair"
+  to = "/our-services"
+  status = 301
+
+[[redirects]]
+  from = "/blender-repair"
+  to = "/our-services/small-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/monitor-repair"
+  to = "/our-services/monitor-repair"
+  status = 301
+
+[[redirects]]
+  from = "/stand-mixer-repair"
+  to = "/our-services/small-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/small-appliances-repair"
+  to = "/our-services/small-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/tv-repair"
+  to = "/our-services/lg-tv-repair"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-goulbourn"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact-us"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-kingston"
+  to = "/service-areas/appliance-repair-kingston"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-marysville"
+  to = "/service-areas/appliance-repair-belleville"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-smithville"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-port-colborne"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-niagara-on-the-lake"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-lewiston"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-fort-erie"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-grimsby"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-thorold"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-pelham"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-beamsville"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-dunville"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-uxbridge"
+  to = "/service-areas/appliance-repair-uxbridge"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-york"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-schomberg"
+  to = "/service-areas/king-city-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-chatham"
+  to = "/service-areas/appliance-repair-chatham"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-claremont"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-regent-park"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-nepean"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-alta-vista"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-alexandra-park"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-the-beaches"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-roncesvalles"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-distillery-district"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-chinatown"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-bloorcourt"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-baldwin-village"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-grimsby"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-grimsby"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-grimsby"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-grimsby"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-grimsby"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-goulbourn"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-goulbourn"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-goulbourn"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-goulbourn"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-goulbourn"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-goulbourn"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-gloucester"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-gloucester"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-gloucester"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-gloucester"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-gloucester"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-gloucester"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-fort-erie"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-fort-erie"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-fort-erie"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-fort-erie"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-fort-erie"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-fort-erie"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-dunville"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-dunville"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-dunville"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-dunville"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-dunville"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-dunville"
+  to = "/service-areas/appliance-repair-st-catharines"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-concord"
+  to = "/service-areas/appliance-repair-vaughan"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-concord"
+  to = "/service-areas/appliance-repair-vaughan"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-concord"
+  to = "/service-areas/appliance-repair-vaughan"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-concord"
+  to = "/service-areas/appliance-repair-vaughan"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-concord"
+  to = "/service-areas/appliance-repair-vaughan"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-concord"
+  to = "/service-areas/appliance-repair-vaughan"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-cumberland"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-cumberland"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-cumberland"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-cumberland"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-cumberland"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-cumberland"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-craighurst"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-craighurst"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-craighurst"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-craighurst"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-craighurst"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-craighurst"
+  to = "/service-areas/appliance-repair-barrie"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-claremont"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-claremont"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-claremont"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-claremont"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-claremont"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-chatham"
+  to = "/service-areas/appliance-repair-chatham"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-chatham"
+  to = "/service-areas/appliance-repair-chatham"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-chatham"
+  to = "/service-areas/appliance-repair-chatham"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-chatham"
+  to = "/service-areas/appliance-repair-chatham"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-brooklin"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-brooklin"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-brooklin"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-brooklin"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-brooklin"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-brooklin"
+  to = "/service-areas/appliance-repair-whitby"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-brantford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-brantford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-brantford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-brantford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-brantford"
+  to = "/service-areas/appliance-repair-brantford"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-bloomington"
+  to = "/service-areas/appliance-repair-whitchurch-stouffville"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-bloomington"
+  to = "/service-areas/appliance-repair-whitchurch-stouffville"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-bloomington"
+  to = "/service-areas/appliance-repair-whitchurch-stouffville"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-bloomington"
+  to = "/service-areas/appliance-repair-whitchurch-stouffville"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-bloomington"
+  to = "/service-areas/appliance-repair-whitchurch-stouffville"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-bloomington"
+  to = "/service-areas/appliance-repair-whitchurch-stouffville"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-beamsville"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-beamsville"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-beamsville"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-beamsville"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-beamsville"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-beamsville"
+  to = "/service-areas/appliance-repair-niagara-falls"
+  status = 301
+
+[[redirects]]
+  from = "/dryer-repair-ajax"
+  to = "/service-areas/ajax-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/washer-repair-ajax"
+  to = "/service-areas/ajax-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/oven-repair-ajax"
+  to = "/service-areas/ajax-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/stove-repair-ajax"
+  to = "/service-areas/ajax-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/dishwasher-repair-ajax"
+  to = "/service-areas/ajax-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/refrigerator-repair-ajax"
+  to = "/service-areas/ajax-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-woodpark"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-westboro"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-wellington-village"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-the-glebe"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-riverside-south"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-rideau-view"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-queenswood-heights"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-overbrook"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-orleans"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-navan"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-morgans-grant"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-marathon-village"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-lynwood-village"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-leslie-park"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-kempark"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-hintonburg"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-heron-park"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-glen-cairn"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-fallingbrook"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-crystal-beach"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-craig-henry"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-country-place"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-corkery"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-copeland-park"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-civic-hospital"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-city-view"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-chatelaine-village"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-centretown-west"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-centretown"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-centrepointe"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-carlsbad-springs"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-carson-grove"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-carlington"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-carleton-heights"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-byward-market"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-braemar-park"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-blackburn-hamlet"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-bel-air-park"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-beacon-hill"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-barrhaven"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-arbeatha-park"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-ambleside"
+  to = "/service-areas/appliance-repair-ottawa"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-wallace-emerson"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-wanless-park"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-uptown"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-st-lawrence"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-south-hill"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-south-core"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-seaton-village"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-rosedale"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-riverdale"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-regal-heights"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-quayside"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-queen-street-west"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-parkdale"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-old-town"
+  to = "/service-areas/appliance-repair-toronto"
+  status = 301
+
+[[redirects]]
+  from = "/press-release"
+  to = "/about-us"
+  status = 301
+
+[[redirects]]
+  from = "/press-release-appliance-repair"
+  to = "/about-us"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-mission"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-maple-ridge"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-north-vancouver"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-winnipeg"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-white-rock"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-west-vancouver"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-vancouver"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-surrey"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-delta"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-coquitlam"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-abbotsford"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-bedford"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-burnaby"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-ajax"
+  to = "/service-areas/ajax-appliance-repair"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-stouffville"
+  to = "/service-areas/appliance-repair-whitchurch-stouffville"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-vaughan"
+  to = "/service-areas/appliance-repair-vaughan"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-service"
+  to = "/our-services"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-scarborough"
+  to = "/service-areas/appliance-repair-scarborough"
+  status = 301
+
+[[redirects]]
+  from = "/hvac-repair-pickering"
+  to = "/service-areas/appliance-repair-pickering"
+  status = 301
+
+[[redirects]]
+  from = "/furnace-repair"
+  to = "/our-services"
+  status = 301
+
+[[redirects]]
+  from = "/bbq-grill-cleaning-and-maintenance"
+  to = "/blog/bbq-maintenance-and-repair"
+  status = 301
+
+[[redirects]]
+  from = "/appliance-repair-langley"
+  to = "/service-areas"
+  status = 301
+
+[[redirects]]
+  from = "/covid19"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/samsung-appliance-error-codes"
+  to = "/brands-we-serve/samsung-appliance-repair/error-codes"
+  status = 301
+
+[[redirects]]
+  from = "/lg-appliance-error-codes"
+  to = "/brands-we-serve/samsung-appliance-repair/error-codes"
+  status = 301
+# SPA fallback (if needed for client-side routing)
+# [[redirects]]
+#   from = "/*"
+#   to = "/index.html"
+#   status = 200
+

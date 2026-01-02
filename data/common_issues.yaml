@@ -1,0 +1,118 @@
+- serviceType: "appliance-installation"
+  issues:
+    - "not installed properly"
+    - "not connected to power"
+    - "not connected to water"
+    - "not connected to gas"
+    - "not connected to sewer"
+    - "not connected to vent"
+    - "not connected to drainage"
+    - "not connected to ventilation"
+    - "not connected to water supply"
+    - "not connected to gas supply"
+    - "not connected to sewer supply"
+- serviceType: "commercial-appliance"
+  issues:
+    - "not working properly"
+    - "not starting properly"
+    - "not stopping properly"
+    - "not cooling properly"
+    - "not heating properly"
+    - "not draining properly"
+    - "not cleaning properly"
+    - "not washing properly"
+- serviceType: "dishwasher"
+  issues:
+    - "not draining properly"
+    - "dishes not getting clean"
+    - "leaking water"
+    - "not starting or stopping mid-cycle"
+    - "not filling with water"
+    - "strange or loud noises"
+    - "door not latching or closing"
+    - "soap dispenser not working"
+    - "cloudy glassware"
+    - "unpleasant odors"
+    - "cycle not completing"
+    - "error codes on display"
+    - "spray arms not spinning"
+    - "racks not sliding properly"
+    - "burning smell during operation"
+    - "drain pump running continuously"
+
+- serviceType: "washer"
+  issues:
+    - "not spinning"
+    - "leaking water"
+    - "not draining"
+
+- serviceType: "dryer"
+  issues:
+    - "not heating"
+    - "not tumbling"
+    - "taking too long to dry"
+
+- serviceType: "refrigerator"
+  issues:
+    - "not cooling properly"
+    - "excessive noise"
+    - "water leaks"
+    - "door won't seal"
+
+- serviceType: "freezer"
+  issues:
+    - "not cooling properly"
+    - "frost buildup"
+    - "leaking water"
+
+- serviceType: "wine-cooler"
+  issues:
+    - "temperature swings"
+    - "excessive noise"
+    - "frost buildup"
+    - "cooling failure"
+    - "not turning on"
+    - "compressor running constantly"
+    - "water leaking inside"
+    - "humidity control issues"
+    - "door not sealing properly"
+    - "interior light not working"
+    - "display panel errors"
+    - "fan not working"
+    - "power cycling or tripping breaker"
+    - "vibration or rattling sounds"
+    - "wine not chilled enough"
+
+- serviceType: "stove-cooktop"
+  issues:
+    - "ignition issues"
+    - "uneven heat"
+    - "dead burners"
+    - "cracked glass"
+
+- serviceType: "oven-range"
+  issues:
+    - "not heating"
+    - "uneven cooking"
+    - "temperature control issues"
+
+- serviceType: "range-hood"
+  issues:
+    - "weak suction"
+    - "loud fans"
+    - "dead motor"
+    - "lighting issues"
+
+- serviceType: "microwave"
+  issues:
+    - "no heat"
+    - "turntable failures"
+    - "loud buzzing"
+    - "door switch faults"
+
+- serviceType: "gas-appliance"
+  issues:
+    - "ignition failure"
+    - "flame issues"
+    - "gas odours"
+    - "temperature problems"

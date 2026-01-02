@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Careers on ARS Repair Inc.</title>
+    <link>http://localhost:1313/careers/</link>
+    <description>Recent content in Careers on ARS Repair Inc.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/careers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thank You</title>
+      <link>http://localhost:1313/careers/thank-you/</link>
+      <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/careers/thank-you/</guid>
+      <description>Thank you for applying to ARS Repair and Installation Services Inc. We&amp;rsquo;ve received your application and will review it carefully. We&amp;rsquo;ll contact qualified candidates within 2-3 business days.</description>
+    </item>
+  </channel>
+</rss>

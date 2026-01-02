@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Television on ARS Repair Inc.</title>
+    <link>http://localhost:1313/categories/television/</link>
+    <description>Recent content in Television on ARS Repair Inc.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/television/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My TV is Not Working - TV Repair, ARS®</title>
+      <link>http://localhost:1313/blog/tv-not-working/</link>
+      <pubDate>Mon, 10 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/tv-not-working/</guid>
+      <description>TV Repair for any type of appliance. Call us toll free at 1-866-415-3937 to book an appointment or send us a message online.</description>
+    </item>
+  </channel>
+</rss>

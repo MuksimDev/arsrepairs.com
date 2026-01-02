@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contact Us on ARS Repair Inc.</title>
+    <link>http://localhost:1313/contact-us/</link>
+    <description>Recent content in Contact Us on ARS Repair Inc.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/contact-us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thank You</title>
+      <link>http://localhost:1313/contact-us/thank-you/</link>
+      <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/contact-us/thank-you/</guid>
+      <description>Thank you for contacting ARS Repairs Inc. We&amp;rsquo;ve received your message and will respond within 24 hours with answers to your questions or service scheduling information.</description>
+    </item>
+  </channel>
+</rss>

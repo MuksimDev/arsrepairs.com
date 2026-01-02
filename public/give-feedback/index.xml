@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Give Feedback on ARS Repair Inc.</title>
+    <link>http://localhost:1313/give-feedback/</link>
+    <description>Recent content in Give Feedback on ARS Repair Inc.</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/give-feedback/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thank You for Your Feedback</title>
+      <link>http://localhost:1313/give-feedback/thank-you/</link>
+      <pubDate>Mon, 29 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/give-feedback/thank-you/</guid>
+      <description>Thanks for taking a moment to share your experience with ARS Repairs. Your feedback helps us improve our appliance repair services and serve customers better across Ontario.</description>
+    </item>
+  </channel>
+</rss>

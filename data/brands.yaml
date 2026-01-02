@@ -1,0 +1,468 @@
+- name: "Admiral"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "AEG"
+  image:
+  applianceTypes:
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+
+- name: "AGA"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+
+- name: "Amana"
+  image: "/images/brands/amana.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "Ariston"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+
+- name: "Asko"
+  image:
+  applianceTypes:
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Wine Cooler"
+
+- name: "Avantgarde"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Wine Cooler"
+    - "Range Hood"
+
+- name: "Beaumark"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "Bertazzoni"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+
+- name: "Blomberg"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+
+- name: "Bosch"
+  image: "/images/brands/bosch.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+
+- name: "Brada"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+
+- name: "Dacor"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+    - "Wine Cooler"
+
+- name: "Electrolux"
+  image: "/images/brands/electrolux.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "Faber"
+  image:
+  applianceTypes:
+    - "Range Hood"
+
+- name: "Falmec"
+  image:
+  applianceTypes:
+    - "Range Hood"
+
+- name: "Fhiaba"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Wine Cooler"
+
+- name: "Fisher & Paykel"
+  image: "/images/brands/fisher-and-paykel.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+
+- name: "Frigidaire"
+  image: "/images/brands/frigidaire.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "Fulgor Milano"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+
+- name: "Gaggenau"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Wine Cooler"
+
+- name: "GE"
+  fullName: "General Electric"
+  image: "/images/brands/ge.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+
+- name: "Haier"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "Heartland"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+
+- name: "Hisense"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Wine Cooler"
+
+- name: "Hotpoint"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "Inglis"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+
+- name: "Jenn-Air"
+  image: "/images/brands/jenn-air.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+
+- name: "Kelvinator"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+
+- name: "Kenmore"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "KitchenAid"
+  image: "/images/brands/kitchenaid.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+
+- name: "LG"
+  image: "/images/brands/lg.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "Magic Chef"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "Marvel"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Wine Cooler"
+
+- name: "Maytag"
+  image: "/images/brands/maytag.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "Moffat"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+
+- name: "Roper"
+  image:
+  applianceTypes:
+    - "Washer"
+    - "Dryer"
+
+- name: "Samsung"
+  image: "/images/brands/samsung.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+
+- name: "Signature Kitchen Suite"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+    - "Wine Cooler"
+
+- name: "Speed Queen"
+  image: "/images/brands/speed-queen.svg"
+  applianceTypes:
+    - "Washer"
+    - "Dryer"
+    
+- name: "Summit"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+    - "Wine Cooler"
+
+- name: "Thermador"
+  image: "/images/brands/thermador.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+
+- name: "Vent-A-Hood"
+  image:
+  applianceTypes:
+    - "Range Hood"
+
+- name: "Viking"
+  image: "/images/brands/viking.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Range Hood"
+    - "Microwave"
+    - "Wine Cooler"
+
+- name: "Westinghouse"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Microwave"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+
+- name: "Whirlpool"
+  image: "/images/brands/whirlpool.svg"
+  applianceTypes:
+    - "Fridge"
+    - "Freezer"
+    - "Dishwasher"
+    - "Washer"
+    - "Dryer"
+    - "Oven & Range"
+    - "Stove & Cooktop"
+    - "Microwave"
+
+- name: "Zephyr"
+  image:
+  applianceTypes:
+    - "Fridge"
+    - "Range Hood"
+    - "Stove & Cooktop"
+    - "Wine Cooler"

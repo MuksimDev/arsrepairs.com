@@ -1,0 +1,340 @@
+# Appliance Models by Brand
+# Models are organized by brand name
+
+Whirlpool:
+  - "WRX735SDHZ"
+  - "WTW5000DW"
+  - "WED4815EW"
+  - "WDT750SAHZ"
+  - "WED5000DW"
+  - "WFG505M0BS"
+  - "WRB322DMBM"
+  - "WRS325SDHZ"
+  - "WFW8620HC"
+
+GE:
+  - "GSS25IYNFS"
+  - "GTW465ASNWW"
+  - "GTD45EASJWW"
+  - "GDF570HSRSS"
+  - "JGB735SPSS"
+  - "PVD28BYNFS"
+  - "PFE28KYNFS"
+  - "GTW585BSVWS"
+  - "GFD55ESSNWW"
+
+Samsung:
+  - "RF28R7351SG"
+  - "WF45T6000AW"
+  - "DVE45T6000W"
+  - "DW80R5061US"
+  - "NX58K9500WS"
+  - "ME19R7041FS"
+  - "RF29A9671SR"
+  - "Bespoke RF23DB9900QD"
+  - "WW11CB944DGBUS"
+
+LG:
+  - "LFXS26973S"
+  - "WM3900HWA"
+  - "DLEX3900W"
+  - "LDF5545ST"
+  - "LRE3193ST"
+  - "LMV2031ST"
+  - "LRFGC2706S"
+  - "WT7900HBA"
+  - "LSEL6335F"
+
+Maytag:
+  - "MVWC465HW"
+  - "MEDC465HW"
+  - "MDB8959SFZ"
+  - "MGR8800FZ"
+  - "MFI2570FEZ"
+  - "MHW8630HC"
+  - "MED8630HC"
+  - "MRT311FFFZ"
+
+KitchenAid:
+  - "KDTM354ESS"
+  - "KRFC302ESS"
+  - "KERS807SSS"
+  - "KCGD506GSS"
+  - "KMTT546ESS"
+  - "KRMF706ESS"
+  - "KSDB900ESS"
+  - "KDTM404KPS"
+
+Bosch:
+  - "SHX878E75N"
+  - "WAT28400UC"
+  - "WTG86400UC"
+  - "HII8056U"
+  - "HBL8454UC"
+  - "SHPM78Z55N"
+  - "B36CD50SNS"
+  - "HMC80252UC"
+
+Frigidaire:
+  - "FFTR2021TS"
+  - "FFRE1833S1"
+  - "FFBD2406NS"
+  - "FFGF3053TS"
+  - "FFMO1613LB"
+  - "GRQC2255BF"
+  - "FFHT1425VW"
+  - "FFBD2406NS0"
+
+Electrolux:
+  - "EIED55QIWD"
+  - "EFLS627UTT"
+  - "EFME627UTT"
+  - "EIFLS60JSS"
+  - "EWFL602211"
+  - "EI23BC30KS"
+  - "EW23BC85KS"
+  - "EW30GC55PS"
+
+Amana:
+  - "ATB1200AW"
+  - "ABB1921BRB"
+  - "ADB1500ADS"
+  - "AGR5330BSS"
+  - "ART104TFDW"
+  - "ARTX3028PB"
+  - "ABB1921DEW"
+
+Kenmore:
+  - "253.70302010"
+  - "110.25092511"
+  - "665.13212K110"
+  - "790.97533510"
+  - "14823"
+  - "41783"
+
+Jenn-Air:
+  - "JDS9860AEP"
+  - "JFFCF72DKL"
+  - "JDB8700ADS"
+  - "JJW2827IL"
+  - "JGRV4300DS"
+  - "JFFCC72EHL"
+
+Viking:
+  - "VCSB5484SS"
+  - "VDU5304BSS"
+  - "VDOT5304BSS"
+  - "VIBU5304BSS"
+  - "VGR5366BSS"
+  - "VDOF7300BSS"
+
+Thermador:
+  - "T36DT900SP"
+  - "T24IW9050U"
+  - "PODMC301W"
+  - "SGSXP365TS"
+  - "PRG366WH"
+  - "T24IR900SP"
+
+Fisher & Paykel:
+  - "DD60DAX9"
+  - "RF170WDRUX5"
+  - "EB60DSX1"
+  - "OB60SD9PB1"
+  - "RF170WDRUX5"
+  - "DD60DAX9N2"
+
+Admiral:
+  - "AAD050RFB"
+  - "AAS7200FW"
+  - "AADAC090BW"
+  - "ADF660SSDH12CPI"
+  - "ADTM85MSP"
+  - "ADFW1214SCP"
+
+AEG:
+  - "FSE74817P"
+  - "BPE742380M"
+  - "HBB644R40B"
+  - "BPS33102ZM"
+  - "BES331110B"
+
+AGA:
+  - "AOF30G"
+  - "ARU3"
+  - "eR3-160"
+  - "eR7"
+  - "AGA ERA"
+
+Ariston:
+  - "AQA105"
+  - "LFD68X"
+  - "HF4200W"
+  - "F15-854P-IX-A"
+
+Asko:
+  - "W6904XW"
+  - "OP8687A"
+  - "DBI664IXXLS"
+  - "DBI564PS"
+
+Avantgarde:
+  - "AVT24F"
+
+Beaumark:
+  - "BMF20T"
+  - "BMW20T"
+  - "677315"
+  - "57731H3WW"
+
+Bertazzoni:
+  - "MAS100-6M"
+  - "PROF304GASX"
+  - "P305004GAX"
+  - "HER304GASX"
+
+Blomberg:
+  - "BRFB1052FFBI2"
+  - "DWT52600SSIH"
+  - "WM98220SX"
+  - "BRFB1052FFBIN"
+  - "CTE15210BL"
+
+Brada:
+  - "BBF19KA"
+  - "EB6301WW"
+  - "MRF541WW"
+  - "EBS9373HW"
+
+Dacor:
+  - "DRF36C500MT"
+  - "DOD130"
+  - "DHW390"
+  - "DR30DGIHNG"
+  - "DFS390"
+
+Faber:
+  - "STGL36SSV"
+  - "FIMAR28B6SS"
+  - "BREV361SS600"
+
+Falmec:
+  - "FIMAR28B6SS"
+  - "FDELL70I5SS"
+  - "FDNUB36C6SSR"
+
+Fhiaba:
+  - "BI30B-ROT"
+  - "FP36BILS"
+  - "FTR36S"
+
+Fulgor Milano:
+  - "F7IR30S1"
+  - "F6PWF30S1"
+  - "F6PDF486GS1"
+  - "F6PIR487S1"
+
+Gaggenau:
+  - "RW466765"
+  - "BS485612"
+  - "EB333"
+  - "Vario 400"
+
+Haier:
+  - "HRM260N6TSE"
+  - "HULF50W25NV"
+  - "QJS15HYRFS"
+  - "HEBF100BXS"
+
+Heartland:
+  - "720000GWHT"
+  - "HCTTDW"
+  - "HCFDR23"
+
+Hisense:
+  - "HRM260N6TSE"
+  - "HRF266N6CSE"
+  - "HRQSW17NFS"
+  - "HRS290P5FSE"
+
+Hotpoint:
+  - "HTW265ASWWW"
+  - "HTX26EASWWW"
+  - "RBS160DMWW"
+  - "HPS18BTNRBB"
+  - "HCE515P2MS1"
+
+Inglis:
+  - "IATTW7030B"
+  - "ITW4971EW"
+  - "ITW4300SQ3"
+
+Kelvinator:
+  - "KRTG18V4CW"
+  - "KCCF073WS"
+  - "KCNF073WS"
+
+Magic Chef:
+  - "MCSCWD27W5"
+  - "MCRC7W"
+  - "MCO163S"
+  - "HMV1472BHS"
+  - "MCSCWD27W5"
+
+Marvel:
+  - "MLCL215SS01B"
+  - "MA24BRG3RS"
+  - "MORE215SS31A"
+  - "PRW24F02CPG"
+
+Moffat:
+  - "MDE19DTNKWW"
+  - "MTW201BMRWW"
+  - "E23T6EM"
+  - "MOF30-6E"
+
+Roper:
+  - "RTW4516FW"
+  - "RED4516FW"
+  - "RTW4516F"
+  - "RGD4516FW"
+
+Signature Kitchen Suite:
+  - "SKSDR360GS"
+  - "SKSFDO361T"
+  - "SKSDW2411T"
+  - "SKSDR480SIS"
+  - "SKSFD3623SD"
+
+Speed Queen:
+  - "TC5003WN"
+  - "DR7004WE"
+  - "FF7"
+  - "TR7"
+  - "TR7006WN"
+
+Summit:
+  - "RE203W1"
+  - "RE2411W"
+  - "RG200WS1"
+  - "AL54PNR"
+  - "SPRF2D5"
+
+Vent-A-Hood:
+  - "PRAH6-K24 SS"
+  - "SLAH6-K30 SS"
+  - "CLH9"
+  - "JCWR9"
+
+Westinghouse:
+  - "WFRF3521AW"
+  - "WLE1114FW"
+  - "WHIRLPOOL WRF535SWHZ"
+  - "WESTINGHOUSE WRF560SEHZ"
+
+Zephyr:
+  - "AK1200CBS"
+  - "AK1124BS"
+  - "AK7000CS"
+  - "ZAZ-M90DS"
+  - "PRW24F02CPG"

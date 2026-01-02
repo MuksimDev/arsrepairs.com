@@ -1,0 +1,15 @@
+# Git Submodules Configuration
+# 
+# This file defines the submodules used in this Hugo site.
+# 
+# To use this file:
+# 1. Copy this file to .gitmodules
+# 2. Update the URL to point to your theme repository
+# 3. Run: git submodule add <theme-repo-url> themes/arsrepairs
+#
+# Example configuration:
+# Replace 'arsrepairs-theme' with your actual theme repository name
+[submodule "themes/arsrepairs"]
+	path = themes/arsrepairs
+	url = https://github.com/MuksimDev/arsrepairs-theme.git
+	branch = main

@@ -1,0 +1,348 @@
+{{- /*
+  Reviews / Satisfaction Form Shortcode
+
+  Usage:
+    {{< reviews_form
+         redirect_low_to="/give-feedback/"
+         rating_threshold="2"
+         google_review_url="https://g.page/your-google-profile"
+         endpoint_url="/api/reviews"
+         title="How was your experience with us?"
+         intro="Share your experience in under 60 seconds. If anything wasn't great, we'll make it right."
+    >}}
+
+  Shortcode params:
+    - redirect_low_to     (string)  – where to send low ratings (default "/give-feedback/")
+    - rating_threshold    (string)  – threshold on 1–5 scale for redirect vs. public review (default from params.reviews.ratingThreshold or "2")
+    - google_review_url   (string)  – explicit Google review URL (fallback to params.reviews.googleReviewUrl, then params.google)
+    - endpoint_url        (string)  – internal JSON endpoint for submissions (fallback to params.reviews.endpointUrl)
+    - title               (string)  – optional custom heading
+    - intro               (string)  – optional custom intro text
+*/ -}}
+
+{{- $redirectLowTo := .Get "redirect_low_to" | default "/give-feedback/" -}}
+{{- $ratingThreshold := .Get "rating_threshold" | default (site.Params.reviews.ratingThreshold | default "2") -}}
+
+{{- $googleFromShortcode := .Get "google_review_url" -}}
+{{- $googleFromParams := site.Params.reviews.googleReviewUrl | default site.Params.google -}}
+{{- $googleReviewURL := $googleFromShortcode | default $googleFromParams -}}
+
+{{- $endpointFromShortcode := .Get "endpoint_url" -}}
+{{- $endpointFromParams := site.Params.reviews.endpointUrl | default "" -}}
+{{- $endpointURL := $endpointFromShortcode | default $endpointFromParams -}}
+
+{{- $title := .Get "title" | default "How was your recent experience with us?" -}}
+{{- $intro := .Get "intro" | default "Share your experience in under 60 seconds. If anything wasn't great, we'll guide you to our support form so we can help." -}}
+
+<section
+  class="reviews-form"
+  data-reviews-form="true"
+  data-redirect-low-to="{{ $redirectLowTo }}"
+  data-threshold="{{ $ratingThreshold }}"
+  {{- if $googleReviewURL }} data-google-review-url="{{ $googleReviewURL }}"{{ end -}}
+  {{- if $endpointURL }} data-endpoint-url="{{ $endpointURL }}"{{ end -}}
+>
+  <div class="reviews-form__inner">
+    <header class="reviews-form__header">
+      <h2 class="reviews-form__title">{{ $title }}</h2>
+      <p class="reviews-form__intro">{{ $intro }}</p>
+    </header>
+
+    <form class="contact-form reviews-form__form" method="POST" action="https://api.web3forms.com/submit" novalidate>
+      <!-- Live region for inline status updates -->
+      <div
+        class="contact-form__live-region"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        data-reviews-live-region
+      ></div>
+
+      <!-- Web3Forms access key -->
+      <input type="hidden" name="access_key" value="{{ .Site.Params.web3forms_access_key }}">
+      
+      <!-- Redirect after successful submission -->
+      <input type="hidden" name="redirect" value="/reviews/thank-you/">
+
+      <!-- Honeypot field - hidden checkbox (invisible to users, bots may check it) -->
+      <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" aria-hidden="true">
+      
+      <!-- Subject for email notification -->
+      <input type="hidden" name="subject" value="New Review Submission">
+
+      <!-- Top-level status messages -->
+      <div
+        class="contact-form__status contact-form__status--error contact-form__status--hidden"
+        role="alert"
+        data-reviews-status-error
+      ></div>
+      <div
+        class="contact-form__status contact-form__status--success contact-form__status--hidden"
+        role="status"
+        data-reviews-status-success
+      ></div>
+
+      <!-- =========================================================
+           STAGE 1: SATISFACTION + CONTACT DETAILS
+           Always visible
+           ========================================================= -->
+      <fieldset class="contact-form__field">
+
+        <!-- Satisfaction slider -->
+        <div class="contact-form__field">
+          <label for="reviews-rating" class="contact-form__label">
+            Overall, how satisfied are you with your recent experience?
+            <span class="contact-form__required" aria-label="required">*</span>
+          </label>
+
+          <div class="reviews-form__rating">
+            <div class="reviews-form__faces" aria-hidden="true">
+              <span class="reviews-form__face" data-value="1">😟</span>
+              <span class="reviews-form__face" data-value="2">🙁</span>
+              <span class="reviews-form__face" data-value="3">😐</span>
+              <span class="reviews-form__face" data-value="4">🙂</span>
+              <span class="reviews-form__face" data-value="5">😃</span>
+            </div>
+
+            <input
+              type="range"
+              id="reviews-rating"
+              name="rating"
+              class="reviews-form__slider"
+              min="1"
+              max="5"
+              step="1"
+              value="3"
+              aria-valuemin="1"
+              aria-valuemax="5"
+              aria-valuenow="3"
+              aria-describedby="reviews-rating-value reviews-rating-label"
+              required
+            />
+
+            <div class="reviews-form__rating-meta">
+              <span id="reviews-rating-value" class="reviews-form__rating-value" data-reviews-rating-value>3</span>
+              <span id="reviews-rating-label" class="reviews-form__rating-label" data-reviews-rating-label>Okay</span>
+            </div>
+          </div>
+
+          <span
+            class="contact-form__error"
+            id="reviews-rating-error"
+            role="alert"
+            aria-live="polite"
+            data-reviews-error="rating"
+          ></span>
+        </div>
+
+        <!-- Name -->
+        <div class="contact-form__field contact-form__field--half">
+          <label for="reviews-name" class="contact-form__label">
+            Name
+            <span class="contact-form__required" aria-label="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="reviews-name"
+            name="name"
+            class="contact-form__input"
+            required
+            aria-required="true"
+            aria-describedby="reviews-name-error"
+            autocomplete="name"
+            maxlength="100"
+          />
+          <span
+            class="contact-form__error"
+            id="reviews-name-error"
+            role="alert"
+            aria-live="polite"
+            data-reviews-error="name"
+          ></span>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-form__field contact-form__field--half">
+          <label for="reviews-email" class="contact-form__label">
+            Email
+            <span class="contact-form__required" aria-label="required">*</span>
+          </label>
+          <input
+            type="email"
+            id="reviews-email"
+            name="email"
+            class="contact-form__input"
+            required
+            aria-required="true"
+            aria-describedby="reviews-email-error"
+            autocomplete="email"
+            maxlength="255"
+          />
+          <span
+            class="contact-form__error"
+            id="reviews-email-error"
+            role="alert"
+            aria-live="polite"
+            data-reviews-error="email"
+          ></span>
+        </div>
+
+        <!-- Phone (optional, preferred for follow-up) -->
+        <div class="contact-form__field contact-form__field--half">
+          <label for="reviews-phone" class="contact-form__label">
+            Phone <span class="contact-form__help">(optional, but helpful if we need to follow up)</span>
+          </label>
+          <input
+            type="tel"
+            id="reviews-phone"
+            name="phone"
+            class="contact-form__input"
+            aria-describedby="reviews-phone-error"
+            autocomplete="tel"
+            pattern="[0-9\\s\\-\\+\\(\\)]+"
+            maxlength="20"
+            placeholder="(416) 555-1234"
+          />
+          <span
+            class="contact-form__error"
+            id="reviews-phone-error"
+            role="alert"
+            aria-live="polite"
+            data-reviews-error="phone"
+          ></span>
+        </div>
+
+        <div class="contact-form__actions">
+          <button
+            type="button"
+            class="btn btn--primary contact-form__submit"
+            data-reviews-continue
+          >
+            <span class="btn__text">Continue</span>
+          </button>
+        </div>
+      </fieldset>
+
+      <!-- =========================================================
+           STAGE 2: OPTIONAL REVIEW DETAILS (high scores only)
+           Revealed via JS when rating > threshold
+           ========================================================= -->
+      <fieldset
+        class="contact-form__field"
+        data-reviews-stage-two
+        aria-hidden="true"
+        style="display: none;"
+      >
+        <legend class="contact-form__label">
+          Step 2 &mdash; Optional details for your review
+        </legend>
+
+
+        <!-- City Required -->
+        <div class="contact-form__field contact-form__field--half">
+          <label for="reviews-city" class="contact-form__label">
+            City
+            <span class="contact-form__required" aria-label="required">*</span>
+          </label>
+          <select
+            id="reviews-city"
+            name="city"
+            class="contact-form__input"
+            required
+            aria-required="true"
+            aria-describedby="reviews-city-error"
+            autocomplete="off"
+          >
+            <option value="" disabled selected>Select your city...</option>
+            {{- $cities := site.Data.cities.knownCities -}}
+            {{- range $city := $cities }}
+              <option value="{{ . }}">{{ . }}</option>
+            {{- end }}
+          </select>
+          <span
+            class="contact-form__error"
+            id="reviews-city-error"
+            role="alert"
+            aria-live="polite"
+            data-reviews-error="city"
+          ></span>
+        </div>
+
+        <!-- Appliance or service -->
+        <div class="contact-form__field contact-form__field--half">
+          <label for="reviews-appliance" class="contact-form__label">
+            Appliance or service
+            <span class="contact-form__required" aria-label="required">*</span>
+          </label>
+          <select
+            id="reviews-appliance"
+            name="appliance"
+            class="contact-form__input"
+            required
+            aria-required="true"
+            aria-describedby="reviews-appliance-error"
+            autocomplete="off"
+          >
+            <option value="">Select (optional)</option>
+            {{ with site.GetPage "section" "our-services" }}
+              {{ with .Params.servicesBento.services }}
+                {{ range . }}
+                  <option value="{{ strings.TrimSuffix "/" (path.Base .url) }}">
+                    {{ .title }}
+                  </option>
+                {{ end }}
+              {{ end }}
+            {{ end }}
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <!-- Free-text feedback -->
+        <div class="contact-form__field">
+          <label for="reviews-message" class="contact-form__label">
+            Anything you'd like to highlight about your experience?
+            <span class="contact-form__required" aria-label="required">*</span>
+          </label>
+          <textarea
+            id="reviews-message"
+            name="message"
+            class="contact-form__textarea"
+            rows="4"
+            maxlength="2000"
+            placeholder="Optional, but helpful for other homeowners reading your review."
+            required
+            aria-required="true"
+            aria-describedby="reviews-message-error"
+            autocomplete="off"
+          ></textarea>
+          <span
+            class="contact-form__error"
+            id="reviews-message-error"
+            role="alert"
+            aria-live="polite"
+            data-reviews-error="message"
+          ></span>
+        </div>
+
+        <div class="contact-form__actions flex-col-tablet">
+          <button
+            type="submit"
+            class="btn btn--primary contact-form__submit"
+            data-reviews-submit
+          >
+            <span class="btn__text">Submit review</span>
+          </button>
+          <small class="text--size-xs text-muted flex-1">
+            By submitting this review, you agree to allow {{ site.Params.companyName | default site.Title }} to use your comments
+            (with your first name and city, where appropriate) as part of public reviews or testimonials.
+        </small>
+        </div>
+      </fieldset>
+
+      <!-- Hidden context fields populated on submit -->
+      <input type="hidden" name="page_url" value="{{ .Page.Permalink }}">
+    </form>
+  </div>
+</section>
+
+
