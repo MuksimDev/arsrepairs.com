@@ -1,0 +1,32 @@
+// ============================================================================
+// Root & Base Styles
+// ============================================================================
+
+:root {
+  color-scheme: light;
+  font-size: clamp(15px, 1.05vw, 18px);
+}
+
+html {
+  scroll-behavior: smooth;
+  // Add scroll padding to account for sticky header when scrolling to anchor links
+  scroll-padding-top: 112px; // Header height (92px) + buffer (20px)
+}
+
+body {
+  font-family: $font-sans;
+  color: $surface;
+  background: $background;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+  @include transition(color);
+
+  &:hover,
+  &:focus-visible {
+    color: $primary-dark;
+  }
+}
+

@@ -1,0 +1,14 @@
+{{- /*
+  Phone Number Shortcode
+  
+  Usage:
+    {{< phone >}}
+    {{< phone "custom-number" >}}
+  
+  Outputs a clickable phone number link using the site's default phone number
+  or a custom number if provided.
+*/ -}}
+
+{{- $phone := .Get 0 | default site.Params.phone | default "866-415-3937" -}}
+{{- $formattedPhone := partial "format-phone" $phone -}}
+<a href="tel:{{ $phone | replaceRE "[^0-9]" "" }}" class="phone-link">{{ $formattedPhone }}</a>

@@ -1,0 +1,270 @@
+// ============================================================================
+// Container Utilities
+// ============================================================================
+
+// ============================================================================
+// Internal Mixins
+// ============================================================================
+
+// Horizontal margin helper for container modifiers
+@mixin container-margin-x($desktop-value) {
+  margin-left: $desktop-value;
+  margin-right: $desktop-value;
+
+  @include respond-to(tablet) {
+    margin-left: $spacing-20;
+    margin-right: $spacing-20;
+  }
+
+  @include respond-to(phone) {
+    margin-left: $spacing-10;
+    margin-right: $spacing-10;
+  }
+}
+
+// Left-only margin helper for container modifiers
+@mixin container-margin-left($desktop-value) {
+  margin-left: $desktop-value;
+
+  @include respond-to(tablet) {
+    margin-left: $spacing-20;
+  }
+
+  @include respond-to(phone) {
+    margin-left: $spacing-10;
+  }
+}
+
+// Right-only margin helper for container modifiers
+@mixin container-margin-right($desktop-value) {
+  margin-right: $desktop-value;
+
+  @include respond-to(tablet) {
+    margin-right: $spacing-20;
+  }
+
+  @include respond-to(phone) {
+    margin-right: $spacing-10;
+  }
+}
+
+// ============================================================================
+// Base Container
+// ============================================================================
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: $spacing-40;
+  width: 100%;
+  max-width: $breakpoint-desktop-lg;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 3vw, $spacing-20);
+
+  @include respond-to(laptop) {
+    gap: $spacing-20;
+    max-width: 100%;
+  }
+
+  @include respond-to(tablet) {
+    gap: $spacing-20;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  @include respond-to(phone) {
+    gap: $spacing-10;
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  // --------------------------------------------------------------------------
+  // Color Modifiers
+  // --------------------------------------------------------------------------
+
+  &--color-tertiary {
+    background: $tertiary;
+  }
+
+  &--color-white {
+    background: $text-white;
+  }
+
+  &--color-primary {
+    background: $primary;
+    color: $text-white;
+  }
+
+  &--color-secondary {
+    background: $secondary;
+  }
+
+  &--color-secondary-dark {
+    background: $secondary-dark;
+    color: $text-white;
+  }
+
+  &--color-secondary-darker {
+    background: $secondary-darker;
+    color: $text-white;
+  }
+
+  &--color-secondary-darkest {
+    background: $secondary-darkest;
+    color: $text-white;
+  }
+
+  // --------------------------------------------------------------------------
+  // Style Modifiers
+  // --------------------------------------------------------------------------
+
+  &--rounded {
+    border-radius: $border-radius-default;
+  }
+
+  // --------------------------------------------------------------------------
+  // Margin Modifiers - Left/Right Only
+  // --------------------------------------------------------------------------
+
+  &--margin-sides-20 {
+    @include container-margin-x($spacing-20);
+  }
+
+  &--margin-sides-40 {
+    @include container-margin-x($spacing-40);
+  }
+
+  &--margin-sides-60 {
+    @include container-margin-x($spacing-60);
+  }
+
+  &--margin-sides-80 {
+    @include container-margin-x($spacing-80);
+  }
+
+  &--margin-sides-left-20 {
+    @include container-margin-left($spacing-20);
+  }
+
+  &--margin-sides-left-40 {
+    @include container-margin-left($spacing-40);
+  }
+
+  &--margin-sides-left-60 {
+    @include container-margin-left($spacing-60);
+  }
+
+  &--margin-sides-left-80 {
+    @include container-margin-left($spacing-80);
+  }
+
+  &--margin-sides-right-20 {
+    @include container-margin-right($spacing-20);
+  }
+
+  &--margin-sides-right-40 {
+    @include container-margin-right($spacing-40);
+  }
+
+  &--margin-sides-right-60 {
+    @include container-margin-right($spacing-60);
+  }
+
+  &--margin-sides-right-80 {
+    @include container-margin-right($spacing-80);
+  }
+  
+  // --------------------------------------------------------------------------
+  // Container Size Variants
+  // --------------------------------------------------------------------------
+
+  &-sm {
+    width: 100%;
+    max-width: $breakpoint-laptop;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, $spacing-20);
+
+    @include respond-to(laptop) {
+      max-width: 100%;
+    }
+  }
+
+  &-md {
+    width: 100%;
+    max-width: $breakpoint-desktop-lg;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, $spacing-20);
+
+    @include respond-to(laptop) {
+      max-width: 100%;
+    }
+  }
+
+  &-lg {
+    width: 100%;
+    max-width: calc(#{$breakpoint-desktop-lg} + 200px);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, $spacing-20);
+
+    @include respond-to(laptop) {
+      max-width: 100%;
+    }
+  }
+
+  &-xl {
+    width: 100%;
+    max-width: calc(#{$breakpoint-desktop-lg} + 400px);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, $spacing-20);
+
+    @include respond-to(laptop) {
+      max-width: 100%;
+    }
+  }
+
+  &-full {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3vw, $spacing-20);
+  }
+}
+
+// ============================================================================
+// Responsive Container Padding
+// ============================================================================
+
+@include respond-to(laptop) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-full {
+    padding-inline: $spacing-20;
+  }
+}
+
+@include respond-to(tablet) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-full {
+    padding-inline: $spacing-20;
+  }
+}
+
+@include respond-to(phone) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-full {
+    padding-inline: $spacing-10;
+  }
+}

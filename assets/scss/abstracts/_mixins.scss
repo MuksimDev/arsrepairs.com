@@ -1,0 +1,294 @@
+// ============================================================================
+// Mixins
+// ============================================================================
+
+// ============================================================================
+// Transitions
+// ============================================================================
+
+@mixin transition($properties...) {
+  $transition: ();
+  @each $property in $properties {
+    $transition: append($transition, $property 200ms ease, comma);
+  }
+  transition: $transition;
+}
+
+@mixin transition-fast($properties...) {
+  $transition: ();
+  @each $property in $properties {
+    $transition: append($transition, $property 150ms ease, comma);
+  }
+  transition: $transition;
+}
+
+@mixin transition-slow($properties...) {
+  $transition: ();
+  @each $property in $properties {
+    $transition: append($transition, $property 300ms ease, comma);
+  }
+  transition: $transition;
+}
+
+// ============================================================================
+// Responsive Typography & Spacing
+// ============================================================================
+
+@mixin clamp($min, $preferred, $max) {
+  font-size: clamp(#{$min}, #{$preferred}, #{$max});
+}
+
+@mixin responsive-padding($min, $preferred, $max) {
+  padding: clamp(#{$min}, #{$preferred}, #{$max});
+}
+
+@mixin responsive-margin($min, $preferred, $max) {
+  margin: clamp(#{$min}, #{$preferred}, #{$max});
+}
+
+// ============================================================================
+// Focus States
+// ============================================================================
+
+@mixin focus-states {
+  &:hover,
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin focus-visible {
+  &:focus-visible {
+    @content;
+  }
+}
+
+// ============================================================================
+// Flexbox Utilities
+// ============================================================================
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// ============================================================================
+// Grid Utilities
+// ============================================================================
+
+@mixin grid-auto-fit($min-size: 220px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(#{$min-size}, 1fr));
+}
+
+@mixin grid-auto-fill($min-size: 220px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(#{$min-size}, 1fr));
+}
+
+// ============================================================================
+// Box Shadow
+// ============================================================================
+
+@mixin shadow-sm($color: $surface, $opacity: 0.2) {
+  box-shadow: 0 2px 8px rgba($color, $opacity);
+}
+
+@mixin shadow-md($color: $surface, $opacity: 0.2) {
+  box-shadow: 0 10px 30px rgba($color, $opacity);
+}
+
+@mixin shadow-lg($color: $surface, $opacity: 0.2) {
+  box-shadow: 0 15px 35px rgba($color, $opacity);
+}
+
+@mixin shadow-xl($color: $surface, $opacity: 0.2) {
+  box-shadow: 0 25px 45px rgba($color, $opacity);
+}
+
+// ============================================================================
+// Border Radius
+// ============================================================================
+
+@mixin rounded-full {
+  border-radius: 999px;
+}
+
+@mixin rounded-lg {
+  border-radius: $border-radius-lg;
+}
+
+@mixin rounded-xl {
+  border-radius: calc(#{$border-radius-lg} * 1.5);
+}
+
+// ============================================================================
+// Media Queries
+// ============================================================================
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: $breakpoint-phone) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (max-width: $breakpoint-tablet) {
+      @content;
+    }
+  } @else if $breakpoint == laptop {
+    @media (max-width: $breakpoint-laptop) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (max-width: $breakpoint-desktop-lg) {
+      @content;
+    }
+  } @else {
+    @media (max-width: #{$breakpoint}) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-above($breakpoint) {
+  @if $breakpoint == phone {
+    @media (min-width: calc(#{$breakpoint-phone} + 1px)) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (min-width: calc(#{$breakpoint-tablet} + 1px)) {
+      @content;
+    }
+  } @else if $breakpoint == laptop {
+    @media (min-width: calc(#{$breakpoint-laptop} + 1px)) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (min-width: calc(#{$breakpoint-desktop-lg} + 1px)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: #{$breakpoint}) {
+      @content;
+    }
+  }
+}
+
+// ============================================================================
+// Text Utilities
+// ============================================================================
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin uppercase-label {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: $font-size-body-sm;
+}
+
+// ============================================================================
+// Accessibility
+// ============================================================================
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// ============================================================================
+// Backdrop & Glass Effects
+// ============================================================================
+
+@mixin glass-effect($blur: 18px, $opacity: 0.95, $saturate: 180%) {
+  -webkit-backdrop-filter: blur($blur) saturate($saturate);
+  backdrop-filter: blur($blur) saturate($saturate);
+}
+
+// ============================================================================
+// Card Styles
+// ============================================================================
+
+@mixin card-base {
+  background: $background;
+  border-radius: $border-radius-lg;
+  border: 1px solid rgba($border, 0.8);
+  padding: 1.5rem;
+}
+
+@mixin card-shadow {
+  box-shadow: 0 15px 35px rgba($surface, 0.05);
+}
+
+// ============================================================================
+// Gradients
+// ============================================================================
+
+@mixin gradient-horizontal-1 {
+  background: linear-gradient(to right, #FCE2B8 0%, #FFFFFF 25%, #FFFFFF 75%, #FCE2B8 100%);
+}
+
+@mixin gradient-horizontal-2 {
+  background: linear-gradient(to right, #FCE2B8 0%, #FFFFFF 100%);
+}
+
+@mixin gradient-vertical {
+  background: linear-gradient(to bottom, #FEF5E7 0%, #FFFFFF 66%);
+}
+
+@mixin gradient-vertical-2 {
+  background: linear-gradient(to bottom, #FEF5E7 0%, #FFFFFF 20%, #FFFFFF 80%, #FEF5E7 100%);
+}
+
+// ============================================================================
+// Button Base
+// ============================================================================
+
+@mixin button-base {
+  border-radius: $border-radius-default;
+  padding: clamp($spacing-5, 1.125vw, $spacing-10) clamp($spacing-10, 1.125vw, $spacing-20);
+  font-weight: 600;
+  font-size: clamp($font-size-body-sm, 1.25vw, $font-size-body);
+  line-height: clamp($line-height-body-sm, 1.25vw, $line-height-body);
+  border: 2px solid transparent;
+  display: inline-flex;
+  gap: $spacing-10;
+  align-items: center;
+  justify-content: center;
+  @include transition(background, color, border-color, transform);
+}
+

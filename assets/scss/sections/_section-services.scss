@@ -1,0 +1,288 @@
+// ============================================================================
+// Services Section
+// ============================================================================
+
+.section--services {
+  position: relative;
+  @include gradient-horizontal-1;
+  padding: 0;
+  border-bottom: 1px solid $border;
+  // Edge glow gradients on left/right
+  &::after,
+  &::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+  }
+
+  &::before {
+    background: linear-gradient(to left, rgba(#FCE2B8, 0), rgba(#FCE2B8, 1));
+    left: 20px;
+  } 
+
+  &::after {
+    background: linear-gradient(to right, rgba(#FCE2B8, 0), rgba(#FCE2B8, 1));
+    right: 20px;
+  }
+
+  .container {
+    // tablet+ container padding handled in section media query below
+  }
+
+  .services-grid {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    gap: 0;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: none; // Disabled for smooth auto-scroll on all devices
+
+    // Hide scrollbar (cross-browser)
+    -ms-overflow-style: none; // IE/Edge
+    @supports (scrollbar-width: none) {
+      scrollbar-width: none;
+    }
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    scroll-padding-left: $spacing-20; // Account for container padding on first item
+    scroll-padding-right: $spacing-20; // Account for container padding on last item
+    padding: $spacing-40 0;
+    scroll-behavior: auto; // Use instant scroll for programmatic scrolling
+  }
+
+  .service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-20;
+    padding: $spacing-20 18px;
+    text-align: center;
+    text-decoration: none;
+    flex: 1;
+    position: relative;
+    min-width: 212px; // base desktop-ish minimum
+    scroll-snap-align: none; // Disabled for smooth auto-scroll
+    background: rgba(white, 0);
+    border-radius: $border-radius-lg;
+    border: 1px solid transparent;
+    @include transition(background, border-color, box-shadow, transform);
+
+    &:hover {
+      background: rgba(white, 0.75);
+      border-color: rgba($tertiary, 0.2);
+      box-shadow: 0 20px 20px rgba($tertiary, 0.2);
+      transform: scale(1.05);
+      .service-copy {
+        display: block;
+      }
+    }
+
+    // Mobile sizing
+    @include respond-to(tablet) {
+      flex: 0 0 auto;
+      width: 35vw; // 35% of viewport width to show peek of next item
+      min-width: 35vw;
+      max-width: 35vw;
+
+      &:hover {
+        .service-copy {
+          display: none;
+        }
+      }
+    }
+    
+    .service-title {
+      font-family: $font-display;
+      font-size: $font-size-body;
+      color: $text-body;
+      line-height: 1.3;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .service-copy {
+      font-size: $font-size-body-sm;
+      line-height: 22px;
+      color: $text-white;
+      background: rgba(black, 0.5);
+      margin: $spacing-10;
+      padding: $spacing-10;
+      border-radius: 12px;
+      -webkit-backdrop-filter: blur(10px) saturate(180%);
+      backdrop-filter: blur(10px) saturate(180%);
+      display: none;
+      position: absolute;
+      top: 0;
+      animation: ServiceItemCopyFadeIn 0.5s ease-in-out;
+    }
+
+    .service-icon {
+      width: 110px;
+      height: 110px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  // Tablet and below adjustments
+  @include respond-to(tablet) {
+    // Remove decorative edge gradients on smaller screens
+    &::after,
+    &::before {
+      display: none;
+    }
+
+    .container {
+      padding-inline: 0;
+    }
+
+    // Switch to 2-column grid on mobile/tablet and disable horizontal scrolling
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: $spacing-20;
+      overflow-x: visible;
+      overflow-y: visible;
+      scroll-snap-type: none;
+      padding: $spacing-20 0;
+    }
+
+    .service-item {
+      flex: 0 0 auto;
+      width: auto;
+      min-width: 0;
+      max-width: none;
+    }
+  }
+}
+
+// ============================================================================
+// Services shortcode inside `.prose` content
+// Ensures the `services-list` shortcode keeps its layout and visuals when
+// dropped into rich-text areas that use `.prose` typography styles.
+// ============================================================================
+
+.prose {
+  .services-grid {
+    display: grid;
+    width: 100%;
+    align-items: stretch;
+    gap: $spacing-20;
+    justify-items: stretch;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 0;
+    margin-block: $spacing-20;
+  }
+
+  // Stack / reduce columns on smaller screens when inside prose
+  @include respond-to(tablet) {
+    .services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  // Single column on small phones for maximum readability
+  @include respond-to(phone) {
+    .services-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: $spacing-10;
+    }
+  }
+
+  .service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-20;
+    padding: $spacing-20 18px;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    background: rgba(white, 0);
+    border-radius: $border-radius-lg;
+    border: 1px solid transparent;
+    @include transition(background, border-color, box-shadow, transform);
+
+    &:hover {
+      background: rgba(white, 0.75);
+      border-color: rgba($tertiary, 0.2);
+      box-shadow: 0 20px 20px rgba($tertiary, 0.2);
+      transform: scale(1.05);
+
+      .service-copy {
+        display: block;
+      }
+    }
+
+    .service-title {
+      font-family: $font-display;
+      font-size: $font-size-body;
+      color: $text-body;
+      line-height: 1.3;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .service-copy {
+      font-size: $font-size-body-sm;
+      line-height: 22px;
+      color: $text-white;
+      background: rgba(black, 0.5);
+      margin: $spacing-10;
+      padding: $spacing-10;
+      border-radius: 12px;
+      -webkit-backdrop-filter: blur(10px) saturate(180%);
+      backdrop-filter: blur(10px) saturate(180%);
+      display: none;
+      position: absolute;
+      top: 0;
+      animation: ServiceItemCopyFadeIn 0.5s ease-in-out;
+    }
+
+    .service-icon {
+      width: 110px;
+      height: 110px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+@keyframes ServiceItemCopyFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

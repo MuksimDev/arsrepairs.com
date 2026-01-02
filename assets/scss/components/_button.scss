@@ -1,0 +1,354 @@
+// ============================================================================
+// Buttons
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Private Helper Mixins
+// ----------------------------------------------------------------------------
+
+// Button color variant mixin - handles background, color, hover, and active states
+@mixin button-color-variant(
+  $bg,
+  $color,
+  $hover-bg: null,
+  $hover-color: null,
+  $active-bg: null
+) {
+  background: $bg;
+  color: $color;
+
+  @include focus-states {
+    @if $hover-bg {
+      background: $hover-bg;
+    }
+    @if $hover-color {
+      color: $hover-color;
+    }
+  }
+
+  @if $active-bg {
+    &:active {
+      background: $active-bg;
+    }
+  }
+}
+
+// Ghost button variant mixin - handles border, color, and background states
+@mixin button-ghost-variant(
+  $color,
+  $border-opacity: 0.3,
+  $hover-bg-opacity: 0.1,
+  $active-bg-opacity: 0.15
+) {
+  border-color: rgba($color, $border-opacity);
+  color: $color;
+  background: transparent;
+
+  @include focus-states {
+    border-color: $color;
+    background: rgba($color, $hover-bg-opacity);
+  }
+
+  &:active {
+    background: rgba($color, $active-bg-opacity);
+  }
+}
+
+// Icon size mixin - applies consistent icon sizing (only affects icon, not button text)
+@mixin button-icon-size($size) {
+  .btn__icon {
+    width: $size;
+    height: $size;
+    aspect-ratio: 1 / 1;
+    font-size: $size; // Explicitly set icon size, independent of button text size
+    
+    .material-symbols-outlined {
+      font-size: $size; // Explicitly set icon font size, don't inherit from button
+    }
+  }
+}
+
+// Icon color mixin - applies icon color based on variant
+@mixin button-icon-color($color) {
+  .btn__icon {
+    color: $color;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Button Base
+// ----------------------------------------------------------------------------
+
+.btn {
+  @include button-base;
+  cursor: pointer;
+  text-decoration: none;
+
+  // ==========================================================================
+  // Icon Support
+  // ==========================================================================
+
+  &--icon-left,
+  &--icon-right {
+    .btn__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      line-height: 1;
+      aspect-ratio: 1 / 1;
+
+      .material-symbols-outlined {
+        line-height: 1;
+        font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+        -webkit-text-stroke: 0.5px currentColor;
+        // font-size is set explicitly in button-icon-size mixin
+      }
+    }
+  }
+
+  &--icon-left {
+    padding-left: $spacing-10;
+    .btn__icon {
+      order: -1;
+    }
+  }
+
+  &--icon-right {
+    padding-right: $spacing-10;
+    .btn__icon {
+      order: 1;
+    }
+  }
+
+  // ==========================================================================
+  // Sizes
+  // ==========================================================================
+
+  &--xs {
+    padding: 0 $spacing-5;
+    font-size: $font-size-body-sm;
+
+    @include button-icon-size(16px); // Minimum size
+  }
+
+  &--sm {
+    padding: $spacing-5 $spacing-10;
+    font-size: $font-size-body-sm;
+
+    @include button-icon-size(20px); // Minimum size
+  }
+
+  &--md { // default size
+    @include button-icon-size(24px); // default icon size
+  }
+
+  &--lg {
+    padding: 20px $spacing-40;
+    font-size: $font-size-body-lg;
+
+    @include button-icon-size(28px); // Increased proportionally
+  }
+
+  // ==========================================================================
+  // Color Variants - Primary
+  // ==========================================================================
+
+  &--primary {
+    @include button-color-variant(
+      $button-primary-background,
+      $button-primary-color,
+      $button-primary-hover-background,
+      $button-primary-hover-color,
+      $primary-darker
+    );
+
+    @include button-icon-color($primary-darker);
+  }
+
+  // ==========================================================================
+  // Color Variants - Secondary
+  // ==========================================================================
+
+  &--secondary {
+    @include button-color-variant(
+      $button-secondary-background,
+      $button-secondary-color,
+      $button-secondary-hover-background,
+      $button-secondary-hover-color,
+      $secondary-darker
+    );
+
+    @include button-icon-color($secondary-darker);
+
+    // Secondary variants
+    &-dark {
+      @include button-color-variant(
+        $secondary-dark,
+        $text-white,
+        lighten($secondary-dark, 10%),
+        $text-white,
+        $secondary-darker
+      );
+
+      @include button-icon-color($secondary-darker);
+    }
+
+    &-darker {
+      @include button-color-variant(
+        $button-secondary-darker-background,
+        $button-secondary-darker-color,
+        $button-secondary-darker-hover-background,
+        $button-secondary-darker-hover-color,
+        $secondary-darkest
+      );
+
+      @include button-icon-color($secondary-darkest);
+    }
+  }
+
+  // ==========================================================================
+  // Color Variants - Tertiary
+  // ==========================================================================
+
+  &--tertiary {
+    @include button-color-variant(
+      $button-tertiary-background,
+      $button-tertiary-color,
+      $button-tertiary-hover-background,
+      $button-tertiary-hover-color,
+      $tertiary-darker
+    );
+
+    @include button-icon-color($tertiary-darker);
+  }
+
+  // ==========================================================================
+  // Color Variants - Ghost/Outline
+  // ==========================================================================
+
+  &--ghost {
+    border-color: rgba($text-body, 0.2);
+    color: $text-body;
+    background: $button-ghost-background;
+
+    @include focus-states {
+      border-color: rgba($text-body, 0.5);
+      background: $button-ghost-hover-background;
+    }
+
+    &:active {
+      background: rgba($text-body, 0.1);
+    }
+
+    // Ghost variant uses darker text color for icon
+    @include button-icon-color(darken($text-body, 15%));
+  }
+
+  &--ghost-primary {
+    @include button-ghost-variant($primary);
+    @include button-icon-color($primary-darker);
+  }
+
+  &--ghost-secondary {
+    @include button-ghost-variant($secondary);
+    @include button-icon-color($secondary-darker);
+  }
+
+  &--ghost-tertiary {
+    color: $text-body;
+    border-color: rgba($tertiary, 0.3);
+    background: fade-out($tertiary, 0.9);
+
+    @include focus-states {
+      background: fade-out($tertiary, 0.5);
+      color: $text-body;
+    }
+
+    &:active {
+      background: fade-out($tertiary, 0.3);
+    }
+
+    @include button-icon-color($tertiary-darker);
+  }
+
+  &--ghost-white {
+    color: $text-white;
+    border-color: rgba($text-white, 0.3);
+    background: transparent;
+
+    @include focus-states {
+      color: $text-white;
+      background: $button-ghost-hover-background;
+    }
+
+    &:active {
+      background: $button-ghost-hover-background;
+    }
+
+    // Ghost white uses white with slight opacity for icon
+    @include button-icon-color(rgba($text-white, 0.9));
+  }
+
+  // ==========================================================================
+  // Color Variants - Text/Link Style
+  // ==========================================================================
+
+  &--text {
+    border: none;
+    background: transparent;
+    color: $primary;
+    padding: 10px 0;
+
+    @include focus-states {
+      color: $primary-dark;
+    }
+
+    &:active {
+      color: $primary-darker;
+    }
+
+    @include button-icon-color($primary-darker);
+  }
+
+  // ==========================================================================
+  // States - Disabled
+  // ==========================================================================
+
+  &:disabled,
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // ==========================================================================
+  // Layout - Block/Full Width
+  // ==========================================================================
+
+  &--block {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  // ==========================================================================
+  // Accessibility - Focus Visible
+  // ==========================================================================
+
+  @include focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+// ============================================================================
+// Button Row (Utility)
+// ============================================================================
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-10;
+  align-items: center;
+}

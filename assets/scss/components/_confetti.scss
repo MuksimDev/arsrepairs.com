@@ -1,0 +1,65 @@
+// ============================================================================
+// Confetti Animation Component
+// ============================================================================
+
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1200;
+  overflow: hidden;
+}
+
+.confetti-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: currentColor;
+  border-radius: 2px;
+  pointer-events: none;
+  will-change: transform, opacity;
+  
+  // Random colors for variety
+  &:nth-child(5n + 1) {
+    color: #D91A24; // primary red
+  }
+  
+  &:nth-child(5n + 2) {
+    color: #2563EB; // secondary blue
+  }
+  
+  &:nth-child(5n + 3) {
+    color: #F59E0B; // tertiary amber
+  }
+  
+  &:nth-child(5n + 4) {
+    color: #4CAF50; // success green
+  }
+  
+  &:nth-child(5n + 5) {
+    color: #9C27B0; // purple
+  }
+}
+
+// Confetti animation - particles rain down and fade out within 2 seconds (half-life ~1s)
+@keyframes confetti-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  
+  50% {
+    opacity: 0.5; // Half-life at 1 second
+  }
+  
+  100% {
+    transform: translate(var(--confetti-x, 0), var(--confetti-y, 0)) rotate(var(--confetti-rotate, 360deg));
+    opacity: 0;
+  }
+}
+
+.confetti-particle {
+  animation: confetti-fall 2s ease-out forwards;
+  animation-delay: var(--confetti-delay, 0s);
+}
+

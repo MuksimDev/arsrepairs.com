@@ -1,0 +1,467 @@
+<!-- top-bar -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-content">
+      {{ if site.Params.parentCompany }}
+      <a href="/" class="brand">{{ site.Params.parentCompany | default site.Title }}</a>
+      {{ end }}
+      {{- $lang := site.Language.Lang | default "en" -}}
+      {{- $isSpanish := eq $lang "es" -}}
+      {{- $giveFeedbackText := cond $isSpanish "Dar Comentarios" "Give Feedback" -}}
+      {{- $giveFeedbackURL := cond $isSpanish "/es/give-feedback/" "/give-feedback/" -}}
+      <a href="{{ $giveFeedbackURL }}" class="feedback-link"><span class="material-symbols-outlined">feedback</span> {{ $giveFeedbackText }}</a>
+      <div class="top-bar-content-right">
+        {{- /* Language Toggle */}}
+        {{- if hugo.IsMultilingual }}
+        <nav class="language-switcher" aria-label="Language selection">
+          {{- $currentLang := site.Language.Lang }}
+          {{- /* Get default language - first language in the list (typically the default) */}}
+          {{- $defaultLang := (index site.Languages 0).Lang }}
+          {{- $currentRelPath := .RelPermalink }}
+          {{- /* Get path without language prefix */}}
+          {{- $pathWithoutLang := $currentRelPath }}
+          {{- /* Remove language prefix if present (for non-default languages) */}}
+          {{- if and (ne $currentLang $defaultLang) (hasPrefix $currentRelPath (printf "/%s" $currentLang)) }}
+            {{- $pathWithoutLang = strings.TrimPrefix (printf "/%s" $currentLang) $currentRelPath }}
+            {{- /* If path is empty after removing prefix, set to root */}}
+            {{- if eq $pathWithoutLang "" }}
+              {{- $pathWithoutLang = "/" }}
+            {{- end }}
+          {{- end }}
+          {{- /* Ensure path starts with / */}}
+          {{- if not (hasPrefix $pathWithoutLang "/") }}
+            {{- $pathWithoutLang = printf "/%s" $pathWithoutLang }}
+          {{- end }}
+          {{- /* Get language URLs */}}
+          {{- $enURL := "" }}
+          {{- $esURL := "" }}
+          {{- range site.Languages }}
+            {{- $langCode := .Lang }}
+            {{- $langURL := "" }}
+            {{- if eq $langCode $defaultLang }}
+              {{- $langURL = $pathWithoutLang }}
+            {{- else }}
+              {{- if eq $pathWithoutLang "/" }}
+                {{- $langURL = printf "/%s/" $langCode }}
+              {{- else }}
+                {{- $langURL = printf "/%s%s" $langCode $pathWithoutLang }}
+              {{- end }}
+            {{- end }}
+            {{- if eq $langCode "en" }}
+              {{- $enURL = $langURL }}
+            {{- else if eq $langCode "es" }}
+              {{- $esURL = $langURL }}
+            {{- end }}
+          {{- end }}
+          {{- $isSpanish := eq $currentLang "es" }}
+          {{- $switchToEnglishLabel := cond $isSpanish "Cambiar a Inglés" "Switch to English" }}
+          {{- $switchToSpanishLabel := cond $isSpanish "Cambiar a Español" "Switch to Spanish" }}
+          <div class="language-toggle{{ if $isSpanish }} language-toggle--spanish{{ end }}" role="group" aria-label="Language selection">
+            <span class="language-toggle__label language-toggle__label--en">EN</span>
+            <a href="{{ $enURL }}" 
+               class="language-toggle__option language-toggle__option--en"
+               hreflang="en"
+               lang="en"
+               aria-label="{{ $switchToEnglishLabel }}"
+               {{ if not $isSpanish }}aria-current="page"{{ end }}
+               data-lang="en">
+            </a>
+            <span class="language-toggle__slider"></span>
+            <a href="{{ $esURL }}" 
+               class="language-toggle__option language-toggle__option--es"
+               hreflang="es"
+               lang="es"
+               aria-label="{{ $switchToSpanishLabel }}"
+               {{ if $isSpanish }}aria-current="page"{{ end }}
+               data-lang="es">
+            </a>
+            <span class="language-toggle__label language-toggle__label--es">ES</span>
+          </div>
+        </nav>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end top-bar -->
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/"><img src="/images/ars-logo.svg" alt="{{ site.Params.companyName | default site.Title }}" class="logo" loading="eager"></a>
+    <div class="site-header-content">
+      <nav class="site-nav" id="main-nav" data-site-nav>
+        {{ $layoutMap := dict "single" "1" "one" "1" "1" "1" "double" "2" "two" "2" "2" "2" "triple" "3" "three" "3" "3" "3" "quad" "4" "four" "4" "4" "4" }}
+        {{ range site.Menus.main }}
+          {{ $autoPopulate := .Params.auto_populate }}
+          {{ $autoPopulateSection := .Params.auto_populate_section }}
+          {{ $titlePrefix := .Params.title_prefix | default "" }}
+          {{ $hasDropdown := or .HasChildren $autoPopulate }}
+          {{ if $hasDropdown }}
+            {{ $columnKey := lower (printf "%v" (default "single" .Params.dropdown_layout)) }}
+            {{ $columnCount := default "1" (index $layoutMap $columnKey) }}
+            {{ $featureImage := .Params.dropdown_feature_image }}
+            {{ $featureAlt := default (printf "%s highlight" .Name) .Params.dropdown_feature_alt }}
+            {{ $featureTitle := .Params.dropdown_feature_title }}
+            {{ $featureText := .Params.dropdown_feature_text }}
+            {{ $featureLinkText := default "Learn more about this service" .Params.dropdown_feature_link_text }}
+            {{ $featureLinkURL := default .URL .Params.dropdown_feature_link_url }}
+            {{ $dropdownClasses := printf "dropdown-menu dropdown-menu--cols-%s" $columnCount }}
+            {{ if $featureImage }}
+              {{ $dropdownClasses = printf "%s dropdown-menu--has-feature" $dropdownClasses }}
+            {{ end }}
+            <div class="nav-item nav-item--dropdown">
+              <a href="{{ .URL }}" class="nav-link">
+                {{ .Name }} 
+                <span class="dropdown-arrow" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 13 7" fill="none">
+                    <path d="M12.5 0.5L6.5 6.5L0.5 0.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+              <div class="{{ $dropdownClasses }}" data-columns="{{ $columnCount }}">
+                {{- $backToMenuLabel := cond $isSpanish "Volver al menú" "Back to menu" }}
+                {{- $backText := cond $isSpanish "Atrás" "Back" }}
+                <button class="dropdown-back" data-dropdown-close aria-label="{{ $backToMenuLabel }}" type="button">
+                  <span class="dropdown-back-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 13 7" fill="none">
+                      <path d="M12.5 0.5L6.5 6.5L0.5 0.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="dropdown-back-text">{{ $backText }}</span>
+                </button>
+                <div class="dropdown-links">
+                  <a href="{{ .URL }}" class="dropdown-link dropdown-link--parent">
+                    {{ .Name }}
+                  </a>  
+                  {{ if $autoPopulate }}
+                    {{/* Auto-populate from content files */}}
+                    {{ $sectionPath := $autoPopulateSection | default .URL }}
+                    {{ $section := site.GetPage $sectionPath }}
+                    {{ if $section }}
+                      {{/* Get all pages except _index and pages with navHide */}}
+                      {{ $allPages := where $section.Pages "File.LogicalName" "!=" "_index.md" }}
+                      {{ $allPages = where $allPages "Params.navHide" "!=" true }}
+                      
+                      {{/* Check if navGroup is enabled - check menu item param first, then global param */}}
+                      {{ $enableNavGroup := true }}
+                      {{ if isset .Params "enable_nav_group" }}
+                        {{ $enableNavGroup = .Params.enable_nav_group }}
+                      {{ else }}
+                        {{ $enableNavGroup = default true site.Params.enableNavGroup }}
+                      {{ end }}
+                      
+                      {{ if $enableNavGroup }}
+                        {{/* Group pages by navGroup */}}
+                        {{ $groups := dict }}
+                        {{ $ungrouped := slice }}
+                        
+                        {{ range $allPages }}
+                          {{ $navGroup := strings.TrimSpace (default "" .Params.navGroup) }}
+                          {{ if and $navGroup (ne $navGroup "") }}
+                            {{/* Add to grouped pages */}}
+                            {{ $groupPages := default (slice) (index $groups $navGroup) }}
+                            {{ $groupPages = $groupPages | append . }}
+                            {{ $groups = merge $groups (dict $navGroup $groupPages) }}
+                          {{ else }}
+                            {{/* Add to ungrouped pages */}}
+                            {{ $ungrouped = $ungrouped | append . }}
+                          {{ end }}
+                        {{ end }}
+                        
+                        {{/* Convert groups map to sorted slice of group names */}}
+                        {{ $groupNames := slice }}
+                        {{ range $groupName, $_ := $groups }}
+                          {{ $groupNames = $groupNames | append $groupName }}
+                        {{ end }}
+                        
+                        {{/* Sort ungrouped pages by weight first, then alphabetically */}}
+                        {{ $weightedUngrouped := slice }}
+                        {{ $unweightedUngrouped := slice }}
+                        {{ range $ungrouped }}
+                          {{ if and .Weight (gt .Weight 0) }}
+                            {{ $weightedUngrouped = $weightedUngrouped | append . }}
+                          {{ else }}
+                            {{ $unweightedUngrouped = $unweightedUngrouped | append . }}
+                          {{ end }}
+                        {{ end }}
+                        {{ $weightedUngrouped = sort $weightedUngrouped "Weight" "asc" }}
+                        {{ $weightedUngrouped = sort $weightedUngrouped "Title" }}
+                        {{ $unweightedUngrouped = sort $unweightedUngrouped "Title" }}
+                        {{ $ungrouped = $weightedUngrouped | append $unweightedUngrouped }}
+                        
+                        {{/* Render ungrouped pages first */}}
+                        {{ range $ungrouped }}
+                        {{ if not (default false .Params.navHide) }}
+                        {{ $ogImage := "" }}
+                        {{ $featureTitle := "" }}
+                        {{ $featureText := "" }}
+                        {{ $pageSeo := dict }}
+                        {{ with .Params.seo }}{{ $pageSeo = . }}{{ end }}
+                        {{ $pageHeader := dict }}
+                        {{ with .Params.pageHeader }}{{ $pageHeader = . }}{{ end }}
+                        {{ if index $pageSeo "og_image" }}
+                          {{ $ogImage = index $pageSeo "og_image" }}
+                        {{ else if .Params.image }}
+                          {{ $ogImage = .Params.image }}
+                        {{ end }}
+                        {{ if .Params.dropdown_feature_title }}
+                          {{ $featureTitle = .Params.dropdown_feature_title }}
+                        {{ else if index $pageHeader "title" }}
+                          {{ $featureTitle = index $pageHeader "title" }}
+                        {{ end }}
+                        {{ if .Params.dropdown_feature_text }}
+                          {{ $featureText = .Params.dropdown_feature_text }}
+                        {{ else if index $pageHeader "description" }}
+                          {{ $featureText = index $pageHeader "description" }}
+                        {{ end }}
+                        {{ $displayTitle := .Title }}
+                        {{ if $titlePrefix }}
+                          {{ $escapedPrefix := replaceRE "([.*+?^${}()|\\[\\]\\\\])" "\\\\$1" $titlePrefix }}
+                          {{ $displayTitle = replaceRE (printf "^%s" $escapedPrefix) "" .Title }}
+                        {{ end }}
+                        <a href="{{ .RelPermalink }}" class="dropdown-link"{{ if $ogImage }} data-og-image="{{ $ogImage }}"{{ end }}{{ if $featureTitle }} data-feature-title="{{ $featureTitle }}"{{ end }}{{ if $featureText }} data-feature-text="{{ $featureText }}"{{ end }}>
+                          <span class="dropdown-link-title">{{ $displayTitle }}</span>
+                          {{ with .Params.dropdown_description }}
+                            <span class="dropdown-link-desc">{{ . }}</span>
+                          {{ end }}
+                        </a>
+                        {{ end }}
+                      {{ end }}
+                      
+                      {{/* Sort group names using custom order if provided, otherwise alphabetically */}}
+                      {{ $customOrder := default (slice) .Params.nav_group_order }}
+                      {{ if gt (len $customOrder) 0 }}
+                        {{/* Use custom order: groups in order first, then any missing groups alphabetically */}}
+                        {{ $orderedGroups := slice }}
+                        {{ $remainingGroups := slice }}
+                        {{/* First, add groups in custom order */}}
+                        {{ range $customOrder }}
+                          {{ if in $groupNames . }}
+                            {{ $orderedGroups = $orderedGroups | append . }}
+                          {{ end }}
+                        {{ end }}
+                        {{/* Then, add any groups not in custom order, sorted alphabetically */}}
+                        {{ range $groupNames }}
+                          {{ if not (in $orderedGroups .) }}
+                            {{ $remainingGroups = $remainingGroups | append . }}
+                          {{ end }}
+                        {{ end }}
+                        {{ $remainingGroups = sort $remainingGroups }}
+                        {{ $groupNames = $orderedGroups | append $remainingGroups }}
+                      {{ else }}
+                        {{/* No custom order, sort alphabetically */}}
+                        {{ $groupNames = sort $groupNames }}
+                      {{ end }}
+                      {{ range $groupNames }}
+                        {{ $groupName := . }}
+                        {{ $groupPages := index $groups $groupName }}
+                        {{/* Sort grouped pages by weight first, then alphabetically */}}
+                        {{ $weightedGroupPages := slice }}
+                        {{ $unweightedGroupPages := slice }}
+                        {{ range $groupPages }}
+                          {{ if and .Weight (gt .Weight 0) }}
+                            {{ $weightedGroupPages = $weightedGroupPages | append . }}
+                          {{ else }}
+                            {{ $unweightedGroupPages = $unweightedGroupPages | append . }}
+                          {{ end }}
+                        {{ end }}
+                        {{ $weightedGroupPages = sort $weightedGroupPages "Weight" "asc" }}
+                        {{ $weightedGroupPages = sort $weightedGroupPages "Title" }}
+                        {{ $unweightedGroupPages = sort $unweightedGroupPages "Title" }}
+                        {{ $groupPages = $weightedGroupPages | append $unweightedGroupPages }}
+                        
+                        {{/* Wrap entire group in a container div */}}
+                        <div class="dropdown-group">
+                          {{/* Group header */}}
+                          <div class="dropdown-group-header">
+                            <span class="dropdown-link-title">{{ $groupName }}</span>
+                          </div>
+                          
+                          {{/* Group items */}}
+                          {{ range $groupPages }}
+                          {{ if not (default false .Params.navHide) }}
+                          {{ $ogImage := "" }}
+                          {{ $featureTitle := "" }}
+                          {{ $featureText := "" }}
+                          {{ $pageSeo := dict }}
+                          {{ with .Params.seo }}{{ $pageSeo = . }}{{ end }}
+                          {{ $pageHeader := dict }}
+                          {{ with .Params.pageHeader }}{{ $pageHeader = . }}{{ end }}
+                          {{ if index $pageSeo "og_image" }}
+                            {{ $ogImage = index $pageSeo "og_image" }}
+                          {{ else if .Params.image }}
+                            {{ $ogImage = .Params.image }}
+                          {{ end }}
+                          {{ if .Params.dropdown_feature_title }}
+                            {{ $featureTitle = .Params.dropdown_feature_title }}
+                          {{ else if index $pageHeader "title" }}
+                            {{ $featureTitle = index $pageHeader "title" }}
+                          {{ end }}
+                          {{ if .Params.dropdown_feature_text }}
+                            {{ $featureText = .Params.dropdown_feature_text }}
+                          {{ else if index $pageHeader "description" }}
+                            {{ $featureText = index $pageHeader "description" }}
+                          {{ end }}
+                          {{ $displayTitle := .Title }}
+                          {{ if $titlePrefix }}
+                            {{ $displayTitle = replaceRE (printf "^%s" (replaceRE "([.*+?^${}()|\\[\\]\\\\])" "\\\\$1" $titlePrefix)) "" .Title }}
+                          {{ end }}
+                          <a href="{{ .RelPermalink }}" class="dropdown-link"{{ if $ogImage }} data-og-image="{{ $ogImage }}"{{ end }}{{ if $featureTitle }} data-feature-title="{{ $featureTitle }}"{{ end }}{{ if $featureText }} data-feature-text="{{ $featureText }}"{{ end }}>
+                            <span class="dropdown-link-title">{{ $displayTitle }}</span>
+                            {{ with .Params.dropdown_description }}
+                              <span class="dropdown-link-desc">{{ . }}</span>
+                            {{ end }}
+                          </a>
+                          {{ end }}
+                          {{ end }}
+                        </div>
+                      {{ end }}
+                    {{ else }}
+                      {{/* navGroup disabled - render all pages in flat list */}}
+                      {{/* Separate pages with weight from those without */}}
+                      {{ $weightedPages := slice }}
+                      {{ $unweightedPages := slice }}
+                      {{ range $allPages }}
+                        {{ if and .Weight (gt .Weight 0) }}
+                          {{ $weightedPages = $weightedPages | append . }}
+                        {{ else }}
+                          {{ $unweightedPages = $unweightedPages | append . }}
+                        {{ end }}
+                      {{ end }}
+                      {{/* Sort weighted pages by weight (ascending), then by title */}}
+                      {{ $weightedPages = sort $weightedPages "Weight" "asc" }}
+                      {{ $weightedPages = sort $weightedPages "Title" }}
+                      {{/* Sort unweighted pages by title */}}
+                      {{ $unweightedPages = sort $unweightedPages "Title" }}
+                      {{/* Combine: weighted pages first, then unweighted */}}
+                      {{ $allPages = $weightedPages | append $unweightedPages }}
+                      {{ range $allPages }}
+                        {{ if not (default false .Params.navHide) }}
+                        {{ $ogImage := "" }}
+                        {{ $featureTitle := "" }}
+                        {{ $featureText := "" }}
+                        {{ $pageSeo := dict }}
+                        {{ with .Params.seo }}{{ $pageSeo = . }}{{ end }}
+                        {{ $pageHeader := dict }}
+                        {{ with .Params.pageHeader }}{{ $pageHeader = . }}{{ end }}
+                        {{ if index $pageSeo "og_image" }}
+                          {{ $ogImage = index $pageSeo "og_image" }}
+                        {{ else if .Params.image }}
+                          {{ $ogImage = .Params.image }}
+                        {{ end }}
+                        {{ if .Params.dropdown_feature_title }}
+                          {{ $featureTitle = .Params.dropdown_feature_title }}
+                        {{ else if index $pageHeader "title" }}
+                          {{ $featureTitle = index $pageHeader "title" }}
+                        {{ end }}
+                        {{ if .Params.dropdown_feature_text }}
+                          {{ $featureText = .Params.dropdown_feature_text }}
+                        {{ else if index $pageHeader "description" }}
+                          {{ $featureText = index $pageHeader "description" }}
+                        {{ end }}
+                        {{ $displayTitle := .Title }}
+                        {{ if $titlePrefix }}
+                          {{ $escapedPrefix := replaceRE "([.*+?^${}()|\\[\\]\\\\])" "\\\\$1" $titlePrefix }}
+                          {{ $displayTitle = replaceRE (printf "^%s" $escapedPrefix) "" .Title }}
+                        {{ end }}
+                        <a href="{{ .RelPermalink }}" class="dropdown-link"{{ if $ogImage }} data-og-image="{{ $ogImage }}"{{ end }}{{ if $featureTitle }} data-feature-title="{{ $featureTitle }}"{{ end }}{{ if $featureText }} data-feature-text="{{ $featureText }}"{{ end }}>
+                          <span class="dropdown-link-title">{{ $displayTitle }}</span>
+                          {{ with .Params.dropdown_description }}
+                            <span class="dropdown-link-desc">{{ . }}</span>
+                          {{ end }}
+                        </a>
+                        {{ end }}
+                      {{ end }}
+                    {{ end }}
+                    {{ end }}
+                  {{ else }}
+                    {{/* Use menu children for other dropdowns */}}
+                    {{ range .Children }}
+                      {{ $pageObj := site.GetPage .URL }}
+                      {{ $shouldHide := false }}
+                      {{ if $pageObj }}
+                        {{ $shouldHide = default false $pageObj.Params.navHide }}
+                      {{ end }}
+                      {{ if not $shouldHide }}
+                      {{ $ogImage := "" }}
+                      {{ $featureTitle := "" }}
+                      {{ $featureText := "" }}
+                      {{ if $pageObj }}
+                        {{ $pageSeo := dict }}
+                        {{ with $pageObj.Params.seo }}{{ $pageSeo = . }}{{ end }}
+                        {{ $pageHeader := dict }}
+                        {{ with $pageObj.Params.pageHeader }}{{ $pageHeader = . }}{{ end }}
+                        {{ if index $pageSeo "og_image" }}
+                          {{ $ogImage = index $pageSeo "og_image" }}
+                        {{ else if $pageObj.Params.image }}
+                          {{ $ogImage = $pageObj.Params.image }}
+                        {{ end }}
+                        {{ if $pageObj.Params.dropdown_feature_title }}
+                          {{ $featureTitle = $pageObj.Params.dropdown_feature_title }}
+                        {{ else if index $pageHeader "title" }}
+                          {{ $featureTitle = index $pageHeader "title" }}
+                        {{ end }}
+                        {{ if $pageObj.Params.dropdown_feature_text }}
+                          {{ $featureText = $pageObj.Params.dropdown_feature_text }}
+                        {{ else if index $pageHeader "description" }}
+                          {{ $featureText = index $pageHeader "description" }}
+                        {{ end }}
+                      {{ end }}
+                      <a href="{{ .URL }}" class="dropdown-link"{{ if $ogImage }} data-og-image="{{ $ogImage }}"{{ end }}{{ if $featureTitle }} data-feature-title="{{ $featureTitle }}"{{ end }}{{ if $featureText }} data-feature-text="{{ $featureText }}"{{ end }}>
+                        <span class="dropdown-link-title">{{ .Name }}</span>
+                        {{ with .Params.dropdown_description }}
+                          <span class="dropdown-link-desc">{{ . }}</span>
+                        {{ end }}
+                      </a>
+                      {{ end }}
+                    {{ end }}
+                  {{ end }}
+                </div>
+                {{ if $featureImage }}
+                  <div class="dropdown-feature">
+                    <div class="dropdown-feature-media">
+                      <img src="{{ $featureImage }}" alt="{{ $featureAlt }}" class="dropdown-feature-image" data-default-image="{{ $featureImage }}" loading="lazy">
+                    </div>
+                    <div class="dropdown-feature-body">
+                      {{ with $featureTitle }}
+                        <p class="dropdown-feature-title" data-default-title="{{ . }}">{{ . }}</p>
+                      {{ end }}
+                      {{ with $featureText }}
+                        <p class="dropdown-feature-text" data-default-text="{{ . }}">{{ . }}</p>
+                      {{ end }}
+                      <a class="btn btn--sm btn--ghost-white" href="{{ $featureLinkURL }}" data-default-link="{{ $featureLinkURL }}">{{ $featureLinkText }}</a>
+                    </div>
+                  </div>
+                {{ end }}
+              </div>
+            </div>
+          {{ else }}
+            <a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
+          {{ end }}
+        {{ end }}
+      </nav>
+      <div class="btn-row">
+        {{- $bookOnlineText := cond $isSpanish "Reservar en Línea" "Book Online" -}}
+        {{- $bookOnlineURL := cond $isSpanish "/es/programar-servicio/" "/schedule-service/" -}}
+        <a class="btn btn--tertiary btn--md btn--icon-left" href="{{ $bookOnlineURL }}">
+          <span class="btn__icon">
+            <span class="material-symbols-outlined">event_available</span>
+          </span>
+          {{ $bookOnlineText }}
+        </a>
+        {{- $phone := site.Params.phone -}}
+        {{- $formattedPhone := partial "format-phone" $phone -}}
+        <a class="btn btn--ghost-white btn--md btn--icon-left" data-phone-link>
+          <span class="btn__icon">
+            <span class="material-symbols-outlined">call</span>
+          </span>
+          {{ $formattedPhone }}
+        </a>
+      </div>
+    </div>
+    {{- $toggleNavLabel := cond $isSpanish "Alternar menú de navegación" "Toggle navigation menu" -}}
+    <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="main-nav" aria-label="{{ $toggleNavLabel }}">
+      <span></span>
+    </button>
+  </div>
+</header>

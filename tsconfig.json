@@ -18,11 +18,12 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["themes/arsrepairs/assets/ts/*"]
+      "@/*": ["themes/arsrepairs-theme/assets/ts/*"]
     }
   },
   "include": [
-    "themes/arsrepairs/assets/ts/**/*.ts"
+    "assets/ts/**/*.ts",
+    "themes/arsrepairs-theme/assets/ts/**/*.ts"
   ],
   "exclude": [
     "node_modules",
@@ -32,7 +33,7 @@
     "static/**/*",
     "**/_headers",
     "**/_redirects",
-    "themes/arsrepairs/assets/ts/modules/page-list.ts",
+    "themes/arsrepairs-theme/assets/ts/modules/page-list.ts",
     "themes/**/layouts/**/*.html",
     "layouts/**/*.html",
     "content/**/*.md"

@@ -1,0 +1,39 @@
+// ============================================================================
+// Mobile & Tablet CTA Component
+// ============================================================================
+
+.mobile-cta {
+  display: none; // Hidden by default, shown on tablet and mobile
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(white, 0.9);
+  border-top: 1px solid rgba($border, 0.3);
+  padding: $spacing-10;
+  @include glass-effect(20px, 180%);
+  @include shadow-lg(rgba($surface, 0.15));
+  @include transition(transform, opacity);
+
+  // Show on tablet and mobile (up to laptop breakpoint)
+  @include respond-to(tablet) {
+    display: block;
+  }
+
+  &__container {
+    @include flex-between;
+    gap: $spacing-10;
+    max-width: 100%;
+
+    .btn {
+      flex: 1;
+      min-width: 0; // Allow buttons to shrink
+      text-align: center;
+      font-size: $font-size-body;
+      padding: 12px $spacing-20;
+      white-space: nowrap;
+    }
+  }
+}
+

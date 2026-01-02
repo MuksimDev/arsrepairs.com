@@ -1,4 +1,4 @@
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\contact-form.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\contact-form.ts
 function showError(fieldId, message) {
   const field = document.getElementById(fieldId);
   const errorEl = document.getElementById(fieldId + "-error");
@@ -153,7 +153,7 @@ var initContactForm = () => {
   });
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\utils\dom.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\utils\dom.ts
 var onDOMReady = (callback) => {
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", callback);

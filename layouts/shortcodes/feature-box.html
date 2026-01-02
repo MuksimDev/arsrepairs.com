@@ -1,0 +1,144 @@
+{{- /*
+  Feature Box Shortcode
+  
+  Usage with description parameter:
+    {{< feature-box 
+      background="secondary-darkest"
+      image="/images/photo.jpg"
+      image-alt="Description"
+      image-style="rounded"
+      title="Feature Title"
+      description="Feature description text here."
+      button-text="Learn More"
+      button-url="/about-us/"
+    >}}
+  
+  Usage with markdown content (description as inner content):
+    {{< feature-box 
+      background="secondary-darkest"
+      image="/images/photo.jpg"
+      image-alt="Description"
+      image-style="rounded"
+      title="Feature Title"
+      button-text="Learn More"
+      button-url="/about-us/"
+    >}}
+    Feature description text here with **bold** and *italic* formatting.
+    
+    Multiple paragraphs are supported.
+    
+    - Lists work too
+    - Another list item
+    {{< /feature-box >}}
+  
+  Parameters:
+    - background: Background color (optional) - Options: primary, primary-dark, primary-darker, secondary, secondary-dark, secondary-darker, secondary-darkest, tertiary, tertiary-dark, tertiary-darker, white
+    - image: Image source path (optional)
+    - image-alt: Alt text for image (optional, defaults to title)
+    - image-style: Image style (optional) - Options: rounded, diagonal, faded
+    - title: Title text (required)
+    - description: Description text (optional, use inner content for markdown support)
+    - button-text: Button text (optional)
+    - button-url: Button URL/link (optional, required if button-text is provided)
+    - button-color: Button color (optional) - Options: primary, secondary, tertiary (default: secondary)
+*/ -}}
+
+{{- $lang := .Page.Language.Lang | default "en" -}}
+{{- $isSpanish := eq $lang "es" -}}
+
+{{- $bgColor := .Get "background" | default "" -}}
+{{- $image := .Get "image" -}}
+{{- $imageAlt := .Get "image-alt" | default (.Get "title") -}}
+{{- $imageStyle := .Get "image-style" | default "" -}}
+{{- $title := .Get "title" -}}
+{{- $buttonText := .Get "button-text" -}}
+{{- $buttonUrl := .Get "button-url" -}}
+{{- $buttonColor := .Get "button-color" | default "secondary" -}}
+
+{{- /* Get description from parameter first, then inner content (markdown) for backward compatibility */ -}}
+{{- $descriptionParam := .Get "description" -}}
+{{- $description := "" -}}
+{{- $useMarkdown := false -}}
+{{- if $descriptionParam -}}
+  {{- $description = $descriptionParam -}}
+{{- else -}}
+  {{- $innerContent := trim .Inner " \n\r\t" -}}
+  {{- if ne $innerContent "" -}}
+    {{- $description = .Inner -}}
+    {{- $useMarkdown = true -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Build background class */ -}}
+{{- $bgClass := "" -}}
+{{- if $bgColor -}}
+  {{- $bgClass = printf "feature-box--color-%s" $bgColor -}}
+{{- end -}}
+
+{{- /* Build image style class */ -}}
+{{- $imageClass := "section-image" -}}
+{{- if eq $imageStyle "rounded" -}}
+  {{- $imageClass = "feature-box--image feature-box--image--rounded" -}}
+{{- else if eq $imageStyle "diagonal" -}}
+  {{- $imageClass = "feature-box--image feature-box--image--diagonal" -}}
+{{- else if eq $imageStyle "faded" -}}
+  {{- $imageClass = "feature-box--image feature-box--image--faded" -}}
+{{- end -}}
+
+{{- /* Build button class */ -}}
+{{- $btnClass := printf "btn btn--%s" $buttonColor -}}
+
+{{- /* Determine title color based on background */ -}}
+{{- $titleColor := "secondary" -}}
+{{- if $bgColor -}}
+  {{- $darkBackgrounds := slice "primary-dark" "primary-darker" "secondary-dark" "secondary-darker" "secondary-darkest" "tertiary-dark" "tertiary-darker" -}}
+  {{- if in $darkBackgrounds $bgColor -}}
+    {{- $titleColor = "tertiary" -}}
+  {{- else if eq $bgColor "tertiary" -}}
+    {{- $titleColor = "secondary-darker" -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Update button URL to Spanish if needed */ -}}
+{{- if and $buttonUrl $isSpanish -}}
+  {{- if hasPrefix $buttonUrl "/" -}}
+    {{- if not (hasPrefix $buttonUrl "/es/") -}}
+      {{- /* Convert English URLs to Spanish */ -}}
+      {{- $buttonUrl = replace $buttonUrl "/about-us/" "/es/sobre-nosotros/" -}}
+      {{- $buttonUrl = replace $buttonUrl "/contact-us/" "/es/contactenos/" -}}
+      {{- $buttonUrl = replace $buttonUrl "/our-services/" "/es/nuestros-servicios/" -}}
+      {{- $buttonUrl = replace $buttonUrl "/service-areas/" "/es/areas-de-servicio/" -}}
+      {{- $buttonUrl = replace $buttonUrl "/brands-we-serve/" "/es/marcas-que-servimos/" -}}
+      {{- $buttonUrl = replace $buttonUrl "/schedule-service/" "/es/programar-servicio/" -}}
+      {{- $buttonUrl = replace $buttonUrl "/careers/" "/es/carreras/" -}}
+      {{- $buttonUrl = replace $buttonUrl "/blog/" "/es/blog/" -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<div class="feature-box feature-box--col{{ if $bgClass }} {{ $bgClass }}{{ end }}">
+  {{- if $image -}}
+  <div class="{{ $imageClass }}">
+    <img src="{{ $image }}" alt="{{ $imageAlt }}" title="{{ $imageAlt }}" loading="lazy">
+  </div>
+  {{- end -}}
+  <div class="feature-box--content">
+    {{- if $title -}}
+    <h2 class="feature-box--title text-{{ $titleColor }}">{{ $title }}</h2>
+    {{- end -}}
+    {{- if $description -}}
+    <div class="feature-box--copy">
+      {{- if $useMarkdown -}}
+        {{ $description | markdownify }}
+      {{- else -}}
+        <p>{{ $description }}</p>
+      {{- end -}}
+    </div>
+    {{- end -}}
+    {{- if and $buttonText $buttonUrl -}}
+    <div class="btn-row">
+      <a class="{{ $btnClass }} btn--sm" href="{{ $buttonUrl }}">{{ $buttonText }}</a>
+    </div>
+    {{- end -}}
+  </div>
+</div>

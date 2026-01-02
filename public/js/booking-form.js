@@ -1,4 +1,4 @@
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\utils\dom.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\utils\dom.ts
 var isLocalhost = () => {
   return window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 };

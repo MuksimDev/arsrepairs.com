@@ -1,0 +1,139 @@
+{{- /*
+  3-Column Shortcode
+  
+  Usage with icons:
+    {{< box-columns-3 
+      icon1="/images/icons/icon-certified.svg" 
+      icon-alt1="TSSA Certified" 
+      title1="TSSA Certified" 
+      text1="Fully certified to work on gas appliances, following strict safety rules and compliance standards."
+      icon2="/images/icons/icon-insured.svg" 
+      icon-alt2="WSIB Insured" 
+      title2="WSIB Insured" 
+      text2="Your home and your technician are protected. We carry full WSIB coverage for safe, professional on-site service."
+      icon3="/images/icons/icon-warranty.svg" 
+      icon-alt3="Warranty Coverage" 
+      title3="Warranty Coverage" 
+      text3="All repairs include a 3-month labour warranty and 1-month parts warranty, giving you added confidence after the job is done."
+    >}}
+  
+  Usage with buttons:
+    {{< box-columns-3 
+      icon1="/images/icons/icon-certified.svg" 
+      icon-alt1="TSSA Certified" 
+      title1="TSSA Certified" 
+      text1="Fully certified to work on gas appliances."
+      button-text1="Learn More"
+      button-url1="/about-us/"
+      button-class1="btn btn--primary"
+      icon2="/images/icons/icon-insured.svg" 
+      icon-alt2="WSIB Insured" 
+      title2="WSIB Insured" 
+      text2="Your home and your technician are protected."
+      button-text2="Read More"
+      button-url2="/services/"
+      button-class2="btn btn--secondary"
+      icon3="/images/icons/icon-warranty.svg" 
+      icon-alt3="Warranty Coverage" 
+      title3="Warranty Coverage" 
+      text3="All repairs include a 3-month labour warranty."
+      button-text3="View Details"
+      button-url3="/warranty/"
+      button-class3="btn btn--outline"
+    >}}
+  
+  Usage with images:
+    {{< box-columns-3 
+      image1="/images/photo1.jpg" 
+      image-alt1="Description" 
+      title1="Title 1" 
+      text1="Description text here."
+      image2="/images/photo2.jpg" 
+      image-alt2="Description" 
+      title2="Title 2" 
+      text2="Description text here."
+      image3="/images/photo3.jpg" 
+      image-alt3="Description" 
+      title3="Title 3" 
+      text3="Description text here."
+    >}}
+  
+  Parameters:
+    - icon1, icon2, icon3: Icon image source paths (use icon OR image, not both)
+    - image1, image2, image3: Regular image source paths (use icon OR image, not both)
+    - icon-alt1, icon-alt2, icon-alt3: Alt text for icons (optional, defaults to title)
+    - image-alt1, image-alt2, image-alt3: Alt text for images (optional, defaults to title)
+    - image-class1, image-class2, image-class3: CSS class for images (optional, defaults to "img-box")
+    - box-class1, box-class2, box-class3: Additional CSS class(es) for box containers (optional)
+    - show-numbers: Enable automatic numbering (1, 2, 3) in top-right corner (optional, default: false)
+    - text-align: Text alignment for all boxes - "left" or "center" (optional, default: "center")
+    - title1, title2, title3: Column titles (required)
+    - text1, text2, text3: Column descriptions (required)
+    - button-text1, button-text2, button-text3: Button text (optional)
+    - button-url1, button-url2, button-url3: Button URL/link (optional, required if button-text is provided)
+    - button-class1, button-class2, button-class3: CSS class(es) for buttons (optional, defaults to "btn btn--secondary")
+*/ -}}
+
+{{- $lang := .Page.Language.Lang | default "en" -}}
+{{- $isSpanish := eq $lang "es" -}}
+
+<div class="flex flex-row gap-20 flex-col-tablet">
+    {{- range $i := (seq 1 3) -}}
+        {{- $title := printf "title%d" $i -}}
+        {{- if $.Get $title -}}
+            {{- $icon := printf "icon%d" $i -}}
+            {{- $image := printf "image%d" $i -}}
+            {{- $iconAlt := printf "icon-alt%d" $i -}}
+            {{- $imageAlt := printf "image-alt%d" $i -}}
+            {{- $imageClass := printf "image-class%d" $i -}}
+            {{- $boxClass := printf "box-class%d" $i -}}
+            {{- $text := printf "text%d" $i -}}
+            {{- $buttonText := printf "button-text%d" $i -}}
+            {{- $buttonUrl := printf "button-url%d" $i -}}
+            {{- $buttonClass := printf "button-class%d" $i -}}
+            {{- $textAlign := $.Get "text-align" | default "center" -}}
+            {{- $boxClasses := "box box--tight flex-1" -}}
+            {{- if eq $textAlign "left" -}}
+                {{- $boxClasses = printf "%s box--left" $boxClasses -}}
+            {{- else -}}
+                {{- $boxClasses = printf "%s box--center" $boxClasses -}}
+            {{- end -}}
+            {{- if $.Get $boxClass -}}
+                {{- $boxClasses = printf "%s %s" $boxClasses ($.Get $boxClass) -}}
+            {{- end -}}
+            <div class="{{ $boxClasses }}">
+                {{- if $.Get "show-numbers" -}}
+                    <div class="top-right-number">{{ $i }}</div>
+                {{- end -}}
+                {{- if $.Get $icon -}}
+                    <img src="{{ $.Get $icon }}" class="icon-lg" alt="{{ $.Get $iconAlt | default ($.Get $title) }}" title="{{ $.Get $iconAlt | default ($.Get $title) }}" loading="lazy">
+                {{- else if $.Get $image -}}
+                    <img src="{{ $.Get $image }}" class="{{ $.Get $imageClass | default "img-box" }}" alt="{{ $.Get $imageAlt | default ($.Get $title) }}" title="{{ $.Get $imageAlt | default ($.Get $title) }}" loading="lazy">
+                {{- end -}}
+                <h3 class="box--title text-secondary">{{ $.Get $title }}</h3>
+                {{- if $.Get $text -}}
+                    <p class="box--copy">{{ $.Get $text }}</p>
+                {{- end -}}
+                {{- if and ($.Get $buttonText) ($.Get $buttonUrl) -}}
+                    {{- $url := $.Get $buttonUrl -}}
+                    {{- /* Update URL to Spanish if needed */ -}}
+                    {{- if and $isSpanish (hasPrefix $url "/") -}}
+                      {{- if not (hasPrefix $url "/es/") -}}
+                        {{- $url = replace $url "/about-us/" "/es/sobre-nosotros/" -}}
+                        {{- $url = replace $url "/contact-us/" "/es/contactenos/" -}}
+                        {{- $url = replace $url "/our-services/" "/es/nuestros-servicios/" -}}
+                        {{- $url = replace $url "/service-areas/" "/es/areas-de-servicio/" -}}
+                        {{- $url = replace $url "/brands-we-serve/" "/es/marcas-que-servimos/" -}}
+                        {{- $url = replace $url "/schedule-service/" "/es/programar-servicio/" -}}
+                        {{- $url = replace $url "/careers/" "/es/carreras/" -}}
+                        {{- $url = replace $url "/blog/" "/es/blog/" -}}
+                      {{- end -}}
+                    {{- end -}}
+                    <div class="btn-row">
+                        <a class="{{ $.Get $buttonClass | default "btn btn--secondary" }}" href="{{ $url }}">{{ $.Get $buttonText }}</a>
+                    </div>
+                {{- end -}}
+            </div>
+        {{- end -}}
+    {{- end -}}
+</div>

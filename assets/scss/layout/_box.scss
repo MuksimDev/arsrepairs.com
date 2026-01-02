@@ -1,0 +1,162 @@
+// ============================================================================
+// Box Styles
+// ============================================================================
+
+.box {
+  width: 100%;
+  position: relative;
+  padding: $spacing-40;
+  background: $background;
+  color: $text-body;
+  border-radius: $border-radius-default;
+  border: 1px solid $border;
+  height: 100%;
+  height: -webkit-fill-available;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-20;
+
+  @include respond-to(tablet) {
+    padding: $spacing-20;
+    gap: $spacing-10;
+    height: 100%;
+  }
+
+  @include respond-to(phone) {
+    padding: $spacing-20;
+    gap: $spacing-10;
+  }
+
+  &--no-padding {
+    padding: 0;
+  }
+
+  // --------------------------------------------------------------------------
+  // Box Title & Copy
+  // --------------------------------------------------------------------------
+  // Note: Using element + class selectors to increase specificity
+  // .box h3.box--title (0,2,1) overrides .prose h3 (0,1,1)
+  // This ensures box styles override prose styles when boxes are inside .prose containers
+
+  h1.box--title,
+  h2.box--title,
+  h3.box--title,
+  h4.box--title,
+  h5.box--title,
+  h6.box--title,
+  &--title {
+    font-family: $font-display;
+    font-size: $font-size-header-sm;
+    line-height: $line-height-header-sm;
+    font-weight: 400;
+    margin: 0;
+    padding-left: 0;
+
+    &-sm {
+      font-size: $font-size-body-lg;
+      line-height: $line-height-body-lg;
+    }
+
+    &:after, &:before {
+      display: none;
+    }
+  }
+
+  p.box--copy,
+  &--copy {
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    margin: 0;
+
+    &-sm {
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+    }
+  }
+
+  .top-right-number {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    font-size: 160px;
+    line-height: 160px;
+    font-weight: 900;
+    color: $tertiary;
+    opacity: 0.2;
+
+    @include respond-to(laptop) {
+      font-size: 120px;
+      line-height: 120px;
+      top: -30px;
+    }
+  }
+
+  &--row {
+    flex-direction: row;
+
+    @include respond-to(tablet) {
+      flex-direction: column;
+    }
+  }
+
+  &--tight {
+    padding: $spacing-20;
+    gap: $spacing-10;
+
+    @include respond-to(phone) {
+      padding: $spacing-10;
+      gap: $spacing-5;
+    }
+  }
+
+  &--gap-40 {
+    gap: $spacing-40;
+  }
+
+  &--center {
+    text-align: center;
+    align-items: center;
+  }
+
+  // --------------------------------------------------------------------------
+  // Box Styles - Color Modifiers
+  // --------------------------------------------------------------------------
+
+  &--color {
+    &-white {
+      background: $text-white;
+    }
+    &-primary {
+      background: $primary;
+      color: $text-white;
+    }
+    &-secondary {
+      background: $secondary;
+    }
+    &-secondary-dark {
+      background: $secondary-dark;
+      color: $text-white;
+    }
+    &-secondary-darker {
+      background: $secondary-darker;
+      color: $text-white;
+    }
+    &-secondary-darkest {
+      background: $secondary-darkest;
+      color: $text-white;
+    }
+    &-tertiary {
+      background: $tertiary;
+    }
+    &-tertiary-dark {
+      background: $tertiary-dark;
+      color: $text-white;
+    }
+    &-tertiary-darker {
+      background: $tertiary-darker;
+      color: $text-white;
+    }
+  }
+}

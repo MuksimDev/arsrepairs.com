@@ -1,0 +1,492 @@
+// ============================================================================
+// FAQ Component - Accordion-style Frequently Asked Questions
+// ============================================================================
+
+.faq {
+  width: 100%;
+  margin: 0;
+
+  &__title {
+    font-size: $font-size-header-md;
+    font-weight: 700;
+    line-height: $line-height-header-md;
+    color: $secondary-darkest;
+    margin: 0 0 $spacing-20 0;
+    letter-spacing: -0.01em;
+
+    @include respond-to(tablet) {
+      font-size: $font-size-header-sm;
+      line-height: $line-height-header-sm;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-10;
+  }
+}
+
+// ============================================================================
+// FAQ Item
+// ============================================================================
+
+.faq-item {
+  background: $background;
+  border: 1px solid $border;
+  border-radius: $border-radius-default;
+  overflow: hidden;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: $secondary;
+    box-shadow: 0 2px 8px rgba($secondary-darkest, 0.08);
+  }
+
+  &--open {
+    border-color: $primary;
+    box-shadow: 0 2px 8px rgba($primary, 0.1);
+
+    .faq-item__button {
+      background: rgba($primary, 0.05);
+      color: $primary;
+
+      .faq-item__icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-10;
+    padding: $spacing-20;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    color: $text-body;
+
+    @include focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: -2px;
+    }
+
+    &:hover {
+      background: rgba($secondary, 0.03);
+    }
+
+    &:active {
+      background: rgba($secondary, 0.05);
+    }
+  }
+
+  &__question {
+    font-size: $font-size-body;
+    font-weight: 600;
+    line-height: $line-height-body;
+    color: inherit;
+    flex: 1;
+    min-width: 0;
+
+    @include respond-to(phone) {
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary;
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+    background: rgba($primary, 0.1);
+
+    .material-symbols-outlined {
+      font-size: 20px;
+      line-height: 1;
+    }
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    padding: 0;
+
+    &[hidden] {
+      display: block;
+      max-height: 0;
+      opacity: 0;
+      padding: 0;
+    }
+  }
+
+  &--open &__content {
+    max-height: 2000px;
+    opacity: 1;
+    padding: 0;
+
+    &[hidden] {
+      max-height: 2000px;
+      opacity: 1;
+      padding: 0;
+    }
+  }
+
+  &__answer {
+    padding: 0 $spacing-20 $spacing-20;
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    color: $text-body;
+    transition: opacity 0.2s ease;
+
+    @include respond-to(phone) {
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+      padding: 0 $spacing-20 $spacing-20;
+    }
+
+    // Style nested content
+    p {
+      margin: 0 0 $spacing-10 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul,
+    ol {
+      margin: $spacing-10 0;
+      padding-left: $spacing-20;
+
+      li {
+        margin-bottom: $spacing-5;
+        line-height: $line-height-body;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    a {
+      color: $primary;
+      text-decoration: underline;
+      transition: color 0.2s ease;
+
+      &:hover,
+      &:focus-visible {
+        color: $primary-dark;
+      }
+    }
+
+    strong {
+      font-weight: 600;
+      color: $secondary-darkest;
+    }
+
+    em {
+      font-style: italic;
+      color: rgba($text-body, 0.8);
+    }
+  }
+}
+
+// ============================================================================
+// Responsive Adjustments
+// ============================================================================
+
+@include respond-to(tablet) {
+  .faq {
+    margin: $spacing-20 0;
+
+    &__list {
+      gap: $spacing-10;
+    }
+  }
+
+  .faq-item {
+    &__button {
+      padding: $spacing-20;
+    }
+
+    &__answer {
+      padding: 0 $spacing-20 $spacing-20;
+    }
+  }
+}
+
+@include respond-to(phone) {
+  .faq {
+    margin: $spacing-20 0;
+
+    &__title {
+      font-size: $font-size-header-sm;
+      margin-bottom: $spacing-20;
+    }
+
+    &__list {
+      gap: $spacing-10;
+    }
+  }
+
+  .faq-item {
+    &__button {
+      padding: $spacing-20 $spacing-10;
+    }
+
+    &__icon {
+      width: 20px;
+      height: 20px;
+
+      .material-symbols-outlined {
+        font-size: 18px;
+      }
+    }
+
+    &__answer {
+      padding: 0 $spacing-10 $spacing-20;
+    }
+  }
+}
+
+// ============================================================================
+// FAQ List Component - Enhanced UI/UX with Q&A labels
+// ============================================================================
+
+.faq-list {
+  width: 100%;
+  margin: 0;
+
+  &__section {
+    margin-bottom: $spacing-60;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__section-title {
+    margin: 0 0 $spacing-40 0;
+    padding-bottom: $spacing-20;
+    border-bottom: 2px solid rgba($primary, 0.2);
+
+    @include respond-to(tablet) {
+      margin-bottom: $spacing-20;
+      padding-bottom: $spacing-10;
+    }
+  }
+
+  &__list {
+    @include flex-column;
+    gap: $spacing-20;
+
+    @include respond-to(phone) {
+      gap: $spacing-10;
+    }
+  }
+}
+
+.faq-list-item {
+  padding: $spacing-20;
+  border-radius: $border-radius-default;
+  border: 1px solid $border;
+
+  &__question {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-10;
+    margin-bottom: $spacing-20;
+  }
+
+  &__q {
+    flex-shrink: 0;
+    @include flex-center;
+    width: 32px;
+    height: 32px;
+    background: rgba($primary, 0.1);
+    color: $primary;
+    font-weight: 700;
+    font-size: $font-size-body-sm;
+    border-radius: $border-radius-default;
+    font-family: $font-sans;
+
+    @include respond-to(phone) {
+      width: 28px;
+      height: 28px;
+      font-size: $font-size-body-sm;
+    }
+  }
+
+  &__question-text {
+    font-size: $font-size-body-lg;
+    font-weight: 600;
+    line-height: 1.5;
+    color: $text-body;
+    padding-top: 4px;
+    flex: 1;
+
+    @include respond-to(phone) {
+      font-size: $font-size-body;
+      padding-top: 2px;
+    }
+  }
+
+  &__answer {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-10;
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    color: $text-body;
+
+    @include respond-to(phone) {
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+      gap: $spacing-10;
+    }
+  }
+
+  &__a {
+    flex-shrink: 0;
+    @include flex-center;
+    width: 32px;
+    height: 32px;
+    background: rgba($success, 0.1);
+    color: $success;
+    font-weight: 700;
+    font-size: $font-size-body-sm;
+    border-radius: $border-radius-default;
+    font-family: $font-sans;
+    margin-top: 2px;
+
+    @include respond-to(phone) {
+      width: 28px;
+      height: 28px;
+      font-size: $font-size-body-sm;
+      margin-top: 0;
+    }
+  }
+
+  &__answer-content {
+    flex: 1;
+    min-width: 0;
+    padding-top: 6px;
+
+    @include respond-to(phone) {
+      padding-top: 4px;
+    }
+
+    // Style nested content
+    p {
+      margin: 0 0 $spacing-10 0;
+      line-height: 1.7;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul,
+    ol {
+      margin: $spacing-10 0;
+      padding-left: $spacing-20;
+      line-height: 1.7;
+
+      li {
+        margin-bottom: $spacing-5;
+        line-height: 1.7;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    a {
+      color: $primary;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      @include transition(color, text-decoration-thickness);
+      font-weight: 500;
+
+      @include focus-states {
+        color: $primary-dark;
+        text-decoration-thickness: 2px;
+      }
+    }
+
+    strong {
+      font-weight: 600;
+      color: $secondary-darkest;
+    }
+
+    em {
+      font-style: italic;
+      color: rgba($text-body, 0.85);
+    }
+
+    code {
+      background: rgba($primary, 0.08);
+      padding: 2px 6px;
+      border-radius: $border-radius-default;
+      font-size: 0.9em;
+      color: $primary-dark;
+    }
+  }
+}
+
+// Responsive adjustments for FAQ list
+@include respond-to(tablet) {
+  .faq-list {
+    &__section {
+      margin-bottom: $spacing-40;
+    }
+
+    &__list {
+      gap: $spacing-20;
+    }
+  }
+
+  .faq-list-item {
+    padding: $spacing-20;
+  }
+}
+
+@include respond-to(phone) {
+  .faq-list {
+    &__section {
+      margin-bottom: $spacing-40;
+    }
+
+    &__section-title {
+      font-size: $font-size-header-sm;
+      margin-bottom: $spacing-20;
+    }
+
+    &__list {
+      gap: $spacing-10;
+    }
+  }
+
+  .faq-list-item {
+    border-radius: $border-radius-default;
+    padding: $spacing-20 $spacing-10;
+  }
+}
+

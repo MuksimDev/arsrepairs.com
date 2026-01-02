@@ -1,0 +1,34 @@
+{{- /*
+  Geolocation Shortcode
+  
+  Displays city-specific content based on visitor's detected location.
+  Uses the same geolocation system as the page header.
+  
+  Usage Examples:
+    {{< geolocation >}}                          - Shows detected city or "Miami" fallback
+    {{< geolocation "Coral Gables" >}}           - Shows "Coral Gables" if detected city matches, 
+                                                     otherwise shows detected city (if known) or fallback
+    {{< geolocation fallback="your area" >}}     - Shows detected city or "your area" if not detected
+    {{< geolocation prefix="in " >}}             - Shows "in [City]"
+    {{< geolocation suffix=" area" >}}           - Shows "[City] area"
+    {{< geolocation "Coral Gables" "Miami" >}}   - Shows "Coral Gables" if detected, "Miami" as fallback
+    {{< geolocation prefix="in " suffix=" area" >}} - Shows "in [City] area"
+  
+  Parameters:
+    - arg 0: Optional city name - if provided, shows this city when detected city matches it
+    - arg 1: Fallback text if city not detected (default: "Miami")
+    - prefix: Text to show before city name
+    - suffix: Text to show after city name
+    - fallback: Alternative fallback text (overrides arg 1)
+*/ -}}
+
+{{- $detectedCity := .Get 0 | default "" -}}
+{{- $fallbackText := .Get 1 | default (.Get "fallback" | default "Miami") -}}
+{{- $prefix := .Get "prefix" | default "" -}}
+{{- $suffix := .Get "suffix" | default "" -}}
+{{- $class := .Get "class" | default "" -}}
+
+{{- $displayCity := $detectedCity -}}
+{{- if not $displayCity }}{{ $displayCity = $fallbackText }}{{ end -}}
+
+{{- if $prefix }}{{ $prefix }}{{ end -}}{{ $displayCity }}{{- if $suffix }}{{ $suffix }}{{ end -}}

@@ -1,0 +1,401 @@
+{{- /*
+  Career Application Form Shortcode (Netlify-compatible form with honeypot)
+  
+  Usage:
+    {{< career-form >}}
+*/ -}}
+
+{{- $lang := .Page.Language.Lang | default "en" -}}
+{{- $isSpanish := eq $lang "es" -}}
+{{- $redirectURL := cond $isSpanish "/es/carreras/thank-you/" "/careers/thank-you/" -}}
+
+{{- /* Spanish translations */ -}}
+{{- $fullNameLabel := cond $isSpanish "Nombre Completo" "Full Name" -}}
+{{- $emailLabel := cond $isSpanish "Correo Electrónico" "Email Address" -}}
+{{- $phoneLabel := cond $isSpanish "Número de Teléfono" "Phone Number" -}}
+{{- $positionLabel := cond $isSpanish "Posición para la que Aplica" "Position Applying For" -}}
+{{- $resumeLabel := cond $isSpanish "Currículum/CV" "Resume/CV" -}}
+{{- $coverLetterLabel := cond $isSpanish "Carta de Presentación / Información Adicional" "Cover Letter / Additional Information" -}}
+{{- $requiredText := cond $isSpanish "requerido" "required" -}}
+{{- $selectPositionText := cond $isSpanish "Seleccione una posición..." "Select a position..." -}}
+{{- $technicianText := cond $isSpanish "Técnico" "Technician" -}}
+{{- $dispatchText := cond $isSpanish "Despacho" "Dispatch" -}}
+{{- $acceptedFormatsText := cond $isSpanish "Formatos aceptados: PDF, DOC, DOCX (Máx. 5MB)" "Accepted formats: PDF, DOC, DOCX (Max 5MB)" -}}
+{{- $coverLetterPlaceholder := cond $isSpanish "Cuéntenos por qué está interesado en unirse a nuestro equipo, su experiencia relevante o cualquier información adicional que desee compartir..." "Tell us why you're interested in joining our team, your relevant experience, or any additional information you'd like to share..." -}}
+{{- $submitText := cond $isSpanish "Enviar Solicitud" "Submit Application" -}}
+{{- $phonePlaceholder := cond $isSpanish "(954) 376-3086" "(416) 555-1234" -}}
+{{- $namePlaceholder := cond $isSpanish "Juan Pérez" "John Doe" -}}
+{{- $emailPlaceholder := cond $isSpanish "juan.perez@ejemplo.com" "john.doe@example.com" -}}
+{{- $subjectText := cond $isSpanish "Nueva Solicitud de Empleo" "New Career Application" -}}
+
+<form name="career-application" method="POST" action="https://api.web3forms.com/submit" enctype="multipart/form-data" class="contact-form" novalidate>
+  <!-- Aria live region for form announcements -->
+  <div class="contact-form__live-region" role="status" aria-live="polite" aria-atomic="true" id="career-live-region"></div>
+
+  <!-- Web3Forms access key -->
+  <input type="hidden" name="access_key" value="{{ .Site.Params.web3forms_access_key }}">
+  
+  <!-- Redirect after successful submission -->
+  <input type="hidden" name="redirect" value="{{ $redirectURL }}">
+
+  <!-- Honeypot field - hidden checkbox (invisible to users, bots may check it) -->
+  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" aria-hidden="true">
+  
+  <!-- Subject for email notification -->
+  <input type="hidden" name="subject" value="{{ $subjectText }}">
+
+  <!-- Form status messages -->
+  <div class="contact-form__status contact-form__status--error" id="career-error" role="alert" style="display: none;"></div>
+  <div class="contact-form__status contact-form__status--info" id="career-info" role="status" style="display: none;"></div>
+
+  <div class="contact-form__field">
+    <label for="career-name" class="contact-form__label">
+      {{ $fullNameLabel }} <span class="contact-form__required" aria-label="{{ $requiredText }}">*</span>
+    </label>
+    <input 
+      type="text" 
+      id="career-name" 
+      name="name" 
+      class="contact-form__input" 
+      required 
+      aria-required="true"
+      aria-describedby="career-name-error"
+      autocomplete="name"
+      maxlength="100"
+      placeholder="{{ $namePlaceholder }}"
+    />
+    <span class="contact-form__error" id="career-name-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__field">
+    <label for="career-email" class="contact-form__label">
+      {{ $emailLabel }} <span class="contact-form__required" aria-label="{{ $requiredText }}">*</span>
+    </label>
+    <input 
+      type="email" 
+      id="career-email" 
+      name="email" 
+      class="contact-form__input" 
+      required 
+      aria-required="true"
+      aria-describedby="career-email-error"
+      autocomplete="email"
+      maxlength="255"
+      placeholder="{{ $emailPlaceholder }}"
+    />
+    <span class="contact-form__error" id="career-email-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__field">
+    <label for="career-phone" class="contact-form__label">
+      {{ $phoneLabel }} <span class="contact-form__required" aria-label="{{ $requiredText }}">*</span>
+    </label>
+    <input 
+      type="tel" 
+      id="career-phone" 
+      name="phone" 
+      class="contact-form__input"
+      required
+      aria-required="true"
+      aria-describedby="career-phone-error"
+      autocomplete="tel"
+      pattern="[0-9\s\-\+\(\)]+"
+      maxlength="20"
+      placeholder="{{ $phonePlaceholder }}"
+    />
+    <span class="contact-form__error" id="career-phone-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__field">
+    <label for="career-position" class="contact-form__label">
+      {{ $positionLabel }} <span class="contact-form__required" aria-label="{{ $requiredText }}">*</span>
+    </label>
+    <select 
+      id="career-position" 
+      name="position" 
+      class="contact-form__input"
+      required
+      aria-required="true"
+      aria-describedby="career-position-error"
+      autocomplete="off"
+    >
+      <option value="">{{ $selectPositionText }}</option>
+      <option value="Technician">{{ $technicianText }}</option>
+      <option value="Dispatch">{{ $dispatchText }}</option>
+    </select>
+    <span class="contact-form__error" id="career-position-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__field">
+    <label for="career-resume" class="contact-form__label">
+      {{ $resumeLabel }} <span class="contact-form__required" aria-label="{{ $requiredText }}">*</span>
+    </label>
+    <input 
+      type="file" 
+      id="career-resume" 
+      name="resume" 
+      class="contact-form__input"
+      accept=".pdf,.doc,.docx"
+      required
+      aria-required="true"
+      aria-describedby="career-resume-error career-resume-help"
+    />
+    <span class="contact-form__help" id="career-resume-help">{{ $acceptedFormatsText }}</span>
+    <span class="contact-form__error" id="career-resume-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__field">
+    <label for="career-message" class="contact-form__label">
+      {{ $coverLetterLabel }}
+    </label>
+    <textarea 
+      id="career-message" 
+      name="message" 
+      class="contact-form__textarea" 
+      rows="6"
+      aria-describedby="career-message-error"
+      autocomplete="off"
+      maxlength="2000"
+      placeholder="{{ $coverLetterPlaceholder }}"
+    ></textarea>
+    <span class="contact-form__error" id="career-message-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__actions">
+    <button type="submit" class="btn btn--primary contact-form__submit" id="career-submit" aria-describedby="career-live-region">
+      <span class="btn__text">{{ $submitText }}</span>
+    </button>
+  </div>
+</form>
+
+<script>
+(function() {
+  'use strict';
+  
+  const form = document.querySelector('form[name="career-application"]');
+  if (!form) return;
+
+  const submitButton = document.getElementById('career-submit');
+  const liveRegion = document.getElementById('career-live-region');
+  const errorContainer = document.getElementById('career-error');
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB in bytes
+  const ALLOWED_FILE_TYPES = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+  {{- /* Detect language from page */ -}}
+  const isSpanish = {{ $isSpanish | jsonify }};
+  
+  {{- /* Spanish error messages */ -}}
+  const errorMessages = {
+    nameRequired: isSpanish ? 'El nombre completo es requerido' : 'Full name is required',
+    nameMinLength: isSpanish ? 'El nombre debe tener al menos 2 caracteres' : 'Name must be at least 2 characters',
+    emailRequired: isSpanish ? 'El correo electrónico es requerido' : 'Email address is required',
+    emailInvalid: isSpanish ? 'Por favor ingrese un correo electrónico válido' : 'Please enter a valid email address',
+    phoneRequired: isSpanish ? 'El número de teléfono es requerido' : 'Phone number is required',
+    phoneInvalid: isSpanish ? 'Por favor ingrese un número de teléfono válido' : 'Please enter a valid phone number',
+    positionRequired: isSpanish ? 'Por favor seleccione una posición' : 'Please select a position',
+    resumeRequired: isSpanish ? 'El currículum/CV es requerido' : 'Resume/CV is required',
+    fileSizeError: isSpanish ? 'El tamaño del archivo debe ser menor a 5MB' : 'File size must be less than 5MB',
+    fileFormatError: isSpanish ? 'El archivo debe ser formato PDF, DOC o DOCX' : 'File must be PDF, DOC, or DOCX format',
+    formErrors: isSpanish ? 'Por favor corrija los errores a continuación antes de enviar.' : 'Please correct the errors below before submitting.',
+    formHasErrors: isSpanish ? 'El formulario tiene errores. Por favor revíselos y corríjalos.' : 'Form has errors. Please review and correct them.',
+    submitting: isSpanish ? 'Enviando..." : 'Submitting...',
+    submittingApplication: isSpanish ? 'Enviando su solicitud..." : 'Submitting your application...',
+    success: isSpanish ? '¡Solicitud enviada exitosamente! Redirigiendo..." : 'Application sent successfully! Redirecting...',
+    errorSending: isSpanish ? 'Error al enviar la solicitud. Por favor intente nuevamente.' : 'Error sending application. Please try again.',
+    errorOccurred: isSpanish ? 'Ocurrió un error. Por favor intente nuevamente más tarde.' : 'An error occurred. Please try again later.',
+    failedToSend: isSpanish ? 'Error al enviar la solicitud' : 'Failed to send application'
+  };
+
+  function showError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    const errorEl = document.getElementById(fieldId + '-error');
+    
+    if (field && errorEl) {
+      field.setAttribute('aria-invalid', 'true');
+      field.classList.add('contact-form__input--error');
+      errorEl.textContent = message;
+      errorEl.style.display = 'block';
+    }
+  }
+
+  function clearError(fieldId) {
+    const field = document.getElementById(fieldId);
+    const errorEl = document.getElementById(fieldId + '-error');
+    
+    if (field && errorEl) {
+      field.removeAttribute('aria-invalid');
+      field.classList.remove('contact-form__input--error');
+      errorEl.textContent = '';
+      errorEl.style.display = 'none';
+    }
+  }
+
+  const validators = {
+    'career-name': (value) => {
+      if (!value || value.trim().length === 0) return errorMessages.nameRequired;
+      if (value.length < 2) return errorMessages.nameMinLength;
+      return null;
+    },
+    'career-email': (value) => {
+      if (!value || value.trim().length === 0) return errorMessages.emailRequired;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) return errorMessages.emailInvalid;
+      return null;
+    },
+    'career-phone': (value) => {
+      if (!value || value.trim().length === 0) return errorMessages.phoneRequired;
+      const digitsOnly = value.replace(/\D/g, '');
+      if (digitsOnly.length < 10) return errorMessages.phoneInvalid;
+      return null;
+    },
+    'career-position': (value) => {
+      if (!value || value.trim().length === 0) return errorMessages.positionRequired;
+      return null;
+    },
+    'career-resume': (file) => {
+      if (!file || !file.files || file.files.length === 0) {
+        return errorMessages.resumeRequired;
+      }
+      const selectedFile = file.files[0];
+      if (selectedFile.size > MAX_FILE_SIZE) {
+        return errorMessages.fileSizeError;
+      }
+      if (!ALLOWED_FILE_TYPES.includes(selectedFile.type)) {
+        return errorMessages.fileFormatError;
+      }
+      return null;
+    }
+  };
+
+  // Validate text fields
+  ['career-name', 'career-email', 'career-phone', 'career-position'].forEach(fieldId => {
+    const field = document.getElementById(fieldId);
+    if (field) {
+      field.addEventListener('blur', function() {
+        const error = validators[fieldId](this.value);
+        if (error) {
+          showError(fieldId, error);
+        } else {
+          clearError(fieldId);
+        }
+      });
+      
+      field.addEventListener('input', function() {
+        if (this.getAttribute('aria-invalid') === 'true') {
+          const error = validators[fieldId](this.value);
+          if (error) {
+            showError(fieldId, error);
+          } else {
+            clearError(fieldId);
+          }
+        }
+      });
+    }
+  });
+
+  // Validate file upload
+  const resumeField = document.getElementById('career-resume');
+  if (resumeField) {
+    resumeField.addEventListener('change', function() {
+      const error = validators['career-resume'](this);
+      if (error) {
+        showError('career-resume', error);
+      } else {
+        clearError('career-resume');
+      }
+    });
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (errorContainer) errorContainer.style.display = 'none';
+    
+    let isValid = true;
+    
+    // Validate all fields
+    Object.keys(validators).forEach(fieldId => {
+      const field = document.getElementById(fieldId);
+      if (field) {
+        let error;
+        if (fieldId === 'career-resume') {
+          error = validators[fieldId](field);
+        } else {
+          error = validators[fieldId](field.value);
+        }
+        if (error) {
+          showError(fieldId, error);
+          isValid = false;
+        } else {
+          clearError(fieldId);
+        }
+      }
+    });
+
+    if (!isValid) {
+      if (errorContainer) {
+        errorContainer.textContent = errorMessages.formErrors;
+        errorContainer.style.display = 'block';
+      }
+      if (liveRegion) {
+        liveRegion.textContent = errorMessages.formHasErrors;
+      }
+      const firstError = form.querySelector('[aria-invalid="true"]');
+      if (firstError) firstError.focus();
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.classList.add('contact-form__submit--loading');
+      submitButton.disabled = true;
+      const btnText = submitButton.querySelector('.btn__text');
+      if (btnText) btnText.textContent = errorMessages.submitting;
+    }
+
+    if (liveRegion) {
+      liveRegion.textContent = errorMessages.submittingApplication;
+    }
+
+    // Prepare form data for Web3Forms
+    const formData = new FormData(form);
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Success - redirect to thank you page
+        if (liveRegion) {
+          liveRegion.textContent = errorMessages.success;
+        }
+        const redirectUrl = form.querySelector('input[name="redirect"]')?.value || '{{ $redirectURL }}';
+        window.location.replace(redirectUrl);
+      } else {
+        // Handle error from Web3Forms
+        throw new Error(data.message || errorMessages.failedToSend);
+      }
+    })
+    .catch(error => {
+      // Handle network or other errors
+      const errorMessage = error instanceof Error ? error.message : errorMessages.errorOccurred;
+      
+      if (errorContainer) {
+        errorContainer.textContent = errorMessage;
+        errorContainer.style.display = 'block';
+      }
+      if (liveRegion) {
+        liveRegion.textContent = errorMessages.errorSending;
+      }
+      
+      if (submitButton) {
+        submitButton.classList.remove('contact-form__submit--loading');
+        submitButton.disabled = false;
+        const btnText = submitButton.querySelector('.btn__text');
+        if (btnText) btnText.textContent = '{{ $submitText }}';
+      }
+    });
+  });
+})();
+</script>

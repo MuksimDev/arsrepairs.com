@@ -1,0 +1,444 @@
+// ============================================================================
+// Footer
+// ============================================================================
+
+.site-footer {
+  background: $footer-background;
+  color: rgba($text-white, 0.78);
+  padding: $spacing-40 0 0;
+
+  @include respond-to(phone) {
+    padding: $spacing-20 0 0;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  // Main footer content area
+  &__main {
+    display: grid;
+    // Five equal-width columns on desktop
+    grid-template-columns: repeat(5, 1fr);
+    gap: $spacing-20;
+
+    @include respond-to(laptop) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: $spacing-10;
+    }
+
+    @include respond-to(tablet) {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-10;
+    }
+
+    @include respond-to(phone) {
+      grid-template-columns: 1fr;
+      gap: $spacing-20;
+      padding-bottom: $spacing-10;
+    }
+  }
+
+  // Footer sections
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-10;
+  }
+
+  // Company section (wider on desktop)
+  &__company {
+    // On desktop, make the first column span 3 of the 5 equal-width columns
+    grid-column: span 3;
+
+    @include respond-to(laptop) {
+      grid-column: 1 / -1;
+    }
+
+    @include respond-to(tablet) {
+      grid-column: 1 / -1;
+    }
+
+    @include respond-to(phone) {
+      text-align: center;
+    }
+  }
+
+  // Logo
+  &__logo {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    @include transition(opacity);
+
+    @include respond-to(phone) {
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    &:hover,
+    &:focus-visible {
+      opacity: 0.9;
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba($text-white, 0.5);
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+  }
+
+  &__logo-img {
+    height: 48px;
+    width: auto;
+    display: block;
+
+    @include respond-to(phone) {
+      height: 40px;
+    }
+  }
+
+  // Section titles
+  &__title {
+    font-size: $font-size-body-lg;
+    line-height: $line-height-body-lg;
+    font-weight: 400;
+    margin: 0;
+    color: $text-white;
+    padding-bottom: $spacing-10;
+    border-bottom: 2px solid rgba($primary, 0.5);
+
+    @include respond-to(phone) {
+      font-size: $font-size-body;
+    }
+  }
+
+  // Tagline
+  &__tagline {
+    font-size: $font-size-body-sm;
+    color: rgba($text-white, 0.7);
+    margin: 0;
+    line-height: 1.6;
+
+    @include respond-to(phone) {
+      font-size: 0.75rem;
+      text-align: center;
+    }
+  }
+
+  // Contact info
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+
+    @include respond-to(phone) {
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }
+
+  // Office addresses
+  &__office {
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-20;
+    flex-wrap: wrap;
+
+    @include respond-to(phone) {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+      width: 100%;
+    }
+
+    p {
+      font-size: $font-size-body-sm;
+      line-height: 1.6;
+      color: rgba($text-white, 0.78);
+      margin: 0;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      flex: 1;
+
+      @include respond-to(phone) {
+        font-size: 0.75rem;
+        line-height: 1.5;
+        padding: 0 1rem;
+        max-width: 100%;
+      }
+
+      strong {
+        color: $text-white;
+        font-weight: 500;
+        display: block;
+        margin-bottom: 0.2rem;
+
+        @include respond-to(phone) {
+          margin-bottom: 0.15rem;
+        }
+      }
+    }
+  }
+
+  // Phone and fax info
+  &__phone {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+
+    @include respond-to(phone) {
+      text-align: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      width: 100%;
+    }
+
+    p {
+      font-size: $font-size-body-sm;
+      line-height: 1.6;
+      color: rgba($text-white, 0.78);
+      margin: 0;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+
+      @include respond-to(phone) {
+        font-size: 0.75rem;
+        line-height: 1.5;
+        padding: 0 1rem;
+      }
+    }
+  }
+
+  // Social media links
+  &__social {
+    margin-top: 1rem;
+
+    @include respond-to(phone) {
+      margin-top: 1.25rem;
+    }
+  }
+
+  &__social-list {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+
+    @include respond-to(phone) {
+      justify-content: center;
+      gap: 0.625rem;
+    }
+  }
+
+  &__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba($text-white, 0.3);
+    border-radius: 50%;
+    color: rgba($text-white, 0.78);
+    text-decoration: none;
+    @include transition(border-color, color, background-color, transform);
+
+    @include respond-to(phone) {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-color: $text-white;
+      color: $text-white;
+      background-color: rgba($text-white, 0.1);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba($text-white, 0.5);
+      outline-offset: 2px;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &__social-icon {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+
+    @include respond-to(phone) {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  // Navigation sections - hidden on mobile
+  &__nav {
+    @include respond-to(phone) {
+      display: none;
+    }
+  }
+
+  // Navigation lists
+  &__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-10;
+  }
+
+  // Links
+  &__link {
+    color: rgba($text-white, 0.78);
+    text-decoration: none;
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    @include transition(color);
+    
+    display: flex;
+    align-items: center;
+
+    @include respond-to(phone) {
+      font-size: $font-size-body-sm;
+      min-height: 44px;
+      padding: 0.25rem 0;
+      touch-action: manipulation; // Improve tap responsiveness on mobile
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: $text-white;
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba($text-white, 0.5);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    // Phone link styling
+    &--phone {
+      font-weight: 500;
+      font-size: $font-size-body-lg;
+      color: $text-white;
+
+      @include respond-to(phone) {
+        font-size: $font-size-body;
+        justify-content: center;
+        min-height: 44px; // Ensure touch target meets WCAG guidelines
+        padding: 0.5rem;
+      }
+    }
+  }
+
+  // Bottom section (copyright)
+  &__bottom {
+    padding: $spacing-10 0;
+    margin-top: $spacing-40;
+    border-top: 1px solid rgba($text-white, 0.1);
+    background-color: #000;
+
+    @include respond-to(phone) {
+      padding: $spacing-20 0 $spacing-80;
+      margin-top: $spacing-20;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0;
+
+      @include respond-to(phone) {
+        flex-direction: column;
+        gap: $spacing-10;
+      }
+    }
+  }
+
+  // Copyright text
+  &__copyright {
+    font-size: $font-size-body-sm;
+    line-height: $line-height-body-sm;
+    color: rgba($text-white, 0.6);
+    margin: 0;
+    text-align: center;
+
+    @include respond-to(phone) {
+      font-size: 0.75rem;
+    }
+  }
+
+  // Legal links navigation
+  &__legal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-10;
+
+    @include respond-to(phone) {
+      gap: $spacing-20;
+      margin-top: 0;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    a {
+      color: rgba($text-white, 0.6);
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+      text-align: center;
+      @include transition(color);
+
+      @include respond-to(phone) {
+        font-size: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 0.25rem;
+        min-height: 44px;
+        touch-action: manipulation;
+      }
+
+      &:hover,
+      &:focus-visible {
+        color: rgba($text-white, 0.9);
+        outline: none;
+      }
+
+      &:focus-visible {
+        outline: 2px solid rgba($text-white, 0.5);
+        outline-offset: 2px;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  // Separator between legal links
+  &__separator {
+    color: rgba($text-white, 0.4);
+    font-size: $font-size-body-sm;
+    padding: 0 $spacing-5;
+
+    @include respond-to(phone) {
+      display: none;
+    }
+  }
+}
+

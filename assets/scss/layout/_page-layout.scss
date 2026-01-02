@@ -1,0 +1,51 @@
+// ============================================================================
+// Page Layout with Sidebar
+// ============================================================================
+
+.page-layout {
+  display: flex;
+  gap: $spacing-40;
+  width: 100%;
+  align-items: flex-start;
+  position: relative;
+
+  @include respond-to(laptop) {
+    gap: $spacing-20;
+  }
+
+  @include respond-to(tablet) {
+    flex-direction: column;
+    gap: $spacing-20;
+  }
+
+  @include respond-to(phone) {
+    flex-direction: column;
+    gap: $spacing-10;
+  }
+}
+
+// ============================================================================
+// Main Content (3/4 width)
+// ============================================================================
+
+.page-content {
+  flex: 1 1 0; // Take remaining space after sidebar
+  min-width: 0; // Prevents flex item from overflowing
+
+  // Full width when no sidebar (e.g., homepage)
+  &:only-child {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  @include respond-to(tablet) {
+    max-width: 100%;
+    order: 0; // Ensure page-content comes after TOC
+  }
+
+  @include respond-to(phone) {
+    flex: 0 0 100%;
+    max-width: 100%;
+    order: 0; // Ensure page-content comes after TOC
+  }
+}

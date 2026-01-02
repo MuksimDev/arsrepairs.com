@@ -1,0 +1,39 @@
+{{- /*
+  Company Name Shortcode
+  
+  Usage:
+    {{< company-name >}}
+    {{< company-name "custom name" >}}
+    {{< company-name bold >}}
+    {{< company-name "custom name" bold >}}
+  
+  Outputs the site's company name from site.Params.companyName,
+  or a custom name if provided as the first argument.
+  Use "bold" as a parameter to make the text bold.
+*/ -}}
+
+{{- $arg0 := .Get 0 -}}
+{{- $arg1 := .Get 1 -}}
+{{- $bold := false -}}
+{{- $companyName := "" -}}
+
+{{- if and $arg0 (eq $arg0 "bold") -}}
+  {{- $companyName = site.Params.companyName | default site.Title -}}
+  {{- $bold = true -}}
+{{- else if $arg0 -}}
+  {{- $companyName = $arg0 -}}
+  {{- if and $arg1 (eq $arg1 "bold") -}}
+    {{- $bold = true -}}
+  {{- end -}}
+{{- else -}}
+  {{- $companyName = site.Params.companyName | default site.Title -}}
+  {{- if and $arg1 (eq $arg1 "bold") -}}
+    {{- $bold = true -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $bold -}}
+<strong>{{ $companyName }}</strong>
+{{- else -}}
+{{ $companyName }}
+{{- end -}}

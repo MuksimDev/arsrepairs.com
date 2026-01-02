@@ -1,0 +1,88 @@
+// ============================================================================
+// Base Section
+// ============================================================================
+
+.section {
+  // Layout
+  @include flex-column;
+  gap: $spacing-40;
+  overflow: visible;
+
+  // Fluid, logical padding (top/bottom & left/right)
+  padding-block: clamp($spacing-40, 6vw, $spacing-60);
+  padding-inline: clamp($spacing-10, 4vw, $spacing-20);
+
+  @include respond-to(phone) {
+    gap: $spacing-20;
+  }
+
+  // --------------------------------------------------------------------------
+  // Background Modifiers
+  // --------------------------------------------------------------------------
+
+  &--alt {
+    background: $background;
+  }
+
+  &--primary {
+    background: $primary;
+  }
+
+  &--primary-dark {
+    background: $primary-dark;
+    color: $text-white;
+  }
+
+  &--primary-darker {
+    background: $primary-darker;
+    color: $text-white;
+  }
+
+  &--secondary {
+    background: $secondary;
+  }
+
+  &--secondary-dark {
+    background: $secondary-dark;
+  }
+
+  &--secondary-darker {
+    background: $secondary-darker;
+    color: $text-white;
+  }
+
+  &--secondary-darkest {
+    background: $secondary-darkest;
+    color: $text-white;
+  }
+
+  &--tertiary {
+    background: $tertiary;
+  }
+
+  &--tertiary-dark {
+    background: $tertiary-dark;
+    color: $text-white;
+  }
+
+  &--tertiary-darker {
+    background: $tertiary-darker;
+    color: $text-white;
+  }
+
+  &--off-white {
+    background: $off-white;
+  }
+
+  // --------------------------------------------------------------------------
+  // Padding Modifiers
+  // --------------------------------------------------------------------------
+
+  &--no-padding-top {
+    padding-top: 0;
+  }
+
+  &--no-padding-bottom {
+    padding-bottom: 0;
+  }
+}

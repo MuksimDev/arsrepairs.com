@@ -8692,7 +8692,7 @@ aside h1 {
 
 .top-bar {
   background: #1E3A8A;
-  padding: 0.5rem 0;
+  padding: 0.3rem 0;
   font-size: 0.875rem;
   z-index: 10;
 }
@@ -8724,6 +8724,103 @@ aside h1 {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.top-bar .top-bar-content .language-switcher {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar .top-bar-content .language-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 999px;
+  padding: 2px;
+  width: 46px;
+  height: 22px;
+  /* AODA/WCAG 2.1 AA: Pill-shaped toggle switch for language selection */
+}
+
+.top-bar .top-bar-content .language-toggle__slider {
+  position: absolute;
+  left: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  aspect-ratio: 1/1;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  pointer-events: none;
+  /* Green circle that slides smoothly underneath the labels */
+}
+
+.top-bar .top-bar-content .language-toggle--spanish .language-toggle__slider {
+  transform: translateY(-50%) translateX(24px);
+  /* Slide to the right when Spanish is active: 50px container - 3px left - 16px circle - 3px right = 28px movement */
+}
+
+.top-bar .top-bar-content .language-toggle__label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  color: #1E1E1E;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  text-align: center;
+  width: 16px;
+  /* Labels centered over the green circle (circle is 16px wide, centered at left position + 8px) */
+}
+
+.top-bar .top-bar-content .language-toggle__label--en {
+  left: 3.25px;
+  /* Circle center: 3px (left) + 8px (half width) = 11px. Label at 3px with 16px width centers at 11px */
+}
+
+.top-bar .top-bar-content .language-toggle__label--es {
+  left: 27.5px;
+  /* Circle center when active: 31px (left) + 8px (half width) = 39px. Label at 31px with 16px width centers at 39px */
+}
+
+.top-bar .top-bar-content .language-toggle__option {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 3;
+  text-indent: -9999px;
+  overflow: hidden;
+  border-radius: 999px 0 0 999px;
+  /* AODA/WCAG 2.1 AA: Invisible but accessible clickable areas */
+}
+
+.top-bar .top-bar-content .language-toggle__option--es {
+  left: 50%;
+  border-radius: 0 999px 999px 0;
+}
+
+.top-bar .top-bar-content .language-toggle__option:hover {
+  cursor: pointer;
+}
+
+.top-bar .top-bar-content .language-toggle__option:focus {
+  outline: 2px solid #D91A24;
+  outline-offset: -2px;
+  z-index: 4;
+  /* AODA/WCAG 2.1 AA: Visible focus indicator for keyboard navigation */
+}
+
+.top-bar .top-bar-content .language-toggle__option:focus-visible {
+  outline: 2px solid #D91A24;
+  outline-offset: -2px;
 }
 
 .site-header {
@@ -8793,8 +8890,9 @@ aside h1 {
 
 .site-header .container .brand .logo {
   position: relative;
-  height: 52px;
-  width: auto;
+  width: 118px;
+  height: auto;
+  max-height: 52px;
   z-index: 1;
 }
 
@@ -9615,7 +9713,7 @@ aside h1 {
 
 @media (max-width: 768px) {
   .top-bar {
-    padding: 0.4rem 0;
+    padding: 0.2rem 0;
     font-size: 0.8rem;
   }
   .top-bar .top-bar-content {

@@ -1,0 +1,711 @@
+// ============================================================================
+// Form Component Variables
+// ============================================================================
+
+// Form-specific constants
+$form-max-width: 600px;
+$form-required-indicator-margin: 2px;
+$form-select-icon-size: 12px;
+$form-spinner-size: 16px;
+$form-spinner-offset: -8px;
+$form-spinner-animation-duration: 0.6s;
+$form-textarea-min-height: 120px;
+$form-date-mobile-max-width: 220px;
+$form-off-screen-offset: -9999px;
+$form-live-region-offset: -10000px;
+
+// Opacity values
+$form-disabled-opacity: 0.6;
+$form-loading-opacity: 0.7;
+$form-border-opacity: 0.2;
+$form-placeholder-opacity: 0.5;
+$form-disabled-bg-opacity: 0.05;
+$form-status-bg-opacity: 0.1;
+$form-status-border-opacity: 0.3;
+$form-focus-shadow-opacity: 0.1;
+
+// ============================================================================
+// Form Component Mixins
+// ============================================================================
+
+// Off-screen hiding for accessibility (honeypot, live regions)
+@mixin off-screen-hide {
+  position: absolute;
+  left: $form-off-screen-offset;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+// Input/textarea focus state
+@mixin input-focus-state($color: $primary) {
+  outline: none;
+  border-color: $color;
+  box-shadow: 0 0 0 3px rgba($color, $form-focus-shadow-opacity);
+}
+
+// Input/textarea state variant (error, success)
+@mixin input-state-variant($color) {
+  border-color: $color;
+  
+  &:focus {
+    @include input-focus-state($color);
+  }
+}
+
+// Status message variant
+@mixin status-variant($color, $darkest-color) {
+  background: rgba($color, $form-status-bg-opacity);
+  color: $darkest-color;
+  border: 1px solid rgba($color, $form-status-border-opacity);
+}
+
+// ============================================================================
+// Contact Info
+// ============================================================================
+
+.contact-info {
+  margin: $spacing-20 0;
+
+  &__item {
+    margin-bottom: $spacing-10;
+    line-height: $line-height-body;
+  }
+
+  &__label {
+    font-weight: 500;
+    color: $text-body;
+    margin-right: $spacing-10;
+  }
+
+  &__link {
+    color: $primary;
+    text-decoration: none;
+    @include transition(color);
+
+    @include focus-states {
+      color: $primary-dark;
+      text-decoration: underline;
+    }
+  }
+
+  &__text {
+    color: $text-body;
+  }
+}
+
+// ============================================================================
+// Social Links
+// ============================================================================
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  @include flex-wrap;
+  gap: $spacing-10;
+
+  &__item {
+    margin: 0;
+    list-style-type: none;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-10;
+  }
+
+  &__icon {
+    width: $icon-size-md;
+    height: $icon-size-md;
+    flex-shrink: 0;
+    color: currentColor;
+  }
+
+  &__text {
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+  }
+}
+
+// ============================================================================
+// Contact Form
+// ============================================================================
+
+.contact-form {
+  margin: $spacing-40 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-20;
+  position: relative;
+
+  // Wider on mobile for better usability
+  @include respond-to(phone) {
+    max-width: 100%;
+    gap: $spacing-10;
+  }
+
+  // Honeypot field - hidden from users
+  &__honeypot {
+    @include off-screen-hide;
+  }
+
+  // Half-width fields (used for side-by-side inputs in larger viewports)
+  &__field--half {
+    @include respond-to(tablet) {
+      display: inline-flex;
+      flex-direction: column;
+      width: calc(50% - #{$spacing-10});
+
+      &:nth-of-type(odd) {
+        margin-right: $spacing-10;
+      }
+    }
+
+    // On phones, always stack full-width
+    @include respond-to(phone) {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  // Label styling
+  &__label {
+    display: block;
+    font-size: $font-size-body;
+    font-weight: 500;
+    color: $text-body;
+    margin-bottom: $spacing-5;
+    line-height: $line-height-body;
+  }
+
+  // Required field indicator
+  &__required {
+    color: $primary;
+    margin-left: $form-required-indicator-margin;
+  }
+
+  // Input and textarea base styles
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: $spacing-10 $spacing-20;
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    color: $text-body;
+    background: $background;
+    border: 1px solid rgba($text-body, $form-border-opacity);
+    border-radius: $border-radius-default;
+    @include transition(border-color, box-shadow);
+
+    &:focus {
+      @include input-focus-state($primary);
+    }
+
+    &:disabled {
+      opacity: $form-disabled-opacity;
+      cursor: not-allowed;
+      background: rgba($text-body, $form-disabled-bg-opacity);
+    }
+
+    &::placeholder {
+      color: rgba($text-body, $form-placeholder-opacity);
+    }
+  }
+
+  // Select element specific styling
+  select#{&}__input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='#{$form-select-icon-size}' height='#{$form-select-icon-size}' viewBox='0 0 #{$form-select-icon-size} #{$form-select-icon-size}'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right $spacing-20 center;
+    background-size: $form-select-icon-size;
+    padding-right: $spacing-40;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  // Textarea specific
+  &__textarea {
+    resize: vertical;
+    min-height: $form-textarea-min-height;
+    font-family: inherit;
+  }
+
+  // Form actions (submit button area)
+  &__actions {
+    margin-top: $spacing-40;
+    display: flex;
+    gap: $spacing-10;
+  }
+
+  // Error message styling
+  &__error {
+    display: block;
+    margin-top: $spacing-5;
+    font-size: $font-size-body-sm;
+    color: $error;
+    font-weight: 500;
+  }
+
+  // Help text styling
+  &__help {
+    display: block;
+    margin-top: $spacing-5;
+    font-size: $font-size-body-sm;
+    color: $text-grey;
+    line-height: $line-height-body-sm;
+  }
+
+  // Error state for inputs
+  &__input--error,
+  &__textarea--error {
+    @include input-state-variant($error);
+  }
+
+  // Success state
+  &__input--success,
+  &__textarea--success {
+    @include input-state-variant($success);
+  }
+
+  // Loading state for submit button
+  &__submit {
+    position: relative;
+    
+    &--loading {
+      pointer-events: none;
+      opacity: $form-loading-opacity;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        width: $form-spinner-size;
+        height: $form-spinner-size;
+        top: 50%;
+        left: 50%;
+        margin-left: $form-spinner-offset;
+        margin-top: $form-spinner-offset;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        border-top-color: transparent;
+        animation: spin $form-spinner-animation-duration linear infinite;
+      }
+    }
+  }
+
+  // Form status messages
+  &__status {
+    padding: $spacing-10 $spacing-20;
+    border-radius: $border-radius-default;
+    margin-bottom: $spacing-20;
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+
+    &--error {
+      @include status-variant($error, $error-darkest);
+    }
+
+    &--success {
+      @include status-variant($success, $success-darkest);
+    }
+
+    &--info {
+      @include status-variant($info, $info-darkest);
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  // Aria live region for announcements
+  &__live-region {
+    position: absolute;
+    left: $form-live-region-offset;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  // Preferred date field - shorter on mobile
+  #booking-date {
+    @include respond-to(phone) {
+      max-width: $form-date-mobile-max-width;
+    }
+  }
+  
+  // Fieldset Styling (section cards for multi-part forms like feedback)
+  & fieldset.contact-form__field {
+    padding: $spacing-20;
+    border-radius: $border-radius-default;
+    border: 1px solid rgba($text-body, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-20;
+
+    legend.contact-form__label {
+      padding: 0;
+      margin-bottom: 0;
+      font-weight: 600;
+      font-size: $font-size-body-lg;
+      color: $primary;
+    }
+
+    @include respond-to(phone) {
+      padding: $spacing-10;
+      gap: $spacing-10;
+    }
+  }
+}
+
+// ============================================================================
+// Feedback Form – Low Rating Message Box
+// ============================================================================
+
+.feedback-form {
+  &__low-rating-message {
+    padding: $spacing-20 $spacing-20;
+    margin-top: 0;
+    border-radius: $border-radius-default;
+    background: rgba($error, $form-status-bg-opacity);
+    color: $error-darkest;
+    border: 1px solid rgba($error, $form-status-border-opacity);
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-20;
+
+    &.contact-form__status--hidden {
+      display: none;
+    }
+  }
+
+  &__low-rating-content {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-20;
+    width: 100%;
+  }
+
+  &__low-rating-icon {
+    font-size: 2rem;
+    line-height: 1;
+    color: $error;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &__low-rating-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+
+    strong {
+      font-weight: 600;
+      font-size: $font-size-body;
+      line-height: $line-height-body;
+      color: $error-darkest;
+    }
+
+    p {
+      margin: 0;
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+      color: $error-darkest;
+      opacity: 0.9;
+    }
+  }
+
+  @include respond-to(phone) {
+    &__low-rating-message {
+      padding: $spacing-10 $spacing-20;
+      gap: $spacing-10;
+    }
+
+    &__low-rating-content {
+      gap: $spacing-10;
+    }
+
+    &__low-rating-icon {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+// ============================================================================
+// Reviews Form – Enhanced Rating Slider UI
+// ============================================================================
+
+.reviews-form {
+  margin-top: $spacing-20;
+
+  &__inner {
+    max-width: $form-max-width;
+  }
+
+  &__title {
+    font-size: $font-size-body-lg;
+    line-height: $line-height-body-lg;
+    margin-bottom: $spacing-10;
+  }
+
+  &__intro {
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    color: $text-grey;
+    margin-bottom: $spacing-20;
+  }
+
+  // Rating block: larger, more interactive
+  &__rating {
+    padding: $spacing-20;
+    border-radius: $border-radius-default;
+    border: 1px solid rgba($text-body, 0.06);
+    background: linear-gradient(
+      90deg,
+      rgba($error, 0.04),
+      rgba($warning, 0.03),
+      rgba($success, 0.04)
+    );
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-20;
+
+    &--low {
+      background: rgba($error, 0.04);
+      border-color: rgba($error, 0.16);
+    }
+
+    &--mid {
+      background: rgba($warning, 0.04);
+      border-color: rgba($warning, 0.16);
+    }
+
+    &--high {
+      background: rgba($success, 0.04);
+      border-color: rgba($success, 0.16);
+    }
+  }
+
+  &__faces {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: $spacing-10;
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  &__face {
+    width: $spacing-20;
+    height: $spacing-20;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    @include transition(transform, background-color, box-shadow);
+
+    &:hover {
+      transform: translateY(-1px) scale(1.05);
+      background: rgba($primary, 0.06);
+      box-shadow: 0 2px 6px rgba($primary, 0.15);
+    }
+
+    &.is-active {
+      background: $primary;
+      color: $text-white;
+      box-shadow: 0 0 0 3px rgba($primary, $form-focus-shadow-opacity);
+      transform: translateY(-1px) scale(1.1);
+    }
+  }
+
+  &__slider {
+    width: 100%;
+    appearance: none;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba($text-body, 0.12);
+    outline: none;
+    margin: 0;
+    @include transition(background-color, box-shadow);
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px rgba($primary, $form-focus-shadow-opacity);
+    }
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: $spacing-20;
+      height: $spacing-20;
+      border-radius: 50%;
+      background: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.2);
+      border: 2px solid $background;
+      cursor: pointer;
+      @include transition(transform, background-color, box-shadow);
+    }
+
+    &::-moz-range-thumb {
+      width: $spacing-20;
+      height: $spacing-20;
+      border-radius: 50%;
+      background: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.2);
+      border: 2px solid $background;
+      cursor: pointer;
+      @include transition(transform, background-color, box-shadow);
+    }
+
+    &:hover::-webkit-slider-thumb,
+    &:hover::-moz-range-thumb {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 4px rgba($primary, 0.25);
+    }
+  }
+
+  &__rating-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-10;
+    align-self: flex-start;
+    padding: $spacing-5 $spacing-20;
+    margin: 0 auto;
+    border-radius: 999px;
+    background: rgba($background, 0.9);
+    box-shadow: 0 1px 3px rgba($text-body, 0.06);
+  }
+
+  &__rating-value {
+    font-weight: 700;
+    font-size: $font-size-body-lg;
+    color: $primary;
+  }
+
+  &__rating-label {
+    font-size: $font-size-body-sm;
+    color: $text-body;
+  }
+
+  &__google-cta {
+    margin-top: $spacing-20;
+    padding-top: $spacing-20;
+    border-top: 1px dashed rgba($text-body, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-10;
+    align-items: center;
+  }
+
+  &__google-text {
+    font-size: $font-size-body-sm;
+    color: $text-grey;
+    margin: 0;
+  }
+}
+
+// ============================================================================
+// Choice Groups (Radio/Checkbox style blocks – used by feedback form)
+// ============================================================================
+
+.contact-form {
+  // Group wrapper
+  &__choice-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-10;
+  }
+
+  // Horizontal row of choices (e.g., 1–5 scale)
+  &__choice-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-10;
+  }
+
+  // Vertical stack of choices
+  &__choice-column {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-10;
+  }
+
+  // Individual choice “pill”
+  &__choice {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: $border-radius-default;
+    user-select: none;
+
+    // Hide the native control but keep it accessible
+    input {
+      position: absolute;
+      opacity: 0;
+      inset: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: $spacing-5 $spacing-20;
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+      color: $text-body;
+      background: rgba($text-body, 0.04);
+      border-radius: inherit;
+      border: 1px solid rgba($text-body, $form-border-opacity);
+      @include transition(background-color, border-color, box-shadow, color);
+    }
+
+    // Hover state for better affordance
+    &:hover span {
+      background: rgba($text-body, 0.06);
+      border-color: rgba($text-body, $form-border-opacity * 1.5);
+    }
+
+    // Checked state – filled pill
+    input:checked + span {
+      background: $primary;
+      color: $text-white;
+      border-color: $primary;
+      box-shadow: 0 0 0 2px rgba($primary, $form-focus-shadow-opacity);
+    }
+
+    // Keyboard focus state
+    input:focus-visible + span {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+
+    // Disabled state for future-proofing
+    input:disabled + span {
+      opacity: $form-disabled-opacity;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ============================================================================
+// Screen Reader Only (Utility)
+// ============================================================================
+
+.sr-only {
+  @include visually-hidden;
+}
+

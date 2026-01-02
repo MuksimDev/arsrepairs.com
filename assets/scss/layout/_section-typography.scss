@@ -1,0 +1,177 @@
+// ============================================================================
+// Section Typography
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// H1 in Sectioning Elements - Explicit Font Size (Addresses Deprecated API Warning)
+// ----------------------------------------------------------------------------
+// Modern browsers require explicit font-size for H1 elements in sectioning
+// elements (section, article, nav, aside) to prevent deprecated API warnings.
+// This ensures compliance with current web standards and addresses PageSpeed
+// Insights warnings related to H1UserAgentFontSizeInSection.
+// Note: The warning may also appear from third-party scripts (e.g., GTM)
+// which is outside our control, but this rule ensures our own code is compliant.
+
+section h1,
+article h1,
+nav h1,
+aside h1 {
+  font-size: inherit; // Inherit from parent or explicit class
+}
+
+// Note: .section-title class already has explicit font-size defined below
+
+// ----------------------------------------------------------------------------
+// Section Header
+// ----------------------------------------------------------------------------
+
+.section-header {
+  font-family: $font-display;
+  font-size: $font-size-header-md;
+  line-height: $line-height-header-md;
+  font-weight: 900;
+  margin: 0;
+  text-align: center;
+  text-wrap: balance;
+
+  @include respond-to(laptop) {
+    font-size: clamp($font-size-header-sm, 4vw, $font-size-header-md);
+  }
+
+  @include respond-to(tablet) {
+    font-size: $font-size-header-sm;
+  }
+
+  @include respond-to(phone) {
+    font-size: clamp(22px, 7vw, $font-size-header-sm);
+    line-height: 1.15;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Section Title
+// ----------------------------------------------------------------------------
+
+.section-title {
+  font-family: $font-display;
+  font-size: $font-size-header-md;
+  line-height: $line-height-header-md;
+  margin: 0;
+  font-weight: 600;
+
+  // --------------------------------------------------------------------------
+  // Color Modifiers
+  // --------------------------------------------------------------------------
+
+  &--color-white {
+    color: $text-white;
+  }
+
+  &--color-primary {
+    color: $primary;
+  }
+
+  &--color-secondary {
+    color: $secondary;
+  }
+
+  &--color-secondary-dark {
+    color: $secondary-dark;
+  }
+
+  &--color-secondary-darker {
+    color: $secondary-darker;
+  }
+
+  &--color-secondary-darkest {
+    color: $secondary-darkest;
+  }
+
+  &--color-tertiary {
+    color: $tertiary;
+  }
+
+  // --------------------------------------------------------------------------
+  // Size Modifiers
+  // --------------------------------------------------------------------------
+
+  &--size-xs {
+    font-size: $font-size-body-lg;
+    line-height: $line-height-body-lg;
+    font-weight: 600;
+
+    @include respond-to(phone) {
+      font-size: $font-size-body;
+      line-height: $line-height-body;
+    }
+  }
+
+  &--size-sm {
+    font-size: $font-size-header-sm;
+    line-height: $line-height-header-sm;
+    font-weight: 400;
+
+    @include respond-to(phone) {
+      font-size: clamp(18px, 4vw, $font-size-header-sm);
+    }
+  }
+
+  &--size-md {
+    font-size: $font-size-header-md;
+    line-height: $line-height-header-md;
+
+    @include respond-to(laptop) {
+      font-size: clamp($font-size-header-sm, 4vw, $font-size-header-md);
+    }
+
+    @include respond-to(tablet) {
+      font-size: $font-size-header-sm;
+    }
+
+    @include respond-to(phone) {
+      font-size: clamp(20px, 5vw, $font-size-header-sm);
+    }
+  }
+
+  &--size-lg {
+    font-size: $font-size-header-lg;
+    line-height: $line-height-header-lg;
+
+    @include respond-to(laptop) {
+      font-size: clamp($font-size-header-md, 4vw, $font-size-header-lg);
+    }
+
+    @include respond-to(tablet) {
+      font-size: $font-size-header-md;
+    }
+
+    @include respond-to(phone) {
+      font-size: clamp($font-size-header-sm, 5vw, $font-size-header-md);
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Section Copy
+// ----------------------------------------------------------------------------
+
+.section-copy {
+  font-size: $font-size-body;
+  line-height: $line-height-body;
+  margin: 0;
+
+  &--size-sm {
+    font-size: $font-size-body-sm;
+    line-height: $line-height-body-sm;
+  }
+
+  &--size-lg {
+    font-size: $font-size-body-lg;
+    line-height: $line-height-body-lg;
+
+    @include respond-to(phone) {
+      font-size: $font-size-body;
+      line-height: $line-height-body;
+    }
+  }
+}

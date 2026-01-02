@@ -1,0 +1,80 @@
+{{- /*
+  2-Column shortcode
+  - Supports single-column content, split content via "|||", or image in second column
+  - Parameters:
+    - image: Image source path (optional, displays in column 2 if no content split)
+    - image-alt: Alt text for image (optional, auto-generated from filename if not provided)
+    - image-title: Title attribute for image (optional, auto-generated from filename if not provided)
+    - image-class: CSS class for image (optional, defaults to "img-box")
+    - image-first: "true" displays image column first (left side)
+    - title: Column 1 title (optional)
+    - title2: Column 2 title (optional)
+    - class1: CSS class(es) for column 1 (optional, e.g., "box" or "box box--tight")
+    - class2: CSS class(es) for column 2 (optional, e.g., "box" or "box box--tight")
+    - wide-first: "true" makes first column 2/3 width and second column 1/3 width
+    - copy: Content between opening and closing tags; use "|||" to split between columns
+*/ -}}
+
+{{- $wideFirst := eq (.Get "wide-first") "true" -}}
+{{- $firstColClass := cond $wideFirst "flex-2-3" "flex-1" -}}
+{{- $secondColClass := cond $wideFirst "flex-1" "flex-1" -}}
+{{- $imageFirst := eq (.Get "image-first") "true" -}}
+{{- $imageColClass := cond $imageFirst "order-1" "" -}}
+
+{{- /* Split content on "|||" delimiter if present */ -}}
+{{- $innerContent := .Inner -}}
+{{- $hasDelimiter := strings.Contains $innerContent "|||" -}}
+{{- $column1Content := "" -}}
+{{- $column2Content := "" -}}
+{{- if $hasDelimiter -}}
+  {{- $parts := split $innerContent "|||" -}}
+  {{- $column1Content = trim (index $parts 0) " \n\r\t" -}}
+  {{- if ge (len $parts) 2 -}}
+    {{- $column2Content = trim (index $parts 1) " \n\r\t" -}}
+  {{- end -}}
+{{- else -}}
+  {{- $column1Content = $innerContent -}}
+{{- end -}}
+
+{{- /* Get custom classes for columns */ -}}
+{{- $column1CustomClass := .Get "class1" -}}
+{{- $column2CustomClass := .Get "class2" -}}
+
+<div class="flex flex-row gap-40 flex-col-laptop">
+  <div class="flex flex-col gap-20 no-mt-first {{ $firstColClass }}{{ if $column1CustomClass }} {{ $column1CustomClass }}{{ end }}">
+    {{- if .Get "title" -}}
+    <h2 class="margin-top-0">{{ .Get "title" }}</h2>
+    {{- end -}}
+    {{- if $column1Content -}}
+    {{ $column1Content | markdownify }}
+    {{- end -}}
+  </div>
+  <div class="flex flex-col gap-20 no-mt-first {{ $secondColClass }}{{ if $imageColClass }} {{ $imageColClass }}{{ end }}{{ if $column2CustomClass }} {{ $column2CustomClass }}{{ end }}">
+    {{- if .Get "title2" -}}
+    <h2 class="margin-top-0">{{ .Get "title2" }}</h2>
+    {{- end -}}
+    {{- if $column2Content -}}
+    {{ $column2Content | markdownify }}
+    {{- else if .Get "image" -}}
+    {{- $imageSrc := .Get "image" -}}
+    {{- /* Generate filename-based alt/title if not provided */ -}}
+    {{- $filename := "" -}}
+    {{- if $imageSrc -}}
+      {{- $baseName := path.Base $imageSrc -}}
+      {{- $nameWithoutExt := $baseName | strings.TrimSuffix (path.Ext $imageSrc) -}}
+      {{- $filename = $nameWithoutExt | replaceRE "[-_]" " " | title -}}
+    {{- end -}}
+    {{- /* Use provided alt, fallback to filename, or empty if truly not available */ -}}
+    {{- $alt := .Get "image-alt" | default $filename -}}
+    {{- /* Title attribute for additional context */ -}}
+    {{- $title := .Get "image-title" | default $filename -}}
+    {{- partial "image.html" (dict 
+      "src" $imageSrc
+      "alt" $alt
+      "title" $title
+      "class" (.Get "image-class" | default "img-box")
+      "loading" "lazy"
+    ) -}}
+    {{- end -}}
+  </div>
+</div>

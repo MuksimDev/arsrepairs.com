@@ -1,0 +1,854 @@
+// ============================================================================
+// Sidebar Styles
+// ============================================================================
+
+// ============================================================================
+// Sidebar Container (1/4 width)
+// ============================================================================
+
+.page-sidebar {
+  flex: 0 0 25%;
+  max-width: 25%;
+  min-width: 0; // Prevents flex item from overflowing
+  align-self: flex-start;
+  height: 100%;
+
+  @include respond-to(tablet) {
+    flex: 0 0 100%;
+    max-width: 100%;
+    // Flatten sidebar structure on mobile to allow widget reordering
+    display: contents;
+  }
+
+  @include respond-to(phone) {
+    flex: 0 0 100%;
+    max-width: 100%;
+    // Flatten sidebar structure on mobile to allow widget reordering
+    display: contents;
+  }
+}
+
+// ============================================================================
+// Sidebar Widgets Container
+// ============================================================================
+
+.sidebar-widgets {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-20;
+  position: sticky;
+  top: calc(92px + #{$spacing-20}); // Account for sticky header height (92px) + spacing
+  align-self: flex-start;
+  width: 100%; // Ensure it fills parent container
+  max-height: calc(100vh - 92px - #{$spacing-20} * 2); // Constrain height to viewport
+  overflow: hidden;
+
+  // Custom scrollbar - thin and only visible when needed
+  scrollbar-width: thin;
+  scrollbar-color: rgba($text-body, 0.2) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba($text-body, 0.2);
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba($text-body, 0.4);
+    }
+  }
+
+  @include respond-to(tablet) {
+    position: relative;
+    top: 0;
+    max-height: none;
+    // Flatten structure on mobile to allow reordering
+    display: contents;
+  }
+
+  @include respond-to(phone) {
+    position: relative;
+    top: 0;
+    max-height: none;
+    // Flatten structure on mobile to allow reordering
+    display: contents;
+  }
+}
+
+// ============================================================================
+// Sidebar Widget Base
+// ============================================================================
+
+.sidebar-widget {
+  background: #f8f9fa;
+  border-radius: $border-radius-default;
+  padding: clamp($spacing-10, 1.25vw, $spacing-20);
+  border: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-10;
+  position: relative; // Ensure positioning context for pseudo-elements
+  overflow: hidden;
+
+  // On mobile, ensure other widgets stay after page-content
+  @include respond-to(tablet) {
+    order: 1; // Other widgets come after page-content
+  }
+
+  @include respond-to(phone) {
+    order: 1; // Other widgets come after page-content
+  }
+
+  // Widget Elements
+  &__title {
+    font-size: clamp($font-size-body-lg, 1.5vw, $font-size-header-sm);
+    line-height: clamp($line-height-body-lg, 1.5vw, $line-height-header-sm);
+    color: $text-body;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__text {
+    color: $text-body;
+    font-size: clamp($font-size-body-sm, 1.25vw, $font-size-body);
+    line-height: clamp($line-height-body-sm, 1.25vw, $line-height-body);
+    position: relative;
+    z-index: 1;
+    opacity: 0.8;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-10;
+    z-index: 1;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: $spacing-10;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        color: $text-body;
+        text-decoration: none;
+        transition: color 200ms ease;
+        display: block;
+        padding: $spacing-5 0;
+        border-bottom: 1px solid transparent;
+
+        &:hover,
+        &:focus-visible {
+          color: $primary;
+          border-bottom-color: $primary;
+        }
+
+        &.active {
+          color: $primary;
+          font-weight: 600;
+          border-bottom-color: $primary;
+        }
+      }
+    }
+  }
+
+  &__content {
+    p {
+      margin-bottom: $spacing-10;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      strong {
+        display: block;
+        margin-bottom: $spacing-5;
+        color: $text-body;
+      }
+
+      a {
+        color: $primary;
+        text-decoration: none;
+
+        &:hover,
+        &:focus-visible {
+          color: $primary-dark;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  // Color Variants
+  &--color-primary {
+    background: $primary;
+    position: relative; // Ensure positioning context for :before pseudo-element
+
+    .sidebar-widget__title,
+    .sidebar-widget__text {
+      color: $text-white;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -100px;
+      width: 200px;
+      aspect-ratio: 1/1;
+      background-image: url("/images/diaginal-lines-primary.svg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+      mix-blend-mode: difference;
+      opacity: 0.5;
+    }
+  }
+
+  &--color-secondary {
+    background: $secondary;
+
+    .sidebar-widget__title,
+    .sidebar-widget__text {
+      color: $text-white;
+    }
+  }
+
+  &--color-tertiary {
+    background: $tertiary;
+
+    .sidebar-widget__title,
+    .sidebar-widget__text {
+      color: $text-body;
+    }
+  }
+
+  @include respond-to(laptop) {
+    &__title {
+      font-size: clamp($font-size-body-sm, 4vw, $font-size-body-lg);
+      line-height: clamp($line-height-body-sm, 4vw, $line-height-body-lg);
+    }
+  }
+}
+
+// ============================================================================
+// Feedback Progress Sidebar Widget
+// ============================================================================
+
+.sidebar-widget--feedback {
+  // Mobile: move feedback progress to top and make it sticky under the header
+  @include respond-to(tablet) {
+    order: -1;
+    position: sticky;
+    top: calc(92px + #{$spacing-10});
+    z-index: 5;
+  }
+
+  @include respond-to(phone) {
+    order: -1;
+    position: sticky;
+    top: calc(72px + #{$spacing-10}); // slightly smaller header on phone
+    z-index: 5;
+    width: 100dvw;
+    margin-left: -26px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid $border;
+    background: rgba($background, 0.5);
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .feedback-progress {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-10;
+    padding-bottom: $spacing-10;
+    position: relative;
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-10;
+    }
+
+    &__label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: $spacing-10;
+      flex-wrap: wrap;
+
+      @include respond-to(phone) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-5;
+      }
+    }
+
+    &__text {
+      margin: 0;
+      font-size: $font-size-body; // ensure minimum default size
+      line-height: $line-height-body;
+      opacity: 0.9;
+
+      strong {
+        display: inline-block;
+        margin-right: $spacing-5;
+      }
+
+      span {
+        margin-left: $spacing-5;
+      }
+    }
+
+    &__step-text {
+      margin: 0;
+      font-size: $font-size-body; // ensure minimum default size
+      line-height: $line-height-body;
+      font-weight: 600;
+      color: $text-grey;
+      white-space: nowrap;
+    }
+
+    &__bar {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: $grey-20;
+      overflow: hidden;
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &__bar-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: $success;
+      @include transition(width);
+    }
+
+    &__steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: $spacing-10;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: $font-size-body-sm;
+    }
+
+    &__step {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: rgba($text-body, 0.75);
+
+      // Hide original text; use pseudo-element for visible label
+      font-size: 0;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: $grey-20;
+        box-shadow: inset 0 0 0 1px $grey-20;
+      }
+
+      &::after {
+        content: attr(data-step-label);
+        display: block;
+        font-size: 10px;
+        line-height: $line-height-body-sm;
+        white-space: nowrap;
+        position: absolute;
+        bottom: -22px;
+      }
+
+      // Active section: neutral grey highlight
+      &.is-active {
+        &::before {
+          background: $grey-40;
+          box-shadow: inset 0 0 0 1px transparent;
+        }
+
+        &::after {
+          color: $grey-40;
+          font-weight: 600;
+        }
+      }
+
+      // Fully completed section: success circle with checkmark
+      &.is-complete {
+        &::before {
+          background: $success;
+          box-shadow: none;
+          color: $text-white;
+          font-size: 12px;
+          line-height: 16px;
+          text-align: center;
+          content: "✔";
+        }
+
+        &::after {
+          color: $success;
+          font-weight: 600;
+        }
+      }
+
+      // Partially completed section: grey circle with inner success ring
+      &.is-partial:not(.is-complete) {
+        &::before {
+          background: $grey-20;
+          box-shadow: inset 0 0 0 2px $success;
+        }
+
+        &::after {
+          color: $success;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Table of Contents Widget
+// ============================================================================
+
+.sidebar-widget--toc {
+  position: relative;
+  padding: $spacing-10 $spacing-20;
+  gap: 0;
+  background: transparent;
+
+  .sidebar-widget__toc-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    touch-action: manipulation; // Prevent double-tap zoom on mobile
+    user-select: none; // Prevent text selection on mobile
+    -webkit-tap-highlight-color: transparent; // Remove tap highlight on mobile
+
+    @include focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+
+    &:hover {
+      .sidebar-widget__title {
+        color: $primary;
+      }
+    }
+
+    .sidebar-widget__title {
+      margin: 0;
+      flex: 1;
+      transition: color 0.2s ease;
+      font-size: 1rem; // Smaller title as requested
+      line-height: $line-height-body-sm;
+      font-weight: 600;
+    }
+
+    .sidebar-widget__toc-icon {
+      display: block; // Always show icon for collapsible functionality
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      color: $text-body;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &[aria-expanded="true"] {
+      .sidebar-widget__toc-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .sidebar-widget__toc-content {
+    display: none; // Hidden by default, shown when .is-open is added
+    margin-top: 0; // Tighter spacing
+    max-height: 255px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba($text-body, 0.2) transparent;
+
+    &.is-open {
+      display: block;
+    }
+
+    // TOC Navigation Styles - Target Hugo's TableOfContents structure
+    // Hugo generates: <nav id="TableOfContents"><ul><li><a>...</a></li></ul></nav>
+    nav,
+    #TableOfContents {
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        position: relative;
+
+        li {
+          margin-bottom: 0; // Tighter spacing
+          position: relative;
+
+          a {
+            color: $text-grey;
+            text-decoration: none;
+            font-size: $font-size-body-sm;
+            line-height: 1.4; // Tighter line height
+            display: block;
+            padding: $spacing-5 $spacing-10;
+            margin-left: -$spacing-10;
+            margin-right: -$spacing-10;
+            position: relative;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            &:hover {
+              color: $primary;
+              background: rgba($primary, 0.05);
+              transform: translateX(4px);
+
+              &::before {
+                transform: translateY(-50%) scaleY(1);
+                height: 60%;
+              }
+            }
+
+            &:focus-visible {
+              outline: 2px solid $primary;
+              outline-offset: -2px;
+              border-radius: $border-radius-default;
+              color: $primary;
+            }
+
+            &:active {
+              transform: translateX(2px);
+            }
+
+            // Active state (for scroll spy)
+            &.active,
+            &[aria-current="true"] {
+              color: $primary;
+              background: rgba($primary, 0.08);
+              font-weight: 600;
+              transform: translateX(4px);
+
+              &::before {
+                transform: translateY(-50%) scaleY(1);
+                height: 80%;
+              }
+            }
+          }
+        }
+
+        // Nested lists (h3, h4) - Modern indentation with visual guide
+        ul {
+          margin-left: $spacing-5; // Tighter spacing
+          margin-top: $spacing-5;
+          margin-bottom: $spacing-5;
+          padding-left: $spacing-10; // Tighter padding
+          position: relative;
+
+          // Visual connector line for nested items
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: $border;
+          }
+
+          li {
+            margin-bottom: $spacing-5;
+            position: relative;
+
+            a {
+              padding-left: $spacing-10; // Tighter padding
+              font-size: $font-size-body-sm;
+              color: $text-grey;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+
+              &::before {
+                left: $spacing-10;
+              }
+
+              &:hover {
+                color: $primary;
+                background: rgba($primary, 0.05);
+              }
+
+              &.active,
+              &[aria-current="true"] {
+                color: $primary;
+                background: rgba($primary, 0.08);
+                font-weight: 500;
+              }
+            }
+
+            // Third level nesting (h4)
+            ul {
+              margin-left: 0;
+              padding-left: $spacing-10; // Tighter padding
+
+              li a {
+                padding-left: $spacing-20; // Tighter padding
+                font-size: $font-size-body-sm;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Mobile: Move TOC above page-content and adjust styling
+  @include respond-to(tablet) {
+    // Reorder TOC to appear before page-content on mobile
+    order: -1;
+    width: 100%;
+    margin-bottom: $spacing-20;
+
+    .sidebar-widget__toc-toggle {
+      padding: $spacing-5 0;
+      margin-bottom: $spacing-5; // Tighter
+    }
+
+    .sidebar-widget__toc-content {
+      margin-top: 0;
+      padding-top: $spacing-5; // Tighter
+      animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  @include respond-to(phone) {
+    // Reorder TOC to appear before page-content on mobile
+    order: -1;
+    width: 100%;
+    margin-bottom: $spacing-10;
+
+    .sidebar-widget__toc-toggle {
+      padding: $spacing-5 0;
+      margin-bottom: $spacing-5; // Tighter
+    }
+
+    .sidebar-widget__toc-content {
+      margin-top: 0;
+      padding-top: $spacing-5; // Tighter
+      animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      // Slightly reduced padding on mobile for better space usage
+      nav,
+      #TableOfContents {
+        ul li a {
+          padding: $spacing-5 $spacing-10;
+          font-size: $font-size-body-sm;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        ul {
+          margin-left: $spacing-5;
+          padding-left: $spacing-10;
+
+          li a {
+            padding-left: $spacing-10; // Tighter
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animation for mobile dropdown
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================================================================
+// Coupon Widget (Sidebar)
+// ============================================================================
+
+.sidebar-widget--coupons {
+  .coupon-widget {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    gap: 0;
+    text-align: left;
+
+    &__eyebrow {
+      margin: 0;
+      text-align: left;
+      font-size: $font-size-body-sm;
+    }
+
+    &__title {
+      font-size: $font-size-body-lg;
+      line-height: $line-height-body-lg;
+      color: $primary;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    &__qr {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: $spacing-20;
+      background: #ffffff;
+      border-radius: $border-radius-default;
+      border: 1px solid $border;
+      min-height: 170px;
+
+      .qr-code {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    &__actions {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-10;
+      margin: $spacing-10 0;
+    }
+
+    &__fineprint {
+      display: flex;
+      flex-direction: row;
+      gap: $spacing-10;
+      justify-content: space-between;
+
+      a {
+        margin: 0;
+        font-size: $font-size-body-sm;
+        color: $text-grey;
+        line-height: $line-height-body-sm;
+
+        &:hover,
+        &:focus-visible {
+          color: $primary;
+          text-decoration: underline;
+        }
+      }
+      p {
+        margin: 0;
+        font-size: $font-size-body-sm;
+        color: $text-grey;
+        line-height: $line-height-body-sm;
+      }
+
+      @include respond-to(laptop) {
+          flex-direction: column;
+          gap: $spacing-5;
+          text-align: center;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// VIP Sidebar Widget
+// ============================================================================
+
+.sidebar-widget--vip {
+  background: linear-gradient(135deg, rgba($primary, 0.06), rgba($secondary, 0.04));
+  border-style: dashed;
+  border-color: rgba($primary, 0.2);
+
+  .sidebar-widget__eyebrow {
+    font-size: $font-size-body-sm;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $primary;
+    margin: 0 0 $spacing-5;
+  }
+
+  .sidebar-widget__title {
+    font-size: $font-size-body-lg;
+    line-height: $line-height-body-lg;
+  }
+
+  .sidebar-widget__list--benefits {
+    margin-top: $spacing-5;
+    padding-left: $spacing-20;
+
+    li {
+      list-style: disc;
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+      color: $text-grey;
+    }
+  }
+
+  .sidebar-widget__fineprint {
+    margin: 0;
+    font-size: $font-size-body-xs;
+    color: $text-grey;
+    opacity: 0.9;
+  }
+}

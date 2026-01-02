@@ -1,0 +1,231 @@
+// ============================================================================
+// Coupons Styles
+// ============================================================================
+
+// ============================================================================
+// Coupons Grid (for coupons page)
+// ============================================================================
+
+.coupons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $spacing-40;
+  margin-top: $spacing-40;
+
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: $spacing-20;
+  }
+
+  @include respond-to(phone) {
+    grid-template-columns: 1fr;
+    gap: $spacing-20;
+  }
+}
+
+// ============================================================================
+// Coupon Card
+// ============================================================================
+
+.coupon-card {
+  background: #ffffff;
+  border: 2px dashed $primary;
+  border-radius: $border-radius-default;
+  padding: $spacing-40;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-20;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+
+  &__header {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-size-header-md;
+    line-height: $line-height-header-md;
+    color: $primary;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-20;
+    align-items: center;
+  }
+
+  &__qr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $spacing-20;
+    border-radius: $border-radius-default;
+    width: 100%;
+    min-height: 220px;
+
+    .qr-code {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  &__actions {
+    width: 100%;
+  }
+
+  &__fineprint {
+    text-align: center;
+    margin-top: $spacing-10;
+
+    p {
+      margin: 0;
+      font-size: $font-size-body-sm;
+      color: $text-body;
+      font-weight: 600;
+    }
+  }
+
+  &__disclaimers {
+    text-align: center;
+    margin-top: $spacing-10;
+
+    p {
+      margin: 0 0 $spacing-5 0;
+      font-size: $font-size-body-sm;
+      color: $text-grey;
+      line-height: $line-height-body-sm;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// QR Code Component
+// ============================================================================
+
+.qr-code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  p {
+    text-align: center;
+    font-size: $font-size-body-sm;
+    color: $text-grey;
+    margin: 0;
+
+    a {
+      color: $primary;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus-visible {
+        color: $primary-dark;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Coupon Applied Banner
+// ============================================================================
+
+.coupon-applied {
+  background: rgba($success, 0.1);
+  border: 2px solid $success;
+  border-radius: $border-radius-default;
+  padding: $spacing-40;
+  margin-bottom: $spacing-40;
+  box-shadow: 0 4px 12px rgba($success, 0.15);
+  animation: slideInDown 0.4s ease-out;
+
+  &--hidden {
+    display: none;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: $spacing-20;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    color: $success;
+    width: 32px;
+    height: 32px;
+  }
+
+  &__text {
+    font-size: $font-size-header-md;
+    line-height: $line-height-header-md;
+    font-weight: 700;
+    color: $success-darkest;
+    margin: 0;
+  }
+
+  @include respond-to(tablet) {
+    padding: $spacing-20;
+
+    &__icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    &__text {
+      font-size: $font-size-header-sm;
+      line-height: $line-height-header-sm;
+    }
+  }
+
+  @include respond-to(phone) {
+    padding: $spacing-20;
+
+    &__content {
+      gap: $spacing-10;
+    }
+
+    &__icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    &__text {
+      font-size: $font-size-header-xs;
+      line-height: $line-height-header-xs;
+    }
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

@@ -1,0 +1,96 @@
+{{- /*
+  Services Bento Box Shortcode - Configurable via Front Matter
+  
+  This version allows customization through page front matter (Params.servicesBento)
+  while maintaining backward compatibility with shortcode parameters.
+  Displays all services in the order provided (no limit, no shuffle).
+  
+  Usage in Markdown:
+    {{< services-bento-configurable >}}
+  
+  Configuration via Front Matter (in .md file):
+    ---
+    servicesBento:
+      class: "custom-class"
+      services:  # Optional: override or add custom services
+        - title: "Custom Service"
+          icon: "/path/to/icon.svg"
+          alt: "Custom Service"
+          description: "Custom description"
+          url: "/custom-url/"
+      sizePattern: ["small", "medium", "small"]  # Optional: custom size pattern
+      dataSource: "services"  # Optional: which data file to use (default: "services")
+    ---
+  
+  Shortcode Parameters (still supported for backward compatibility):
+    - class: Additional CSS classes for the container
+    - dataSource: Which data file to use (default: "services")
+*/ -}}
+
+{{- /* Get page context for front matter access */ -}}
+{{- $page := .Page -}}
+{{- $pageConfig := $page.Params.servicesBento | default dict -}}
+
+{{- /* Get data source - from front matter, shortcode param, or default */ -}}
+{{- $dataSource := $pageConfig.dataSource | default (.Get "dataSource") | default "services" -}}
+{{- $services := index site.Data $dataSource | default slice -}}
+
+{{- /* Merge custom services from front matter if provided */ -}}
+{{- if $pageConfig.services -}}
+  {{- $services = $pageConfig.services -}}
+{{- end -}}
+
+{{- /* Get parameters - front matter takes precedence over shortcode params */ -}}
+{{- $class := $pageConfig.class | default (.Get "class") | default "" -}}
+
+{{- /* Get size pattern - from front matter or use default */ -}}
+{{- $sizePattern := $pageConfig.sizePattern | default (slice "small" "medium" "small" "medium" "small" "medium" "small") -}}
+
+{{- /* Use all services in the order provided */ -}}
+{{- $displayServices := $services -}}
+
+{{- /* Initialize size index */ -}}
+{{- $sizeIndex := 0 -}}
+
+<div class="services-bento{{ if $class }} {{ $class }}{{ end }}">
+  {{- range $index, $service := $displayServices -}}
+    {{- /* Cycle through size patterns */ -}}
+    {{- $size := index $sizePattern (mod $sizeIndex (len $sizePattern)) -}}
+    {{- $sizeIndex = add $sizeIndex 1 -}}
+    
+    {{- $boxClass := printf "services-bento__box services-bento__box--%s%s" $size (cond (eq $size "medium") " services-bento__box--horizontal" "") -}}
+    {{- if $service.url -}}
+    <a href="{{ $service.url }}" class="{{ $boxClass }}" title="{{ $service.title }}">
+      <div class="services-bento__content">
+        {{- if $service.icon -}}
+        <div class="services-bento__icon">
+          <img src="{{ $service.icon }}" alt="{{ $service.alt | default $service.title }}" loading="lazy">
+        </div>
+        {{- end -}}
+        <div class="services-bento__text">
+          <h2 class="services-bento__title">{{ $service.title }}</h2>
+          {{- if $service.description -}}
+          <p class="services-bento__description">{{ $service.description }}</p>
+          {{- end -}}
+        </div>
+      </div>
+    </a>
+    {{- else -}}
+    <div class="{{ $boxClass }}">
+      <div class="services-bento__content">
+        {{- if $service.icon -}}
+        <div class="services-bento__icon">
+          <img src="{{ $service.icon }}" alt="{{ $service.alt | default $service.title }}" loading="lazy">
+        </div>
+        {{- end -}}
+        <div class="services-bento__text">
+          <h2 class="services-bento__title">{{ $service.title }}</h2>
+          {{- if $service.description -}}
+          <p class="services-bento__description">{{ $service.description }}</p>
+          {{- end -}}
+        </div>
+      </div>
+    </div>
+    {{- end -}}
+  {{- end -}}
+</div>

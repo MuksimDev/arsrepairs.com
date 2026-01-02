@@ -1,0 +1,850 @@
+// ============================================================================
+// Blog Styles
+// ============================================================================
+
+// ============================================================================
+// Blog Container
+// ============================================================================
+
+.blog-container {
+  width: 100%;
+  max-width: 100%;
+
+
+  // Blog Intro
+  &__intro {
+    margin-bottom: $spacing-40;
+    max-width: 700px;
+
+    @include respond-to(tablet) {
+      margin-bottom: $spacing-20;
+    }
+  }
+
+  // Blog Controls (Search, Filter, Sort) - Minimal Design
+  &__controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $spacing-40;
+    padding-bottom: $spacing-20;
+    border-bottom: 1px solid $border;
+
+    @include respond-to(tablet) {
+      margin-bottom: $spacing-20;
+      padding-bottom: $spacing-10;
+    }
+
+    // Controls Inner Container (centered)
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-10;
+      width: 100%;
+      align-items: center;
+    }
+
+    // Controls Row (filters and sort)
+    &-row {
+      display: flex;
+      gap: $spacing-10;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      width: 100%;
+
+      @include respond-to(tablet) {
+        flex-wrap: wrap;
+      }
+
+      @include respond-to(phone) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: $spacing-10;
+      }
+    }
+
+    // Search Wrapper
+    &-search {
+      width: 100%;
+      max-width: 100%;
+      position: relative;
+    }
+
+    // Filter Wrapper
+    &-filters {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      flex: 1;
+      min-width: 0;
+      max-width: 100%;
+
+      @include respond-to(tablet) {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        padding-bottom: 4px;
+        
+        // Hide scrollbar on webkit browsers but keep functionality
+        &::-webkit-scrollbar {
+          height: 4px;
+        }
+        
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background: $border;
+          border-radius: 2px;
+          
+          &:hover {
+            background: $text-grey;
+          }
+        }
+      }
+
+      @include respond-to(phone) {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  // Search Input
+  &__search {
+    width: 100%;
+    padding: $spacing-10 $spacing-20 $spacing-10 40px;
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    color: $text-body;
+    background: $background;
+    border: 1px solid $border;
+    border-radius: $border-radius-default;
+    @include transition(border-color, box-shadow);
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 2px rgba($primary, 0.1);
+    }
+
+    &::placeholder {
+      color: $text-grey;
+    }
+
+    &-icon {
+      position: absolute;
+      left: $spacing-10;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: $text-grey;
+      pointer-events: none;
+    }
+
+    &-clear {
+      position: absolute;
+      right: $spacing-10;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      color: $text-grey;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      @include transition(background, color);
+
+      &:hover {
+        background: rgba($text-body, 0.1);
+        color: $text-body;
+      }
+
+      &--visible {
+        display: flex;
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  // Filter Buttons
+  &__filter {
+    padding: 4px 8px;
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 500;
+    color: $text-body;
+    background: transparent;
+    border: 1px solid $border;
+    border-radius: $border-radius-default;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    @include transition(background, border-color, color);
+
+    @include respond-to(tablet) {
+      padding: 5px 10px;
+      font-size: $font-size-body-sm;
+    }
+
+    &:hover {
+      background: $off-white;
+      border-color: $primary;
+      color: $primary;
+    }
+
+    &--active {
+      background: $primary;
+      border-color: $primary;
+      color: $text-white;
+
+      &:hover {
+        background: $primary-dark;
+        border-color: $primary-dark;
+        color: $text-white;
+      }
+    }
+  }
+
+    // Controls Selects Wrapper
+    &-selects {
+      display: flex;
+      gap: $spacing-10;
+      flex-shrink: 0;
+
+      @include respond-to(phone) {
+        width: 100%;
+        flex-direction: column;
+      }
+    }
+
+    // Sort Select
+    &__sort-select {
+      padding: 6px $spacing-10;
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+      color: $text-body;
+      background: $background;
+      border: 1px solid $border;
+      border-radius: $border-radius-default;
+      cursor: pointer;
+      flex-shrink: 0;
+      @include transition(border-color, box-shadow);
+
+      @include respond-to(tablet) {
+        width: auto;
+        min-width: 140px;
+      }
+
+      @include respond-to(phone) {
+        width: 100%;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+        box-shadow: 0 0 0 2px rgba($primary, 0.1);
+      }
+    }
+
+    // Per Page Select
+    &__per-page-select {
+      padding: 6px $spacing-10;
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+      color: $text-body;
+      background: $background;
+      border: 1px solid $border;
+      border-radius: $border-radius-default;
+      cursor: pointer;
+      flex-shrink: 0;
+      @include transition(border-color, box-shadow);
+
+      @include respond-to(tablet) {
+        width: auto;
+        min-width: 140px;
+      }
+
+      @include respond-to(phone) {
+        width: 100%;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+        box-shadow: 0 0 0 2px rgba($primary, 0.1);
+      }
+    }
+
+  // Results Count
+  &__results {
+    font-size: $font-size-body-sm;
+    line-height: $line-height-body-sm;
+    color: $text-grey;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    &-count {
+      font-weight: 600;
+      color: $text-body;
+    }
+  }
+
+  // Blog Grid
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: $spacing-40;
+    margin-top: $spacing-40;
+
+    @include respond-to(laptop) {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: $spacing-20;
+    }
+
+    @include respond-to(tablet) {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: $spacing-20;
+      margin-top: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      grid-template-columns: 1fr;
+      gap: $spacing-20;
+    }
+
+    &--empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: $spacing-60 $spacing-20;
+      color: $text-grey;
+
+      @include respond-to(phone) {
+        padding: $spacing-40 $spacing-10;
+      }
+    }
+  }
+
+  // No Results Message
+  &__no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: $spacing-60 $spacing-20;
+    color: $text-grey;
+
+    @include respond-to(phone) {
+      padding: $spacing-40 $spacing-10;
+    }
+
+    &-title {
+      font-size: $font-size-header-sm;
+      line-height: $line-height-header-sm;
+      font-weight: 600;
+      color: $text-body;
+      margin: 0 0 $spacing-10;
+    }
+
+    &-text {
+      font-size: $font-size-body;
+      line-height: $line-height-body;
+      margin: 0;
+    }
+  }
+
+  // Pagination
+  &__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-10;
+    margin-top: $spacing-40;
+    padding-top: $spacing-40;
+    border-top: 1px solid $border;
+    flex-wrap: wrap;
+
+    @include respond-to(tablet) {
+      margin-top: $spacing-20;
+      padding-top: $spacing-20;
+    }
+
+    &-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: $spacing-5 $spacing-10;
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+      font-weight: 500;
+      color: $text-body;
+      background: $background;
+      border: 1px solid $border;
+      border-radius: $border-radius-default;
+      cursor: pointer;
+      @include transition(background, border-color, color);
+
+      &:hover:not(:disabled) {
+        background: $off-white;
+        border-color: $primary;
+        color: $primary;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    &-pages {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    &-page {
+      min-width: 36px;
+      height: 36px;
+      padding: 0 $spacing-10;
+      font-size: $font-size-body-sm;
+      line-height: $line-height-body-sm;
+      font-weight: 500;
+      color: $text-body;
+      background: $background;
+      border: 1px solid $border;
+      border-radius: $border-radius-default;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      @include transition(background, border-color, color);
+
+      &:hover {
+        background: $off-white;
+        border-color: $primary;
+        color: $primary;
+      }
+
+      &--active {
+        background: $primary;
+        border-color: $primary;
+        color: $text-white;
+
+        &:hover {
+          background: $primary-dark;
+          border-color: $primary-dark;
+          color: $text-white;
+        }
+      }
+    }
+
+    &-ellipsis {
+      padding: 0 $spacing-5;
+      font-size: $font-size-body-sm;
+      color: $text-grey;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// ============================================================================
+// Blog Card
+// ============================================================================
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  background: $background;
+  border-radius: $border-radius-default;
+  border: 1px solid $border;
+  overflow: hidden;
+  height: 100%;
+  @include transition(transform, box-shadow, border-color);
+  @include shadow-sm($surface, 0.05);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba($surface, 0.15);
+    border-color: $primary;
+
+    .blog-card__title a {
+      color: $primary;
+    }
+  }
+
+  // Card Image Link
+  &__image-link {
+    display: block;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: $off-white;
+    @include transition(transform);
+
+    @include respond-to(phone) {
+      height: 180px;
+    }
+  }
+
+  // Card Image
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    @include transition(transform);
+  }
+
+  // Card Content
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: $spacing-20;
+    gap: $spacing-10;
+
+    @include respond-to(phone) {
+      padding: $spacing-20 $spacing-10;
+    }
+  }
+
+  // Card Meta (Date, Tags)
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-10;
+    align-items: center;
+    font-size: $font-size-body-sm;
+    line-height: $line-height-body-sm;
+    color: $text-grey;
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    time {
+      color: $text-grey;
+    }
+  }
+
+  // Card Tags
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-5;
+  }
+
+  &__tag {
+    padding: 4px $spacing-10;
+    font-size: $font-size-body-sm;
+    line-height: $line-height-body-sm;
+    background: $off-white;
+    color: $text-body;
+    border-radius: $border-radius-default;
+    text-decoration: none;
+    @include transition(background, color);
+
+    &:hover {
+      background: $primary;
+      color: $text-white;
+    }
+  }
+
+  // Card Categories
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-5;
+  }
+
+  &__category {
+    padding: 4px $spacing-10;
+    font-size: $font-size-body-sm;
+    line-height: $line-height-body-sm;
+    background: rgba($secondary, 0.1);
+    color: $secondary;
+    border-radius: $border-radius-default;
+    text-decoration: none;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    @include transition(background, color);
+
+    &:hover {
+      background: $secondary;
+      color: $text-white;
+    }
+  }
+
+  // Card Title
+  &__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: $font-size-header-sm;
+    line-height: $line-height-header-sm;
+    font-weight: 600;
+    color: $text-body;
+
+    @include respond-to(phone) {
+      font-size: $font-size-header-xs;
+      line-height: $line-height-header-xs;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      @include transition(color);
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+
+  // Card Excerpt
+  &__excerpt {
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    color: $text-grey;
+    margin: 0;
+    @include line-clamp(3);
+  }
+
+  // Card Footer
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: $spacing-10;
+    border-top: 1px solid $border;
+  }
+
+  &__read-more {
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    font-weight: 600;
+    color: $primary;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    @include transition(color);
+
+    &:hover {
+      color: $primary-dark;
+
+      &::after {
+        transform: translateX(4px);
+      }
+    }
+
+    &::after {
+      content: '→';
+      display: inline-block;
+      @include transition(transform);
+    }
+  }
+}
+
+// ============================================================================
+// Blog Post (Single Post Page)
+// ============================================================================
+
+.blog-post {
+  width: 100%;
+  max-width: 100%;
+
+  // Post Header
+  &__header {
+    margin-bottom: $spacing-40;
+    text-align: center;
+    padding-bottom: $spacing-40;
+    border-bottom: 1px solid $border;
+
+    @include respond-to(tablet) {
+      margin-bottom: $spacing-20;
+      padding-bottom: $spacing-20;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-20;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    color: $text-grey;
+
+    @include respond-to(phone) {
+      flex-direction: column;
+      gap: $spacing-10;
+    }
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    color: $text-body;
+
+    &-name {
+      color: $text-body;
+    }
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-10;
+    justify-content: center;
+  }
+
+  &__tag {
+    padding: 6px $spacing-10;
+    font-size: $font-size-body-sm;
+    line-height: $line-height-body-sm;
+    background: $off-white;
+    color: $text-body;
+    border-radius: $border-radius-default;
+    text-decoration: none;
+    @include transition(background, color);
+
+    &:hover {
+      background: $primary;
+      color: $text-white;
+    }
+  }
+
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-10;
+    justify-content: center;
+  }
+
+  &__category {
+    padding: 6px $spacing-10;
+    font-size: $font-size-body-sm;
+    line-height: $line-height-body-sm;
+    background: rgba($secondary, 0.1);
+    color: $secondary;
+    border-radius: $border-radius-default;
+    text-decoration: none;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    @include transition(background, color);
+
+    &:hover {
+      background: $secondary;
+      color: $text-white;
+    }
+  }
+
+  // Post Content
+  &__content {
+
+    .prose {
+      // Enhanced prose styles for blog posts
+      h2, h3, h4 {
+        margin-top: $spacing-40;
+        margin-bottom: $spacing-20;
+      }
+
+      p {
+        margin-bottom: $spacing-20;
+      }
+
+      ul, ol {
+        margin-bottom: $spacing-20;
+      }
+
+      img {
+        border-radius: $border-radius-lg;
+        margin: $spacing-40 0;
+      }
+
+      blockquote {
+        border-left-color: $primary;
+        background: $off-white;
+        padding: $spacing-20;
+        border-radius: $border-radius-default;
+        margin: $spacing-40 0;
+      }
+    }
+  }
+
+  // Post Footer
+  &__footer {
+    margin-top: $spacing-60;
+    padding-top: $spacing-40;
+    border-top: 1px solid $border;
+
+    @include respond-to(tablet) {
+      margin-top: $spacing-40;
+      padding-top: $spacing-20;
+    }
+  }
+
+  &__back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-10;
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    color: $primary;
+    text-decoration: none;
+    font-weight: 500;
+    @include transition(color);
+
+    &:hover {
+      color: $primary-dark;
+
+      &::before {
+        transform: translateX(-4px);
+      }
+    }
+
+    &::before {
+      content: '←';
+      display: inline-block;
+      @include transition(transform);
+    }
+  }
+}

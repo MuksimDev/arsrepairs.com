@@ -1,0 +1,318 @@
+{{- /*
+  Reviews Shortcode - Showcase latest reviews
+  
+  Usage:
+    {{< reviews >}}
+    {{< reviews limit="10" serviceType="dishwasher" >}}
+    {{< reviews limit="10" brand="Samsung" >}}
+    {{< reviews limit="10" serviceType="dishwasher" brand="Samsung" >}}
+    {{< reviews layout="carousel" limit="10" >}}
+  
+  Parameters:
+    - limit: Number of reviews to display (default: 10)
+    - serviceType: Filter by service type (e.g., "dishwasher", "dryer", "washer", "refrigerator", "oven") (optional)
+    - brand: Filter by brand (optional)
+    - showFilter: Show filter dropdowns (default: false)
+    - layout: Layout style - "grid" (default) or "carousel" (3D carousel with transitions)
+    - class: Additional CSS classes
+*/ -}}
+
+{{- $lang := .Page.Language.Lang | default "en" -}}
+{{- $isSpanish := eq $lang "es" -}}
+
+{{- $reviewsData := site.Data.reviews | default dict }}
+{{- $allReviews := $reviewsData.reviews | default slice }}
+{{- $limit := .Get "limit" | default 10 | int }}
+{{- $serviceTypeFilter := .Get "serviceType" | default "" }}
+{{- $brandFilter := .Get "brand" | default "" }}
+{{- $showFilter := eq (.Get "showFilter" | default "false") "true" }}
+{{- $layout := .Get "layout" | default "grid" }}
+{{- $class := .Get "class" | default "" }}
+
+{{- /* Spanish translations */ -}}
+{{- $titleText := cond $isSpanish "¡Servicio de reparación de electrodomésticos mejor calificado en Miami y el Sur de la Florida!" "Best rated appliance repair service in Miami & South Florida!" -}}
+{{- $filterServiceLabel := cond $isSpanish "Filtrar por Servicio:" "Filter by Service:" -}}
+{{- $filterLocationLabel := cond $isSpanish "Filtrar por Ubicación:" "Filter by Location:" -}}
+{{- $filterBrandLabel := cond $isSpanish "Filtrar por Marca:" "Filter by Brand:" -}}
+{{- $allServicesOption := cond $isSpanish "Todos los Servicios" "All Services" -}}
+{{- $allLocationsOption := cond $isSpanish "Todas las Ubicaciones" "All Locations" -}}
+{{- $allBrandsOption := cond $isSpanish "Todas las Marcas" "All Brands" -}}
+{{- $repairText := cond $isSpanish "Reparación" "Repair" -}}
+{{- $viewAllReviewsText := cond $isSpanish "Ver Todas las Reseñas" "View All Reviews" -}}
+{{- $reviewsURL := cond $isSpanish "/es/reviews/" "/reviews/" -}}
+{{- $prevLabel := cond $isSpanish "Reseña anterior" "Previous review" -}}
+{{- $nextLabel := cond $isSpanish "Siguiente reseña" "Next review" -}}
+{{- $goToReviewLabel := cond $isSpanish "Ir a la reseña" "Go to review" -}}
+{{- $ratingLabel := cond $isSpanish "Calificación:" "Rating:" -}}
+{{- $outOfStars := cond $isSpanish "de 5 estrellas" "out of 5 stars" -}}
+
+{{- if eq (len $allReviews) 0 }}
+  <!-- No reviews available -->
+{{- else }}
+  {{- /* Filter by rating 5 only */ -}}
+  {{- $allReviews = where $allReviews "rating" 5 }}
+  
+  {{- /* Filter out reviews with text under 100 characters */ -}}
+  {{- $filteredReviews := slice }}
+  {{- range $allReviews }}
+    {{- $textLength := len (.text | default "") }}
+    {{- if ge $textLength 100 }}
+      {{- $filteredReviews = $filteredReviews | append . }}
+    {{- end }}
+  {{- end }}
+  {{- $allReviews = $filteredReviews }}
+  
+  {{- /* Filter by service type if specified */ -}}
+  {{- if $serviceTypeFilter }}
+    {{- $allReviews = where $allReviews "serviceType" $serviceTypeFilter }}
+  {{- end }}
+  
+  {{- /* Filter by brand if specified */ -}}
+  {{- if $brandFilter }}
+    {{- $allReviews = where $allReviews "brand" $brandFilter }}
+  {{- end }}
+  
+  {{- /* Get unique service types for filter dropdown */ -}}
+  {{- $serviceTypes := slice }}
+  {{- range $allReviews }}
+    {{- if and .serviceType (not (in $serviceTypes .serviceType)) }}
+      {{- $serviceTypes = $serviceTypes | append .serviceType }}
+    {{- end }}
+  {{- end }}
+  
+  {{- /* Get unique locations for filter dropdown */ -}}
+  {{- $locations := slice }}
+  {{- range $allReviews }}
+    {{- if and .location (not (in $locations .location)) }}
+      {{- $locations = $locations | append .location }}
+    {{- end }}
+  {{- end }}
+  
+  {{- /* Get unique brands for filter dropdown */ -}}
+  {{- $brands := slice }}
+  {{- range $allReviews }}
+    {{- if and .brand (not (in $brands .brand)) }}
+      {{- $brands = $brands | append .brand }}
+    {{- end }}
+  {{- end }}
+  
+  {{- /* Reverse to show newest first (YAML is in chronological order) */ -}}
+  {{- $reversed := slice }}
+  {{- $count := len $allReviews }}
+  {{- range $i := seq $count }}
+    {{- $idx := sub (sub $count 1) (sub $i 1) }}
+    {{- $reversed = $reversed | append (index $allReviews $idx) }}
+  {{- end }}
+  {{- $displayReviews := $reversed | first $limit }}
+
+  {{- if gt (len $displayReviews) 0 }}
+  <section class="reviews reviews--{{ $layout }} {{ $class }}">
+    <h3 class="section-title margin-bottom-40">{{ $titleText }}</h3>
+    <div class="reviews__container">
+      {{- if $showFilter }}
+      <div class="reviews__filters">
+        <div class="reviews__filter">
+          <label for="reviews-service-filter" class="reviews__filter-label">{{ $filterServiceLabel }}</label>
+          <select id="reviews-service-filter" class="reviews__filter-select" data-reviews-filter="service">
+            <option value="">{{ $allServicesOption }}</option>
+            {{- range $serviceTypes }}
+            <option value="{{ . }}" {{ if eq . $serviceTypeFilter }}selected{{ end }}>{{ . | title }} {{ $repairText }}</option>
+            {{- end }}
+          </select>
+        </div>
+        <div class="reviews__filter">
+          <label for="reviews-location-filter" class="reviews__filter-label">{{ $filterLocationLabel }}</label>
+          <select id="reviews-location-filter" class="reviews__filter-select" data-reviews-filter="location">
+            <option value="">{{ $allLocationsOption }}</option>
+            {{- range $locations }}
+            <option value="{{ . }}">{{ . }}</option>
+            {{- end }}
+          </select>
+        </div>
+        <div class="reviews__filter">
+          <label for="reviews-brand-filter" class="reviews__filter-label">{{ $filterBrandLabel }}</label>
+          <select id="reviews-brand-filter" class="reviews__filter-select" data-reviews-filter="brand">
+            <option value="">{{ $allBrandsOption }}</option>
+            {{- range $brands }}
+            <option value="{{ . }}" {{ if eq . $brandFilter }}selected{{ end }}>{{ . }}</option>
+            {{- end }}
+          </select>
+        </div>
+      </div>
+      {{- end }}
+      {{- if eq $layout "carousel" }}
+      {{- /* Render both carousel and grid - CSS will show/hide based on screen size */ -}}
+      <div class="reviews__carousel" data-reviews-carousel>
+        <button class="reviews__carousel-button reviews__carousel-button--prev" aria-label="{{ $prevLabel }}" data-carousel-prev>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <div class="reviews__carousel-track">
+          <div class="reviews__carousel-wrapper">
+            {{- range $index, $review := $displayReviews }}
+            {{- $rating := $review.rating | default 5 | int }}
+            {{- $reviewTextRaw := $review.text | default "" }}
+            {{- $reviewText := cond (gt (len $reviewTextRaw) 600) (truncate 600 $reviewTextRaw) $reviewTextRaw }}
+            <article class="review-card review-card--carousel" itemscope itemtype="https://schema.org/Review"{{ if $review.serviceType }} data-service-type="{{ $review.serviceType }}"{{ end }}{{ if $review.location }} data-location="{{ $review.location }}"{{ end }}{{ if $review.brand }} data-brand="{{ $review.brand }}"{{ end }} data-carousel-index="{{ $index }}">
+              <div class="review-card__content">
+                <blockquote class="review-card__text" itemprop="reviewBody">
+                  <p>{{ $reviewText }}</p>
+                </blockquote>
+                <footer class="review-card__footer">
+                  <div class="review-card__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    {{- /* Format name as "First L." when last name exists; otherwise just "First" */ -}}
+                    {{- $nameParts := split ($review.author | default "") " " }}
+                    {{- $firstName := index $nameParts 0 | default "" }}
+                    {{- $lastNameInitial := "" }}
+                    {{- if gt (len $nameParts) 1 }}
+                      {{- $lastName := index $nameParts (sub (len $nameParts) 1) }}
+                      {{- $lastNameInitial = substr $lastName 0 1 | upper }}
+                    {{- end }}
+                    {{- $formattedName := cond (ne $lastNameInitial "") (printf "%s %s." $firstName $lastNameInitial) $firstName }}
+                    <span class="review-card__author-name" itemprop="name" content="{{ $formattedName }}">{{ $formattedName }}</span>
+                  </div>
+                  {{- if $review.date }}
+                  <time class="review-card__date" datetime="{{ $review.date }}" itemprop="datePublished" content="{{ (time $review.date).Format "2006-01-02" }}">{{ (time $review.date).Format "January 2, 2006" }}</time>
+                  {{- end }}
+                  {{- if $review.location }}
+                  <span class="review-card__author-location" itemprop="authorLocation" content="{{ $review.location }}">{{ $review.location }}</span>
+                  {{- end }}
+                  <div class="review-card__rating" aria-label="{{ $ratingLabel }} {{ $rating }} {{ $outOfStars }}">
+                    <div class="review-card__stars" aria-hidden="true">
+                      {{- range seq 5 }}
+                        <span class="review-card__star{{ if le . $rating }} review-card__star--filled{{ end }}">★</span>
+                      {{- end }}
+                    </div>
+                    <meta itemprop="ratingValue" content="{{ $rating }}">
+                    <meta itemprop="bestRating" content="5">
+                    <meta itemprop="worstRating" content="1">
+                  </div>
+                  <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/HomeAndConstructionBusiness" style="display: none;">
+                    <span itemprop="name">{{ site.Params.companyName }}</span>
+                    <span itemprop="url">{{ site.BaseURL | absURL }}</span>
+                    <span itemprop="telephone">{{ site.Params.phone }}</span>
+                  </div>
+                </footer>
+              </div>
+            </article>
+            {{- end }}
+          </div>
+        </div>
+        <button class="reviews__carousel-button reviews__carousel-button--next" aria-label="{{ $nextLabel }}" data-carousel-next>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="reviews__carousel-dots" aria-label="Review navigation">
+          {{- range $index, $review := $displayReviews }}
+          <button class="reviews__carousel-dot{{ if eq $index 0 }} reviews__carousel-dot--active{{ end }}" aria-label="{{ $goToReviewLabel }} {{ add $index 1 }}" data-carousel-dot="{{ $index }}"></button>
+          {{- end }}
+        </div>
+      </div>
+      {{- /* Always render grid for carousel layout (hidden on desktop, shown on mobile) */ -}}
+      <div class="reviews__grid reviews__grid--mobile-fallback">
+        {{- range $displayReviews }}
+        {{- $rating := .rating | default 5 | int }}
+        {{- $reviewTextRaw := .text | default "" }}
+        {{- $reviewText := cond (gt (len $reviewTextRaw) 600) (truncate 600 $reviewTextRaw) $reviewTextRaw }}
+        <article class="review-card" itemscope itemtype="https://schema.org/Review"{{ if .serviceType }} data-service-type="{{ .serviceType }}"{{ end }}{{ if .location }} data-location="{{ .location }}"{{ end }}{{ if .brand }} data-brand="{{ .brand }}"{{ end }}>
+          <div class="review-card__content">
+            <blockquote class="review-card__text" itemprop="reviewBody">
+              <p>{{ $reviewText }}</p>
+            </blockquote>
+            <footer class="review-card__footer">
+              <div class="review-card__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                {{- /* Format name as "First L." when last name exists; otherwise just "First" */ -}}
+                {{- $nameParts := split (.author | default "") " " }}
+                {{- $firstName := index $nameParts 0 | default "" }}
+                {{- $lastNameInitial := "" }}
+                {{- if gt (len $nameParts) 1 }}
+                  {{- $lastName := index $nameParts (sub (len $nameParts) 1) }}
+                  {{- $lastNameInitial = substr $lastName 0 1 | upper }}
+                {{- end }}
+                {{- $formattedName := cond (ne $lastNameInitial "") (printf "%s %s." $firstName $lastNameInitial) $firstName }}
+                <span class="review-card__author-name" itemprop="name" content="{{ $formattedName }}">{{ $formattedName }}</span>
+              </div>
+              {{- if .date }}
+              <time class="review-card__date" datetime="{{ .date }}" itemprop="datePublished" content="{{ (time .date).Format "2006-01-02" }}">{{ (time .date).Format "January 2, 2006" }}</time>
+              {{- end }}
+              {{- if .location }}
+              <span class="review-card__author-location" itemprop="authorLocation" content="{{ .location }}">{{ .location }}</span>
+              {{- end }}
+              <div class="review-card__rating" aria-label="{{ $ratingLabel }} {{ $rating }} {{ $outOfStars }}">
+                <div class="review-card__stars" aria-hidden="true">
+                  {{- range seq 5 }}
+                    <span class="review-card__star{{ if le . $rating }} review-card__star--filled{{ end }}">★</span>
+                  {{- end }}
+                </div>
+                <meta itemprop="ratingValue" content="{{ $rating }}">
+                <meta itemprop="bestRating" content="5">
+                <meta itemprop="worstRating" content="1">
+              </div>
+              <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/HomeAndConstructionBusiness" style="display: none;">
+                <span itemprop="name">{{ site.Params.companyName }}</span>
+                <span itemprop="url">{{ site.BaseURL | absURL }}</span>
+                <span itemprop="telephone">{{ site.Params.phone }}</span>
+              </div>
+            </footer>
+          </div>
+        </article>
+        {{- end }}
+      </div>
+      {{- else }}
+      <div class="reviews__grid">
+        {{- range $displayReviews }}
+        {{- $rating := .rating | default 5 | int }}
+        {{- $reviewTextRaw := .text | default "" }}
+        {{- $reviewText := cond (gt (len $reviewTextRaw) 600) (truncate 600 $reviewTextRaw) $reviewTextRaw }}
+        <article class="review-card" itemscope itemtype="https://schema.org/Review"{{ if .serviceType }} data-service-type="{{ .serviceType }}"{{ end }}{{ if .location }} data-location="{{ .location }}"{{ end }}{{ if .brand }} data-brand="{{ .brand }}"{{ end }}>
+          <div class="review-card__content">
+            <blockquote class="review-card__text" itemprop="reviewBody">
+              <p>{{ $reviewText }}</p>
+            </blockquote>
+            <footer class="review-card__footer">
+              <div class="review-card__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                {{- /* Format name as "First L." when last name exists; otherwise just "First" */ -}}
+                {{- $nameParts := split (.author | default "") " " }}
+                {{- $firstName := index $nameParts 0 | default "" }}
+                {{- $lastNameInitial := "" }}
+                {{- if gt (len $nameParts) 1 }}
+                  {{- $lastName := index $nameParts (sub (len $nameParts) 1) }}
+                  {{- $lastNameInitial = substr $lastName 0 1 | upper }}
+                {{- end }}
+                {{- $formattedName := cond (ne $lastNameInitial "") (printf "%s %s." $firstName $lastNameInitial) $firstName }}
+                <span class="review-card__author-name" itemprop="name" content="{{ $formattedName }}">{{ $formattedName }}</span>
+              </div>
+              {{- if .date }}
+              <time class="review-card__date" datetime="{{ .date }}" itemprop="datePublished" content="{{ (time .date).Format "2006-01-02" }}">{{ (time .date).Format "January 2, 2006" }}</time>
+              {{- end }}
+              {{- if .location }}
+              <span class="review-card__author-location" itemprop="authorLocation" content="{{ .location }}">{{ .location }}</span>
+              {{- end }}
+              <div class="review-card__rating" aria-label="{{ $ratingLabel }} {{ $rating }} {{ $outOfStars }}">
+                <div class="review-card__stars" aria-hidden="true">
+                  {{- range seq 5 }}
+                    <span class="review-card__star{{ if le . $rating }} review-card__star--filled{{ end }}">★</span>
+                  {{- end }}
+                </div>
+                <meta itemprop="ratingValue" content="{{ $rating }}">
+                <meta itemprop="bestRating" content="5">
+                <meta itemprop="worstRating" content="1">
+              </div>
+              <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/HomeAndConstructionBusiness" style="display: none;">
+                <span itemprop="name">{{ site.Params.companyName }}</span>
+                <span itemprop="url">{{ site.BaseURL | absURL }}</span>
+                <span itemprop="telephone">{{ site.Params.phone }}</span>
+              </div>
+            </footer>
+          </div>
+        </article>
+        {{- end }}
+      </div>
+      {{- end }}
+      <a href="{{ $reviewsURL }}" class="btn btn--primary btn--sm">{{ $viewAllReviewsText }}</a>
+    </div>
+  </section>
+  {{- end }}
+{{- end }}

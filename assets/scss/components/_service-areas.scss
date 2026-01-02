@@ -1,0 +1,261 @@
+// ============================================================================
+// Service Areas Component
+// ============================================================================
+
+.service-areas-header {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.service-areas-map {
+  position: relative;
+  width: 100%;
+  
+  .service-areas-map-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+    position: relative;
+    overflow: visible;
+  }
+  
+  .location-pin {
+    position: absolute;
+    cursor: pointer;
+    transform: translateX(calc(-50% + var(--pin-offset-x, 0px)));
+    transform-origin: center bottom;
+    z-index: 10;
+    // Allow interaction so pins can be clicked when wrapped in links
+    pointer-events: auto;
+    --pin-offset-x: 0px;
+    @include transition(transform);
+
+    &:hover {
+      transform: translateX(calc(-50% + var(--pin-offset-x, 0px))) translateY(0px) scale(1.1);
+    }
+
+    // Position offsets for each pin (subtle variation)
+    // Note: SVG is first child, so pins start at nth-of-type(2)
+    &:nth-of-type(2) {
+      --pin-offset-x: 3px;
+    }
+    &:nth-of-type(3) {
+      --pin-offset-x: -2px;
+    }
+    &:nth-of-type(4) {
+      --pin-offset-x: 4px;
+    }
+    &:nth-of-type(5) {
+      --pin-offset-x: -3px;
+    }
+    &:nth-of-type(6) {
+      --pin-offset-x: 2px;
+    }
+    &:nth-of-type(7) {
+      --pin-offset-x: -4px;
+    }
+    &:nth-of-type(8) {
+      --pin-offset-x: 1px;
+    }
+    &:nth-of-type(9) {
+      --pin-offset-x: -1px;
+    }
+
+    // Clickable link wrapper for pins
+    .location-pin-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+      pointer-events: auto;
+
+      &:focus-visible {
+        outline: 2px solid $primary;
+        outline-offset: 3px;
+      }
+    }
+
+    // Pin shadow
+    .pin-shadow {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%) translate(15px, 2px) skew(-50deg, 0deg);
+      width: 100%;
+      height: 12px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: $border-radius-lg;
+      filter: blur(3px);
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.25;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%) skew(-15deg, 0deg);
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 8px solid rgba(0, 0, 0, 0.25);
+        filter: blur(2px);
+      }
+    }
+    
+    // Pin pill
+    .pin-pill {
+      position: relative;
+      background: $primary;
+      border-radius: $border-radius-lg;
+      padding: 0 $spacing-10;
+      white-space: nowrap;
+      z-index: 2;
+      display: inline-flex;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      
+      .location-label {
+        color: $text-white;
+        font-size: $font-size-body-sm;
+        line-height: $line-height-body-sm;
+        font-weight: 600;
+        font-family: $font-sans;
+        pointer-events: none;
+        user-select: none;
+      }
+    }
+    
+    // Pin triangle
+    .pin-triangle {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 12px solid $primary;
+      z-index: 2;
+      opacity: 1;
+    }
+  }
+  
+  // Mobile responsive styles
+  @include respond-to(tablet) {
+    .location-pin {
+      // Slightly reduce offset variations on tablet
+      &:nth-of-type(2),
+      &:nth-of-type(3),
+      &:nth-of-type(4),
+      &:nth-of-type(5),
+      &:nth-of-type(6),
+      &:nth-of-type(7),
+      &:nth-of-type(8),
+      &:nth-of-type(9) {
+        --pin-offset-x: 0px;
+      }
+      
+      .pin-pill {
+        padding: 0 calc(#{$spacing-10} * 0.9);
+        
+        .location-label {
+          font-size: calc(#{$font-size-body-sm} * 0.95);
+        }
+      }
+    }
+  }
+  
+  @include respond-to(phone) {
+    margin: $spacing-40 0;
+    .location-pin {
+      // Reset all offsets on mobile for cleaner alignment
+      --pin-offset-x: 0px;
+      
+      .pin-shadow {
+        // Slightly reduce shadow size on mobile
+        height: 10px;
+        filter: blur(2px);
+        
+        &::after {
+          border-left-width: 5px;
+          border-right-width: 5px;
+          border-top-width: 6px;
+        }
+      }
+      
+      .pin-pill {
+        padding: 0 calc(#{$spacing-10} * 0.8);
+        
+        .location-label {
+          // Slightly larger text on mobile for readability
+          font-size: 13px;
+          line-height: 1.4;
+        }
+      }
+      
+      .pin-triangle {
+        top: 21px;
+      }
+    }
+  }
+}
+
+.service-areas-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-20;
+  padding: $spacing-20 0 0;
+  border-top: 1px solid $border;
+
+  @include respond-to(tablet) {
+    grid-template-columns: 1fr;
+    gap: $spacing-20;
+  }
+
+  @include respond-to(phone) {
+    gap: $spacing-20;
+  }
+}
+
+.service-areas-group {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-10;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .service-areas-group-title {
+    font-size: $font-size-body-lg;
+    font-weight: 600;
+    color: $text-body;
+    margin: 0;
+    margin-top: 0;
+  }
+
+  .service-areas-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $spacing-10;
+
+    @include respond-to(phone) {
+      gap: $spacing-5;
+    }
+
+    li {
+      margin: 0;
+    }
+  }
+}

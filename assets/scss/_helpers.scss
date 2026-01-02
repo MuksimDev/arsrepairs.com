@@ -1,0 +1,272 @@
+// ============================================================================
+// Helper Utilities
+// ============================================================================
+
+// --------------------------------------------------------------------------
+// Padding Utilities
+// --------------------------------------------------------------------------
+
+@each $side, $suffix in (top: 'top', right: 'right', bottom: 'bottom', left: 'left') {
+  @each $size, $var in (0: 0, 5: $spacing-5, 10: $spacing-10, 20: $spacing-20, 40: $spacing-40, 60: $spacing-60) {
+    .padding-#{$suffix}-#{$size} {
+      padding-#{$side}: #{$var} !important;
+    }
+  }
+}
+
+@each $size, $var in (0: 0, 5: $spacing-5, 10: $spacing-10, 20: $spacing-20, 40: $spacing-40, 60: $spacing-60) {
+  .padding-vertical-#{$size} {
+    padding-top: #{$var} !important;
+    padding-bottom: #{$var} !important;
+  }
+  .padding-horizontal-#{$size} {
+    padding-left: #{$var} !important;
+    padding-right: #{$var} !important;
+  }
+  .padding-#{$size} {
+    padding: #{$var} !important;
+  }
+}
+
+// Responsive modifiers (example: .padding-top-20--md)
+@each $breakpoint, $mq in ('desktop': desktop,'tablet': tablet, 'phone': phone, 'laptop': laptop) {
+  @include respond-to(#{$mq}) {
+    @each $side, $suffix in (top: 'top', right: 'right', bottom: 'bottom', left: 'left') {
+      @each $size, $var in (0: 0, 5: $spacing-5, 10: $spacing-10, 20: $spacing-20, 40: $spacing-40, 60: $spacing-60) {
+        .padding-#{$suffix}-#{$size}--#{$breakpoint} {
+          padding-#{$side}: #{$var} !important;
+        }
+      }
+    }
+    @each $size, $var in (0: 0, 5: $spacing-5, 10: $spacing-10, 20: $spacing-20, 40: $spacing-40, 60: $spacing-60) {
+      .padding-vertical-#{$size}--#{$breakpoint} {
+        padding-top: #{$var} !important;
+        padding-bottom: #{$var} !important;
+      }
+      .padding-horizontal-#{$size}--#{$breakpoint} {
+        padding-left: #{$var} !important;
+        padding-right: #{$var} !important;
+      }
+      .padding-#{$size}--#{$breakpoint} {
+        padding: #{$var} !important;
+      }
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
+// Margin Utilities
+// --------------------------------------------------------------------------
+
+@each $side, $suffix in (top: 'top', right: 'right', bottom: 'bottom', left: 'left') {
+  @each $size, $var in (0: 0, 5: $spacing-5, 10: $spacing-10, 20: $spacing-20, 40: $spacing-40, 60: $spacing-60, auto: auto) {
+    .margin-#{$suffix}-#{$size} {
+      margin-#{$side}: #{$var} !important;
+    }
+  }
+}
+
+@each $size, $var in (0: 0, 5: $spacing-5, 10: $spacing-10, 20: $spacing-20, 40: $spacing-40, 60: $spacing-60, auto: auto) {
+  .margin-vertical-#{$size} {
+    margin-top: #{$var} !important;
+    margin-bottom: #{$var} !important;
+  }
+  .margin-horizontal-#{$size} {
+    margin-left: #{$var} !important;
+    margin-right: #{$var} !important;
+  }
+  .margin-#{$size} {
+    margin: #{$var} !important;
+  }
+}
+
+// Responsive modifiers (example: .margin-top-20--md)
+@each $breakpoint, $mq in ('desktop': desktop,'tablet': tablet, 'phone': phone, 'laptop': laptop) {
+  @include respond-to(#{$mq}) {
+    @each $side, $suffix in (top: 'top', right: 'right', bottom: 'bottom', left: 'left') {
+      @each $size, $var in (0: 0, 5: $spacing-5, 10: $spacing-10, 20: $spacing-20, 40: $spacing-40, 60: $spacing-60, auto: auto) {
+        .margin-#{$suffix}-#{$size}--#{$breakpoint} {
+          margin-#{$side}: #{$var} !important;
+        }
+      }
+    }
+    @each $size, $var in (0: 0, 5: $spacing-5, 10: $spacing-10, 20: $spacing-20, 40: $spacing-40, 60: $spacing-60, auto: auto) {
+      .margin-vertical-#{$size}--#{$breakpoint} {
+        margin-top: #{$var} !important;
+        margin-bottom: #{$var} !important;
+      }
+      .margin-horizontal-#{$size}--#{$breakpoint} {
+        margin-left: #{$var} !important;
+        margin-right: #{$var} !important;
+      }
+      .margin-#{$size}--#{$breakpoint} {
+        margin: #{$var} !important;
+      }
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
+// Display, Alignment, and Misc Utilities
+// --------------------------------------------------------------------------
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+// Hide on breakpoints
+.hide {
+  display: none;
+}
+.hidden {
+  display: none;
+}
+@each $breakpoint, $mq in ('desktop': desktop,'tablet': tablet, 'phone': phone, 'laptop': laptop) {
+  @include respond-to(#{$mq}) {
+    .hide--#{$breakpoint} {
+      display: none;
+    }
+  }
+}
+
+// Text alignment
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+
+// Width utility
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+
+// --------------------------------------------------------------------------
+// Image Size Utilities
+// --------------------------------------------------------------------------
+
+.img-full {
+  display: block;
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include respond-to(tablet) {
+    max-width: 100%;
+  }
+}
+
+.img-md {
+  display: block;
+  width: 70%;
+  max-width: 800px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include respond-to(laptop) {
+    width: 80%;
+    max-width: 100%;
+  }
+
+  @include respond-to(tablet) {
+    width: 90%;
+    max-width: 100%;
+  }
+
+  @include respond-to(phone) {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.img-sm {
+  display: block;
+  width: 50%;
+  max-width: 400px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include respond-to(laptop) {
+    width: 60%;
+    max-width: 100%;
+  }
+
+  @include respond-to(tablet) {
+    width: 70%;
+    max-width: 100%;
+  }
+
+  @include respond-to(phone) {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Visually Hidden (a11y)
+// --------------------------------------------------------------------------
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// --------------------------------------------------------------------------
+// First Child No Margin
+// --------------------------------------------------------------------------
+
+.no-mt-first {
+  > *:first-child {
+    margin-top: 0;
+  }
+}
+
+// --------------------------------------------------------------------------
+// Borders Utilities
+// --------------------------------------------------------------------------
+.border {
+  &-side {
+    border-left: 1px solid $border;
+    border-right: 1px solid $border;
+  }
+  &-ends {
+    border-top: 1px solid $border;
+    border-bottom: 1px solid $border;
+  }
+  &-bottom {
+    border-bottom: 1px solid $border;
+  }
+  &-top {
+    border-top: 1px solid $border;
+  }
+  &-left {
+    border-left: 1px solid $border;
+  }
+  &-right {
+    border-right: 1px solid $border;
+  }
+  &-all {
+    border: 1px solid $border;
+  }
+  &-none {
+    border: none;
+  }
+}

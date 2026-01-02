@@ -1,0 +1,610 @@
+// ============================================================================
+// Reviews Component - Industry Best Practices for Review Display
+// ============================================================================
+
+.reviews {
+  width: 100%;
+  margin: $spacing-60 0;
+
+  &__container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  &__filter {
+    margin-bottom: $spacing-40;
+    display: flex;
+    align-items: center;
+    gap: $spacing-20;
+    flex-wrap: wrap;
+
+    @include respond-to(phone) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: $spacing-10;
+    }
+  }
+
+  &__filter-label {
+    font-size: $font-size-body;
+    font-weight: 600;
+    color: $secondary-darkest;
+    white-space: nowrap;
+
+    @include respond-to(phone) {
+      font-size: $font-size-body-sm;
+    }
+  }
+
+  &__filter-select {
+    padding: $spacing-10 $spacing-20;
+    border: 1px solid $border;
+    border-radius: $border-radius-default;
+    font-size: $font-size-body;
+    font-family: $font-sans;
+    background: $background;
+    color: $text-body;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 200px;
+
+    @include respond-to(phone) {
+      width: 100%;
+      min-width: auto;
+      font-size: $font-size-body-sm;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: $spacing-20;
+    width: 100%;
+
+    @include respond-to(tablet) {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      grid-template-columns: 1fr;
+      gap: $spacing-20;
+      // Ensure grid items don't overflow on very small screens
+      min-width: 0;
+    }
+  }
+
+  &__no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: $spacing-40;
+    color: $text-grey;
+    font-size: $font-size-body;
+    font-style: italic;
+
+    @include respond-to(phone) {
+      padding: $spacing-20;
+      font-size: $font-size-body-sm;
+    }
+  }
+
+  // ============================================================================
+  // Carousel Layout
+  // ============================================================================
+
+  &--carousel {
+    // Mobile/Tablet fallback grid - hidden on desktop, shown on tablet and mobile
+    // Use !important to ensure it overrides the base .reviews__grid display: grid
+    .reviews__grid--mobile-fallback {
+      display: none !important; // Hidden by default (desktop shows carousel)
+
+      @include respond-to(tablet) {
+        display: grid !important; // Show grid on tablet and mobile
+      }
+    }
+
+    // Carousel - shown on desktop only, hidden on tablet and mobile
+    .reviews__carousel {
+      display: block; // Explicitly show on desktop
+
+      @include respond-to(tablet) {
+        display: none !important; // Hide carousel on tablet and mobile
+      }
+    }
+  }
+
+  &__carousel {
+    position: relative;
+    width: 100%;
+    padding: $spacing-20 $spacing-40;
+
+    @include respond-to(tablet) {
+      padding: $spacing-20;
+    }
+  }
+
+  &__carousel-track {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    perspective: 2000px;
+    perspective-origin: center center;
+    margin: 0 auto;
+
+    @include respond-to(tablet) {
+      height: 375px;
+      perspective: 1500px;
+    }
+
+    @include respond-to(phone) {
+      height: 500px;
+      perspective: 1000px;
+    }
+  }
+
+  &__carousel-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &__carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid $border;
+    background: $background;
+    color: $text-body;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    @include respond-to(phone) {
+      width: 40px;
+      height: 40px;
+    }
+
+    &:hover:not(:disabled) {
+      background: $primary;
+      color: $text-white;
+      border-color: $primary;
+      box-shadow: 0 4px 12px rgba($primary, 0.3);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+
+      @include respond-to(phone) {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &--prev {
+      left: $spacing-20;
+
+      @include respond-to(phone) {
+        left: $spacing-10;
+      }
+    }
+
+    &--next {
+      right: $spacing-20;
+
+      @include respond-to(phone) {
+        right: $spacing-10;
+      }
+    }
+  }
+
+  &__carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $spacing-10;
+    margin-top: $spacing-40;
+    flex-wrap: wrap;
+
+    @include respond-to(phone) {
+      margin-top: $spacing-20;
+      gap: $spacing-5;
+    }
+  }
+
+  &__carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid $border;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+
+    @include respond-to(phone) {
+      width: 10px;
+      height: 10px;
+    }
+
+    &:hover {
+      background: rgba($primary, 0.3);
+      border-color: $primary;
+      transform: scale(1.2);
+    }
+
+    &--active {
+      background: $primary;
+      border-color: $primary;
+      width: 32px;
+      border-radius: 6px;
+
+      @include respond-to(phone) {
+        width: 24px;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Review Card
+// ============================================================================
+
+.review-card {
+  background: $background;
+  border: 1px solid $border;
+  border-radius: $border-radius-default;
+  padding: $spacing-20;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  min-width: 0; // Prevent flex item from overflowing container
+  overflow-wrap: break-word; // Ensure content wraps properly
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: $spacing-20;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: $spacing-10;
+    flex-shrink: 0; // Prevent rating from shrinking
+
+  }
+
+  &__stars {
+    display: flex;
+    gap: 2px;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  &__star {
+    color: $grey-30;
+    transition: color 0.2s ease;
+    display: inline-block;
+
+    &--filled {
+      color: $tertiary;
+    }
+  }
+
+  &__text, blockquote {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-style: italic;
+    position: relative;
+    min-width: 0; // Prevent flex item from overflowing
+
+    p {
+      margin: 0;
+      font-size: $font-size-body;
+      line-height: $line-height-body;
+      color: $text-body;
+      position: relative;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+
+      &::before {
+        content: "\201C";
+        position: absolute;
+        left: 0;
+        top: -40px;
+        font-size: 80px;
+        line-height: 1;
+        color: $tertiary;
+        font-family: Georgia, serif;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: $spacing-5;
+    padding-top: $spacing-10;
+    border-top: 1px solid $border;
+    margin-top: auto;
+  }
+
+  &__author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 0 1 auto;
+    min-width: 0; // Prevent flex item from overflowing
+  }
+
+  &__author-name {
+    font-size: $font-size-body;
+    font-weight: 600;
+    color: $secondary-darkest;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  &__author-location {
+    font-size: $font-size-body-sm;
+    color: $text-grey;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  &__service-type {
+    display: inline-block;
+    padding: 2px 8px;
+    background: rgba($primary, 0.1);
+    color: $primary-dark;
+    font-size: $font-size-body-sm;
+    font-weight: 600;
+    border-radius: $border-radius-default;
+    margin-top: $spacing-5;
+    line-height: 1.4;
+  }
+
+  &__date {
+    font-size: $font-size-body-sm;
+    color: $text-grey;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  // Carousel-specific styles
+  &--carousel {
+    position: absolute;
+    width: 500px;
+    max-width: 90vw;
+    height: auto;
+    min-height: 250px;
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: center center;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+
+    @include respond-to(tablet) {
+      width: 450px;
+      min-height: 380px;
+    }
+
+    @include respond-to(phone) {
+      width: 85vw;
+      min-height: 350px;
+    }
+
+    // Active card (center)
+    &[data-carousel-active="true"] {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateZ(0) scale(1);
+      z-index: 5;
+      filter: blur(0);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    // Left card
+    &[data-carousel-position="left"] {
+      opacity: 0.6;
+      transform: translateX(-280px) translateZ(-200px) scale(0.85) rotate3d(0, 1, 0, 45deg);
+      z-index: 2;
+      filter: blur(2px);
+      pointer-events: none;
+
+      @include respond-to(tablet) {
+        transform: translateX(-240px) translateZ(-200px) scale(0.85) rotate3d(0, 1, 0, 45deg);
+      }
+
+      @include respond-to(phone) {
+        transform: translateX(-200px) translateZ(-200px) scale(0.8) rotate3d(0, 1, 0, 45deg);
+        opacity: 0.4;
+      }
+    }
+
+    // Right card
+    &[data-carousel-position="right"] {
+      opacity: 0.6;
+      transform: translateX(280px) translateZ(-200px) scale(0.85) rotate3d(0, 1, 0, -45deg);
+      z-index: 2;
+      filter: blur(2px);
+      pointer-events: none;
+
+      @include respond-to(tablet) {
+        transform: translateX(240px) translateZ(-200px) scale(0.85) rotate3d(0, 1, 0, -45deg);
+      }
+
+      @include respond-to(phone) {
+        transform: translateX(200px) translateZ(-200px) scale(0.8) rotate3d(0, 1, 0, -45deg);
+        opacity: 0.4;
+      }
+    }
+
+    // Hidden cards
+    &[data-carousel-position="hidden"] {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(0) translateZ(-400px) scale(0.7);
+      z-index: 1;
+      filter: blur(4px);
+    }
+  }
+}
+
+// ============================================================================
+// Responsive Adjustments
+// ============================================================================
+
+@include respond-to(tablet) {
+  .reviews {
+    margin: $spacing-40 0;
+
+    &__grid {
+      gap: $spacing-20;
+    }
+  }
+
+  .review-card {
+    padding: $spacing-20;
+
+    &__content {
+      gap: $spacing-20;
+    }
+
+    &__stars {
+      font-size: 18px;
+    }
+  }
+}
+
+@include respond-to(phone) {
+  .reviews {
+    margin: $spacing-40 0;
+
+    &__grid {
+      gap: $spacing-40;
+    }
+  }
+
+  .review-card {
+    padding: $spacing-20 $spacing-10;
+    border-radius: $border-radius-default;
+    // Ensure card doesn't overflow on small screens
+    max-width: 100%;
+    box-sizing: border-box;
+
+    &__content {
+      gap: $spacing-20;
+      min-width: 0; // Allow content to shrink
+    }
+
+    &__stars {
+      font-size: 18px;
+      gap: 1px; // Tighter spacing on mobile
+    }
+
+    &__text {
+      p {
+        &::before {
+          font-size: 32px;
+          left: -4px;
+          top: -20px;
+        }
+      }
+    }
+
+    &__footer {
+      padding-top: $spacing-10;
+      // Ensure footer elements don't overflow
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+}
+
+// ============================================================================
+// Accessibility Enhancements
+// ============================================================================
+
+.review-card {
+  // Ensure proper focus states for keyboard navigation
+  &:focus-within {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+
+  // High contrast mode support
+  @media (prefers-contrast: high) {
+    border-width: 2px;
+    border-color: $text-body;
+  }
+
+  // Reduced motion support
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// ============================================================================
+// Print Styles
+// ============================================================================
+
+@media print {
+  .reviews {
+    margin: $spacing-20 0;
+    page-break-inside: avoid;
+
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: $spacing-20;
+    }
+  }
+
+  .review-card {
+    border: 1px solid $text-body;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+}
+

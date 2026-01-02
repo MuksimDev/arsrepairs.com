@@ -1,0 +1,439 @@
+// ============================================================================
+// Typography
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Eyebrow Text
+// ----------------------------------------------------------------------------
+
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: $secondary;
+  font-weight: 600;
+}
+
+// ----------------------------------------------------------------------------
+// Prose Content
+// ----------------------------------------------------------------------------
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-20;
+
+  // Remove top margin from the first direct child within prose
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  // ----------------------------------------------------------------------------
+  // Prose Headings – Final High-Contrast Modern Hierarchy
+  // ----------------------------------------------------------------------------
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-display;
+    line-height: 1.2;
+  }
+
+  // H1 – Hero title (much bigger, lighter, more dramatic)
+  h1 {
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: $secondary-darkest;                      // almost black
+  }
+
+  // H2 – Keep exactly as you had it (your anchor style)
+  h2 {
+    font-size: calc(1rem * 2.5); // 25px
+    font-weight: 400;
+    color: $secondary;                              // unchanged
+    position: relative;
+  }
+
+  // H3 – Noticeably smaller, bolder, different accent
+  h3 {
+    font-size: calc(1rem * 1.5); // 15px
+    font-weight: 600;
+    color: $secondary-darker;
+    position: relative;
+    padding-left: 24px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.15em;
+      bottom: 0.15em;
+      width: 6px;
+      background: $primary;
+      border-radius: 3px;
+      opacity: 0.9;
+    }
+  }
+
+  // H4 – Clean underline, mid-gray
+  h4 {
+    font-size: calc(1rem * 1.25); // 12.5px
+    font-weight: 600;
+    color: $text-grey;
+    position: relative;
+  }
+
+  // H5 – Small caps style, muted color
+  h5 {
+    font-size: calc(1rem * 0.8); // 8px
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $secondary-dark;
+    font-family: $font-sans; // cleaner for small caps
+    opacity: 0.85;
+  }
+
+  // H6 – Tiny but punchy, brand color
+  h6 {
+    font-size: calc(1rem * 0.6); // 10px
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: $primary;
+  }
+
+  // Extra breathing room after any heading
+  h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + * {
+    margin-top: $spacing-20;
+  }
+
+// Paragraphs
+p {
+  font-size: $font-size-body;
+  line-height: $line-height-body;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    color: $secondary;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    @include transition(color, text-decoration-thickness);
+    font-weight: 500;
+
+    &:hover,
+    &:focus-visible {
+      color: $secondary-dark;
+      text-decoration-thickness: 2px;
+    }
+  }
+}
+
+// Strong and emphasis
+strong, b {
+  font-weight: 600;
+}
+
+em, i {
+  font-style: italic;
+}
+
+// Blockquotes
+blockquote {
+  margin: $spacing-40 0;
+  padding-left: $spacing-20;
+  border-left: 3px solid $primary;
+  color: $text-grey;
+  font-style: italic;
+
+  p {
+    margin-bottom: $spacing-10;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Code
+code {
+  font-family: monospace;
+  font-size: 0.9em;
+  background: $off-white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: $primary-dark;
+}
+
+pre {
+  background: $off-white;
+  padding: $spacing-20;
+  border-radius: $border-radius-default;
+  overflow-x: auto;
+  margin-bottom: $spacing-20;
+
+  code {
+    background: transparent;
+    padding: 0;
+  }
+}
+
+// Horizontal rule
+hr {
+  border: none;
+  border-top: 1px solid $border;
+  margin: $spacing-20 0;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: $border-radius-default;
+}
+
+// Tables
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: $spacing-20 0;
+
+  th, td {
+    padding: $spacing-10 $spacing-20;
+    text-align: left;
+    border-bottom: 1px solid $border;
+  }
+
+  th {
+    font-weight: 600;
+    color: $secondary;
+    background: $off-white;
+  }
+}
+}
+
+// ----------------------------------------------------------------------------
+// Image Box Styling
+// ----------------------------------------------------------------------------
+
+.img-box {
+  width: 100%;
+  height: auto;
+  border-radius: $border-radius-default;
+  @include shadow-md;
+  
+  @include respond-to(tablet) {
+    max-width: 100%;
+  }
+}
+
+// ============================================================================
+// Text Color Utilities
+// ============================================================================
+
+.text {
+  // Base text colors
+  &-body {
+    color: $text-body !important;
+  }
+  
+  &-white {
+    color: $text-white !important;
+  }
+  
+  &-grey {
+    color: $text-grey !important;
+  }
+  
+  &-muted {
+    color: $muted !important;
+  }
+  
+  // Primary colors
+  &-primary {
+    color: $primary !important;
+  }
+  
+  &-primary-dark {
+    color: $primary-dark !important;
+  }
+  
+  &-primary-darker {
+    color: $primary-darker !important;
+  }
+  
+  // Secondary colors
+  &-secondary {
+    color: $secondary !important;
+  }
+  
+  &-secondary-dark {
+    color: $secondary-dark !important;
+  }
+  
+  &-secondary-darker {
+    color: $secondary-darker !important;
+  }
+  
+  &-secondary-darkest {
+    color: $secondary-darkest !important;
+  }
+  
+  // Tertiary colors
+  &-tertiary {
+    color: $tertiary !important;
+  }
+  
+  &-tertiary-dark {
+    color: $tertiary-dark !important;
+  }
+  
+  &-tertiary-darker {
+    color: $tertiary-darker !important;
+  }
+
+  // Surface
+  &-surface {
+    color: $surface !important;
+  }
+}
+
+// ============================================================================
+// List Styles
+// ============================================================================
+
+.list {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-10;
+
+  &__title {
+    display: block;
+    font-weight: 600;
+  }
+
+  li {
+    position: relative;
+    padding-left: $spacing-20;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      aspect-ratio: 1/1;
+      background: $background;
+      border: 1px solid $primary;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 3.5px;
+      top: 12px;
+      width: 1px;
+      background: $primary;
+      height: calc(100% + 10px);
+    }
+
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+.list-float {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: $spacing-10;
+
+  &__item, li {
+    width: auto;
+    display: inline-block;
+    padding: $spacing-5 $spacing-20;
+    color: $text-body;
+    font-size: $font-size-body;
+    line-height: 1.5;
+    position: relative;
+
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      aspect-ratio: 1/1;
+      background: $text-white;
+      border: 1px solid $primary;
+      border-radius: 50%;
+    }
+
+    .list__title {
+      display: inline-block;
+    }
+  }
+}
+
+.list-checkmark {
+  position: relative;
+  list-style: none;
+  padding: 0;
+
+  &__item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    font-weight: 900;
+    gap: $spacing-10;
+    &:before {
+      content: "check";
+      font-family: "Material Symbols Outlined";
+      color: $success;
+    }
+  }
+}
+
+// ============================================================================
+// Text Size Utilities
+// ============================================================================
+
+.text {
+  &--size-xs {
+    font-size: calc(#{$font-size-body-sm} * 0.9);
+    line-height: calc(#{$line-height-body-sm} * 0.9);
+  }
+  &--size-sm {
+    font-size: $font-size-body-sm;
+    line-height: $line-height-body-sm;
+  }
+  &--size-md {
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+  }
+  &--size-lg {
+    font-size: $font-size-body-lg;
+    line-height: $line-height-body-lg;
+  }
+  &--size-xl {
+    font-size: $font-size-header-md;
+    line-height: $line-height-header-md;
+  }
+}

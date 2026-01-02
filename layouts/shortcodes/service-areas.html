@@ -1,0 +1,114 @@
+{{- /*
+  Service Areas List Shortcode
+  
+  Usage:
+    {{< service-areas >}}
+    {{< service-areas "Miami-Dade County" "Broward County" "Palm Beach County" >}}
+  
+  If no parameters provided, shows all service area pages grouped by navGroup.
+  Otherwise, filters to show only pages matching the provided navGroup names.
+*/ -}}
+
+{{- $lang := .Page.Language.Lang | default "en" -}}
+{{- $isSpanish := eq $lang "es" -}}
+
+{{- /* Spanish translations */ -}}
+{{- $titleText := cond $isSpanish "Áreas de Servicio" "Service Areas" -}}
+{{- $descriptionText := cond $isSpanish "Proporcionamos servicios de reparación de" "We provide" -}}
+{{- $repairText := cond $isSpanish "reparación" "repair" -}}
+{{- $servicesText := cond $isSpanish "en todo el Sur de la Florida incluyendo:" "services across South Florida including:" -}}
+
+{{- /* Get service-areas section */ -}}
+{{- $section := site.GetPage "section" "service-areas" -}}
+{{- if $section -}}
+  {{- /* Get all pages except _index */ -}}
+  {{- $allPages := where $section.Pages "File.LogicalName" "!=" "_index.md" -}}
+  
+  {{- /* Collect filter navGroups if provided */ -}}
+  {{- $filterGroups := slice -}}
+  {{- if .Get 0 -}}
+    {{- range $i := seq 0 20 -}}
+      {{- $group := $.Get $i -}}
+      {{- if $group -}}
+        {{- $filterGroups = $filterGroups | append $group -}}
+      {{- else -}}
+        {{- break -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  
+  {{- /* Group pages by navGroup */ -}}
+  {{- $groups := dict -}}
+  {{- $ungrouped := slice -}}
+  
+  {{- range $allPages -}}
+    {{- $navGroup := strings.TrimSpace (default "" .Params.navGroup) -}}
+    {{- /* Apply filter if provided */ -}}
+    {{- $include := true -}}
+    {{- if gt (len $filterGroups) 0 -}}
+      {{- $include = false -}}
+      {{- range $filterGroups -}}
+        {{- if eq $navGroup . -}}
+          {{- $include = true -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    
+    {{- if $include -}}
+      {{- if and $navGroup (ne $navGroup "") -}}
+        {{- /* Add to grouped pages */ -}}
+        {{- $groupPages := default (slice) (index $groups $navGroup) -}}
+        {{- $groupPages = $groupPages | append . -}}
+        {{- $groups = merge $groups (dict $navGroup $groupPages) -}}
+      {{- else -}}
+        {{- /* Add to ungrouped pages */ -}}
+        {{- $ungrouped = $ungrouped | append . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  
+  {{- /* Convert groups map to sorted slice of group names */ -}}
+  {{- $groupNames := slice -}}
+  {{- range $groupName, $_ := $groups -}}
+    {{- $groupNames = $groupNames | append $groupName -}}
+  {{- end -}}
+  {{- $groupNames = sort $groupNames -}}
+  
+  {{- /* Sort ungrouped pages */ -}}
+  {{- $ungrouped = sort $ungrouped "Title" -}}
+  
+  {{- /* Render in box */ -}}
+  {{- if or (gt (len $groupNames) 0) (gt (len $ungrouped) 0) -}}
+  <div class="box">
+
+    <h2 class="section-title section-title--color-secondary section-title--size-sm">{{ $titleText }}</h2>
+    <p class="section-copy">{{ $descriptionText }} <strong>{{ .Page.Title | default $repairText | lower }}</strong> {{ $servicesText }}</p>
+    {{- /* Render ungrouped pages first */ -}}
+    {{- if gt (len $ungrouped) 0 -}}
+      <ul class="service-areas-list">
+        {{- range $ungrouped -}}
+          <li><a href="{{ .RelPermalink }}" class="btn btn--ghost btn--sm">{{ .Title }}</a></li>
+        {{- end -}}
+      </ul>
+    {{- end -}}
+    
+    <div class="service-areas-grid">
+      {{- /* Render grouped pages */ -}}
+      {{- range $groupNames -}}
+      {{- $groupName := . -}}
+      {{- $groupPages := index $groups $groupName -}}
+      {{- $groupPages = sort $groupPages "Title" -}}
+      
+      <div class="service-areas-group">
+        <h5 class="service-areas-group-title">{{ $groupName }}</h5>
+        <ul class="service-areas-list">
+          {{- range $groupPages -}}
+            <li><a href="{{ .RelPermalink }}" class="btn btn--ghost btn--sm">{{ .Title }}</a></li>
+          {{- end -}}
+        </ul>
+      </div>
+      {{- end -}}
+    </div>
+  </div>
+  {{- end -}}
+{{- end -}}

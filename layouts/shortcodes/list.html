@@ -1,0 +1,41 @@
+{{- /*
+  List Shortcode
+  
+  Usage:
+    {{< list >}}
+    Title - Description
+    Another Title - Another Description
+    {{< /list >}}
+    
+    {{< list "benefits-list" >}}
+    Title - Description
+    {{< /list >}}
+    
+    {{< list "issue-list" >}}
+    Title - Description
+    {{< /list >}}
+  
+  Parameters:
+    - class: CSS class for the list (optional, defaults to "list")
+      The item class will be automatically generated as "{class}__item"
+*/ -}}
+
+{{- $listClass := .Get 0 | default "list" -}}
+{{- $itemClass := printf "%s__item" $listClass -}}
+{{- $content := .Inner -}}
+{{- $lines := split $content "\n" -}}
+<ul class="{{ $listClass }}">
+{{- range $lines -}}
+  {{- $line := . -}}
+  {{- $line = $line | replaceRE "^\\s+" "" -}}
+  {{- $line = $line | replaceRE "\\s+$" "" -}}
+  {{- if and $line (ne $line "") -}}
+    {{- $parts := split $line " - " -}}
+    {{- if gt (len $parts) 0 -}}
+      <li class="{{ $itemClass }}">
+        <div class="list__title">{{ index $parts 0 }}</div>{{ if gt (len $parts) 1 }}{{ index $parts 1 }}{{ end }}
+      </li>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+</ul>

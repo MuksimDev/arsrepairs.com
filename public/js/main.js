@@ -8,10 +8,10 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\utils\dom.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\utils\dom.ts
 var isMobile, isLocalhost, onDOMReady;
 var init_dom = __esm({
-  "ns-hugo-imp:C:\\Users\\maxim\\Documents\\Dev\\arsrepairs.com\\themes\\arsrepairs-theme\\assets\\ts\\utils\\dom.ts"() {
+  "ns-hugo-imp:C:\\Users\\maxim\\Documents\\Dev\\arsrepairs.com\\assets\\ts\\utils\\dom.ts"() {
     "use strict";
     isMobile = () => window.innerWidth <= 1280;
     isLocalhost = () => {
@@ -27,7 +27,7 @@ var init_dom = __esm({
   }
 });
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\utils\dev-ui.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\utils\dev-ui.ts
 function escapeHtml(text) {
   const div = document.createElement("div");
   div.textContent = text;
@@ -247,12 +247,12 @@ function createUrlInputDialog(label, defaultValue = "", prefix = "dev") {
   });
 }
 var init_dev_ui = __esm({
-  "ns-hugo-imp:C:\\Users\\maxim\\Documents\\Dev\\arsrepairs.com\\themes\\arsrepairs-theme\\assets\\ts\\utils\\dev-ui.ts"() {
+  "ns-hugo-imp:C:\\Users\\maxim\\Documents\\Dev\\arsrepairs.com\\assets\\ts\\utils\\dev-ui.ts"() {
     "use strict";
   }
 });
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\keyword-research.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\keyword-research.ts
 var keyword_research_exports = {};
 __export(keyword_research_exports, {
   analyzeKeywordGaps: () => analyzeKeywordGaps,
@@ -1368,7 +1368,7 @@ function initKeywordResearch() {
 }
 var externalKeywords, externalKeywordsLoaded, externalKeywordsLoading, PREFIXES, SUFFIXES;
 var init_keyword_research = __esm({
-  "ns-hugo-imp:C:\\Users\\maxim\\Documents\\Dev\\arsrepairs.com\\themes\\arsrepairs-theme\\assets\\ts\\modules\\keyword-research.ts"() {
+  "ns-hugo-imp:C:\\Users\\maxim\\Documents\\Dev\\arsrepairs.com\\assets\\ts\\modules\\keyword-research.ts"() {
     "use strict";
     init_dom();
     init_dev_ui();
@@ -1435,7 +1435,7 @@ var init_keyword_research = __esm({
   }
 });
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\constants.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\constants.ts
 var PHONE_DATA_ATTR = "phone";
 var MOBILE_BREAKPOINT = 1280;
 var SCROLL_SHADOW_THRESHOLD = 8;
@@ -1444,7 +1444,7 @@ var RESIZE_DEBOUNCE_DELAY = 250;
 // <stdin>
 init_dom();
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\navigation.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\navigation.ts
 init_dom();
 var flattenNavGroups = () => {
   if (!isMobile()) return;
@@ -1688,10 +1688,10 @@ var resetDropdowns = () => {
   });
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\header.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\header.ts
 init_dom();
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\utils\logger.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\utils\logger.ts
 function isDevelopment() {
   if (typeof window === "undefined") return false;
   const hostname = window.location.hostname;
@@ -1748,7 +1748,7 @@ var logger = {
   isEnabled: () => isDevelopment()
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\utils\geolocation.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\utils\geolocation.ts
 var getAccurateCity = async () => {
   try {
     const pageHeader = document.querySelector(".page-header");
@@ -1811,7 +1811,7 @@ var getProvinceState = async () => {
   }
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\header.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\header.ts
 var initHeaderShadow = () => {
   const header = document.querySelector(".site-header");
   if (!header) return;
@@ -1820,7 +1820,7 @@ var initHeaderShadow = () => {
   document.addEventListener("scroll", apply, { passive: true });
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\phone-links.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\phone-links.ts
 var initPhoneLinks = () => {
   const phone = document.body.dataset[PHONE_DATA_ATTR];
   if (!phone) return;
@@ -1831,13 +1831,13 @@ var initPhoneLinks = () => {
   });
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\year-stamp.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\year-stamp.ts
 var initYearStamp = () => {
   const el = document.querySelector("[data-current-year]");
   if (el) el.textContent = (/* @__PURE__ */ new Date()).getFullYear().toString();
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\utils\city-personalization.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\utils\city-personalization.ts
 var FALLBACK_CITY = "Miami";
 var initGeolocationShortcodes = () => {
   const pageHeader = document.querySelector(".page-header");
@@ -1943,7 +1943,7 @@ var initPageHeaderCityPersonalization = () => {
   }
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\services-auto-scroll.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\services-auto-scroll.ts
 var SCROLL_SPEED = 0.5;
 var animationFrameId = null;
 var isPaused = false;
@@ -2119,10 +2119,10 @@ var initServicesAutoScroll = () => {
   }
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\page-list.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\page-list.ts
 init_dom();
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\utils\file-system.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\utils\file-system.ts
 var siteRootDirectoryHandle = null;
 async function requestSiteRootAccess(onSuccess, onError) {
   if (!("showDirectoryPicker" in window)) {
@@ -2399,11 +2399,11 @@ function removeLinkFromContent(content, url) {
   return { content: modifiedContent, changes };
 }
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\page-list.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\page-list.ts
 init_dev_ui();
 init_keyword_research();
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\link-map.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\link-map.ts
 init_dev_ui();
 function getParentPath(url) {
   if (url === "/") return "/";
@@ -4193,7 +4193,7 @@ function extractInternalLinksFromPages(pages) {
   return linkMap;
 }
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\page-list.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\page-list.ts
 var TITLE_PIXEL_LIMIT_DESKTOP = 920;
 var DESC_PIXEL_LIMIT_DESKTOP = 1970;
 var TITLE_LIMIT = 60;
@@ -12514,7 +12514,7 @@ function attachCompetitorAnalysisHandlers(pages) {
   }
 }
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\page-list-sidebar.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\page-list-sidebar.ts
 init_dom();
 function initPageListSidebar() {
   if (!isLocalhost()) {
@@ -12612,7 +12612,7 @@ function initPageListSidebar() {
   window.addEventListener("resize", resizeHandler, { passive: true });
 }
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\toc.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\toc.ts
 var generateHeadingId = (text) => {
   return text.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w\-]/g, "").replace(/-+/g, "-").replace(/^-+|-+$/g, "");
 };
@@ -12842,7 +12842,7 @@ var initTOC = () => {
   });
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\dev-score-bubble.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\dev-score-bubble.ts
 init_dom();
 init_dev_ui();
 init_keyword_research();
@@ -14451,7 +14451,7 @@ function initDevScoreBubble() {
   });
 }
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\blog.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\blog.ts
 function debounce(func, wait) {
   let timeout = null;
   return function executedFunction(...args) {
@@ -14849,7 +14849,7 @@ var initBlog = () => {
   updateView();
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\sitemap.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\sitemap.ts
 var initSitemap = () => {
   const container = document.querySelector(".section-sitemap");
   if (!container) return;
@@ -14964,7 +14964,7 @@ var initSitemap = () => {
   updateView();
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\smooth-scroll.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\smooth-scroll.ts
 var getScrollOffset = () => {
   const header = document.querySelector(".site-header");
   if (header) {
@@ -15031,7 +15031,7 @@ var initSmoothScroll = () => {
   });
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\faq.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\faq.ts
 var closeItem = (item, button, content) => {
   button.setAttribute("aria-expanded", "false");
   item.classList.remove("faq-item--open");
@@ -15092,7 +15092,7 @@ var initFAQ = () => {
   });
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\feedback.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\feedback.ts
 init_dom();
 function getElements() {
   const form = document.querySelector('form[name="feedback"]');
@@ -15613,7 +15613,7 @@ function initFeedback() {
   });
 }
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\service-areas-leaflet.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\service-areas-leaflet.ts
 var CITY_COORDINATES = {
   "Miami": { lat: 25.7617, lng: -80.1918 },
   "Fort Lauderdale": { lat: 26.1224, lng: -80.1373 },
@@ -16104,7 +16104,7 @@ var initializeMapContent = (map) => {
   });
 };
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\reviews-form.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\reviews-form.ts
 var STORAGE_KEY = "ars_reviews_stage1";
 var STORAGE_TTL_MS = 15 * 60 * 1e3;
 var RATING_LABELS = {
@@ -16547,7 +16547,7 @@ function initReviewsForm() {
   });
 }
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\reviews.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\reviews.ts
 var carouselCleanups = /* @__PURE__ */ new Map();
 function getTransitionDuration(element) {
   const style = window.getComputedStyle(element);
@@ -17037,7 +17037,7 @@ function initReviews() {
   }
 }
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\confetti.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\confetti.ts
 var DEFAULT_OPTIONS = {
   particleCount: 100,
   spread: 360,
@@ -17081,7 +17081,7 @@ function createConfetti(options = {}) {
   }, 2500);
 }
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\vip-modal.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\vip-modal.ts
 var SELECTORS = {
   modal: "#vip-membership-modal",
   openTriggers: "[data-vip-modal-open]",
@@ -17228,7 +17228,7 @@ function initVIPModal() {
   }
 }
 
-// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\themes\arsrepairs-theme\assets\ts\modules\booking-iframe.ts
+// ns-hugo-imp:C:\Users\maxim\Documents\Dev\arsrepairs.com\assets\ts\modules\booking-iframe.ts
 init_dom();
 var DEV_LOG2 = isLocalhost();
 var BOOKING_IFRAME_ORIGIN = "https://booking.rossware.com";

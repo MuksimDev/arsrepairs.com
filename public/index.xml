@@ -5,7 +5,7 @@
     <link>http://localhost:1313/</link>
     <description>Recent content in South Florida appliance repair and installation on ARS Repair Inc.</description>
     <generator>Hugo</generator>
-    <language>en-us</language>
+    <language>en</language>
     <lastBuildDate>Mon, 29 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -658,13 +658,6 @@
       <pubDate>Mon, 22 Dec 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/brands-we-serve/westinghouse-appliance-repair/</guid>
       <description>Westinghouse appliance repair for fridges, ranges, ovens, cooktops, and microwaves in homes across Ontario.</description>
-    </item>
-    <item>
-      <title>3 Common Dishwasher Problems and Repairs - Appliance Service</title>
-      <link>http://localhost:1313/blog/3-common-dishwasher-problems-and-repairs/</link>
-      <pubDate>Tue, 11 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/3-common-dishwasher-problems-and-repairs/</guid>
-      <description>Experiencing dishwasher problems like not starting, not filling with water, or overfilling? Discover the top 3 common dishwasher issues and simple repair tips in this essential guide.</description>
     </item>
   </channel>
 </rss>

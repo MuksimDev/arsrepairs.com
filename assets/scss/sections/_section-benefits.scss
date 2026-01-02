@@ -1,0 +1,90 @@
+// ============================================================================
+// Benefits Section
+// ============================================================================
+
+.section--brands-benefits {
+  @include gradient-horizontal-1;
+  padding: $spacing-20 0;
+  border-bottom: 1px solid $border;
+
+  .benefits-grid {
+    display: flex;
+    align-items: stretch;
+
+    @include respond-to(laptop) {
+      padding-top: $spacing-80;
+      flex-wrap: wrap;
+    }
+
+    @include respond-to(tablet) {
+      
+    }
+
+    @include respond-to(phone) {
+      padding-top: 0;
+    }
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-10;
+    padding: $spacing-20;
+    border: 1px solid transparent;
+    border-left: 1px solid rgba($border, 0.15);
+
+    &:first-child {
+      border-left: 1px solid transparent;
+    }
+
+    @include respond-to(laptop) {
+      flex: 1;
+      padding: $spacing-10;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    @include respond-to(tablet) {
+      flex: 1 1 50%;
+      border: none;
+    }
+
+    @include respond-to(phone) {
+      flex-direction: row;
+      text-align: left;
+      justify-content: center;
+    }
+
+    .benefit-copy {
+      font-size: $font-size-body-lg;
+      line-height: 22px;
+      font-weight: 500;
+
+      @include respond-to(phone) {
+        font-size: $font-size-body;
+        line-height: 20px;
+      }
+    }
+
+    .benefit-icon {
+        width: 60px;
+        height: 60px;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+
+        @include respond-to(phone) {
+          width: 50px;
+          height: 50px;
+        }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      // Change color of inline SVG img to $tertiary-dark
+        filter: brightness(0) saturate(100%) invert(48%) sepia(85%) saturate(1318%) hue-rotate(8deg) brightness(93%) contrast(86%);
+      }
+    }
+  }
+}

@@ -1,0 +1,182 @@
+// ============================================================================
+// Services Bento Box
+// ============================================================================
+
+.services-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-20;
+  width: 100%;
+
+  // ==========================================================================
+  // Box Base Styles
+  // ==========================================================================
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    background: $background;
+    border: 1px solid $border;
+    border-radius: $border-radius-default;
+    padding: $spacing-20;
+    color: $text-body;
+    @include transition(transform, box-shadow);
+
+    // Link-specific styles (only for <a> tags)
+    &:is(a) {
+      text-decoration: none !important;
+
+      @include focus-states {
+        transform: translateY(-2px);
+        @include shadow-sm($tertiary, 0.2);
+        @include gradient-vertical-2;
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    // ========================================================================
+    // Size Variants
+    // ========================================================================
+
+    // Small: 1x1 (default)
+    &--small {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    // Medium: 2x1 (horizontal only, max 1 row)
+    &--medium {
+      &--horizontal {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+    }
+  }
+
+  // ==========================================================================
+  // Content Layout
+  // ==========================================================================
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: $spacing-10;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 100px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-10;
+    flex: 1;
+  }
+
+  &__title {
+    font-size: $font-size-header-sm;
+    font-weight: 600;
+    line-height: $line-height-header-sm;
+    color: $text-body;
+    margin: 0;
+  }
+
+  &__description {
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    color: $text-grey;
+    margin: 0;
+    flex: 1;
+  }
+
+  // ==========================================================================
+  // Responsive Design
+  // ==========================================================================
+
+  // Laptop: 3 columns
+  @include respond-to(laptop) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-20;
+
+    &__box {
+      &--medium {
+        &--horizontal {
+          grid-column: span 2;
+        }
+      }
+    }
+  }
+
+  // Tablet: 2 columns, simplify layout
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-20;
+
+    &__box {
+      &--small {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+
+      &--medium {
+        &--horizontal {
+          grid-column: span 2;
+          grid-row: span 1;
+        }
+      }
+    }
+  }
+
+  // Phone: Single column, all boxes same size
+  @include respond-to(phone) {
+    grid-template-columns: 1fr;
+    gap: $spacing-10;
+
+    &__box {
+      grid-column: span 1 !important;
+      grid-row: span 1 !important;
+
+      &--medium,
+      &--large {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+      }
+    }
+
+    &__title {
+      font-size: $font-size-header-sm;
+    }
+
+    &__description {
+      font-size: $font-size-body-sm;
+    }
+  }
+}
+
+
+.prose {
+  .services-bento {
+    &__title {
+      font-size: $font-size-header-sm;
+      line-height: $line-height-header-sm;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,526 @@
+// ============================================================================
+// Page Header Component
+// ============================================================================
+
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+  background-color: $surface;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: calc(100vh - 276px);
+
+  .hero-image-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .hero-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  // Overlay for better text readability on images
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    z-index: 1;
+    mask: linear-gradient(to right, #000000 0%, rgba(#000000, 0) 50%);
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    justify-content: flex-start;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    text-align: left;
+    gap: $spacing-20;
+    position: relative;
+    z-index: 3;
+
+    
+    // If --image-right modifier, use a smaller max-width for content
+    @at-root .page-header--right-image & {
+      @include respond-to(1200px) {
+        max-width: 70%;
+      }
+      @include respond-to(tablet) {
+        max-width: 65%;
+      }
+      @include respond-to(680px) {
+        max-width: 60%;
+      }
+      @include respond-to(580px) {
+        max-width: 50%;
+      }
+      @include respond-to(580px) {
+        max-width: 100%;
+      }
+    }
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: $font-size-header-lg;
+    line-height: $line-height-header-lg;
+    color: $tertiary;
+  }
+
+  &__description {
+    font-size: $font-size-body-lg;
+    line-height: $line-height-body-lg;
+    color: rgba($text-white, 0.9);
+
+    @include respond-to(phone) {
+      max-width: 100%;
+    }
+  }
+
+  // Variant: Centered
+  &--centered {
+    text-align: center;
+
+    .page-header__content {
+      margin: 0 auto;
+    }
+  }
+
+  // Variant: Small padding
+  &--small {
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  }
+
+  // Variant: Large padding
+  &--large {
+    padding: clamp(4rem, 8vw, 6rem) 0;
+  }
+
+  // Variant: Dark background
+  &--dark {
+    background-color: $surface;
+    color: $text-white;
+
+    .page-header__title {
+      color: $text-white;
+    }
+
+    .page-header__description {
+      color: rgba($text-white, 0.85);
+    }
+  }
+
+  // Variant: Light background
+  &--light {
+    background-color: $background;
+    color: $text-body;
+
+    .page-header__title {
+      color: $text-body;
+    }
+
+    .page-header__description {
+      color: $muted;
+    }
+  }
+
+  // Variant: Primary color background
+  &--primary {
+    background-color: $primary;
+    color: $text-white;
+
+    .page-header__title {
+      color: $text-white;
+    }
+
+    .page-header__description {
+      color: rgba($text-white, 0.9);
+    }
+
+    .eyebrow {
+      color: rgba($text-white, 0.8);
+    }
+  }
+
+  // Variant: Secondary color background
+  &--secondary {
+    background-color: $secondary;
+    color: $text-white;
+
+    .page-header__title {
+      color: $text-white;
+    }
+
+    .page-header__description {
+      color: rgba($text-white, 0.9);
+    }
+
+    .eyebrow {
+      color: rgba($text-white, 0.8);
+    }
+  }
+
+  // Variant: Right image (hidden by default, shown when class is added)
+  &--right-image {
+    &::after {
+      content: '';
+      position: absolute;
+      right: $spacing-20;
+      top: $spacing-20;
+      bottom: 0;
+      width: 50%;
+      max-width: 600px;
+      background-image: var(--cutout-image, url('/images/ars-appliance-repair-technicians-team-portrait-professional-service.webp'));
+      background-size: cover;
+      background-position: top;
+      background-repeat: no-repeat;
+      z-index: 1;
+      display: block;
+    }
+
+    &.single-cutout {
+      &::after {
+        background-size: 250px;
+        width: 300px;
+        right: auto;
+        left: 65%;
+      }
+
+      @include respond-to(1200px) {
+        &::after {
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+
+    @include respond-to(phone) {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &.homepage {
+    .page-header {
+      &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom, rgba(#FEF5E7, 0.9) 0%, rgba(#FFFFFF, 0.9) 100%);
+        padding: 0;
+        border-radius: $border-radius-default;
+        backdrop-filter: blur(20px);
+        box-shadow: 20px 20px 40px rgba($surface, 0.5);
+        max-width: 600px;
+        text-align: center;
+        gap: $spacing-40;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .page-header {
+          &__title {
+            color: $secondary-darker;
+            margin-bottom: 0;
+            padding: $spacing-60 $spacing-60 0;
+            line-height: $line-height-header-lg;
+          }
+          &__tagline {
+            width: 100%;
+            color: $text-body;
+            font-size: $font-size-header-sm;
+            line-height: $line-height-header-sm;
+            font-weight: 500;
+            padding: 0 $spacing-60;
+          }
+          &__footer-reviews {
+            padding: $spacing-10;
+            background: rgba($text-white, 0.9);
+            color: $text-body;
+            font-weight: 500;
+            width: 100%;
+            height: 63px;
+            max-height: 63px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: $spacing-10;
+
+            .review-rating {
+              font-size: $font-size-header-md;
+              color: $text-body;
+              font-weight: 700;
+              height: 23px;
+              line-height: 23px;
+            }
+            .review-stars {
+              font-size: $font-size-header-sm;
+              font-weight: 500;
+              color: $tertiary;
+              height: 23px;
+              line-height: 23px;
+            }
+            .review-count {
+              font-size: $font-size-body;
+              color: $text-body;
+              font-weight: 500;
+              height: 23px;
+              line-height: 23px;
+            }
+
+            @include respond-to(phone) {
+              gap: $spacing-5;
+
+              .review-rating {
+                font-size: $font-size-header-sm;
+              }
+            }
+
+            @include respond-to(395px) {
+              justify-content: space-between;
+              .review-count {
+                font-size: 0.85rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @include respond-to(laptop) {
+      height: 580px;
+      min-height: 580px;
+
+      &::before {
+        display: none;
+      }
+
+      .container {
+        justify-content: center;
+      }
+
+      .hero-image-wrapper {
+        img {
+          object-position: right;
+        }
+      }
+
+      .page-header {
+        &__content {
+          max-width: 600px;
+          width: 100%;
+          position: absolute;
+          gap: $spacing-20;
+          top: 80px;
+
+          .page-header {
+            &__title {
+              font-size: $font-size-header-md;
+              line-height: $line-height-header-md;
+              padding: $spacing-20 $spacing-20 0;
+            }
+            &__tagline {
+              font-size: $font-size-body-lg;
+              line-height: $line-height-body-lg;
+            }
+          }
+        }
+      }
+
+      .btn-row {
+        display: none;
+      }
+    }
+
+    @include respond-to(tablet) {
+      .page-header {
+        &__content {
+          width: 100%;
+          max-width: 600px;
+        }
+      }
+    }
+
+    @include respond-to(600px) {
+      flex-direction: column;
+      padding: 0;
+      
+      .hero-image-wrapper {
+        position: relative;
+      }
+      .container {
+        margin: 0;
+        padding: 0;
+      }
+      .page-header {
+        &__content {
+          position: relative;
+          top: auto;
+          bottom: auto;
+          border-radius: 0;
+        }
+      }
+    }
+
+    @include respond-to(phone) {
+      .page-header {
+        &__content {
+          .page-header {
+            &__title {
+              font-size: $font-size-header-sm;
+              line-height: $line-height-header-sm;
+            }
+            &__tagline {
+              font-size: $font-size-body;
+              line-height: $line-height-body;
+              padding: 0 $spacing-20;
+            }
+          }
+        }
+      }
+    }
+
+
+    // Device-specific height adjustments for phone variants
+
+    // iPhone 14 Pro Max
+    @media (max-width: 480px) {
+      // Safari (height: 775px)
+      @media (max-height: 775px) {
+        height: 580px;
+        min-height: 580px;
+      }
+      // Edge (height: 736px)
+      @media (max-height: 736px) {
+        height: 542px;
+        min-height: 542px;
+      }
+      // Brave (height: 706px)
+      @media (max-height: 706px) {
+        height: 505px;
+        min-height: 505px;
+      }
+    }
+
+    // Samsung Galaxy S20/S21/S22/S23
+    @media (max-width: 420px) {
+      // Samsung Galaxy S20/S21/S22/S23 height is 420px
+      @media (max-height: 420px) {
+        height: 315px;
+        min-height: 315px;
+      }
+    }
+
+    // Pixel 6/7/8
+    @media (max-width: 415px) {
+      // Pixel 6/7/8 height is 360px
+      @media (max-height: 360px) {
+        height: 263px;
+        min-height: 263px;
+      }
+    }
+
+    // iPhone 16 Pro
+    @media (max-width: 400px) {
+      // Safari (height: 727px)
+      @media (max-height: 727px) {
+        height: 545px;
+        min-height: 545px;
+      }
+      // Edge (height: 690px)
+      @media (max-height: 690px) {
+        height: 577px;
+        min-height: 577px;
+      }
+      // Brave (height: 662px)
+      @media (max-height: 662px) {
+        height: 549px;
+        min-height: 549px;
+      }
+    }
+
+  } // End of .homepage
+} // End of .page-header
+
+.inner-header {
+  min-height: auto;
+  background-size: 50%;
+  background-position: right;
+
+  .hero-image {
+    width: 50%;
+  }
+
+  // Apply Apple-style background blur to the hero image when bg_blur / hero-blur is enabled
+  &.hero-blur .hero-image,
+  .page-header.hero-blur .hero-image {
+    filter: blur(2px);
+  }
+
+  &:before {
+    background: linear-gradient(to right, $surface, $secondary-darkest);
+    mask: linear-gradient(to right, rgba(#000000, 1) 60%, rgba(#000000, 0) 100%);
+  }
+
+  @include respond-to(laptop) {
+    background-size: cover;
+    background-position: center;
+  }
+
+  @include respond-to(tablet) {
+    background-image: none !important;
+  }
+}
+
+// Brand Logo Watermark
+.brand-logo-watermark-img {
+  position: absolute;
+  bottom: 50%;
+  right: 20%;
+  transform: translateY(50%);
+  width: 250px;
+  height: auto;
+  padding: $spacing-20;
+  z-index: 3;
+  background: $background;
+  border-radius: $border-radius-default;
+  @include shadow-lg;
+
+  @include respond-to(1600px) {
+    right: 10%;
+  }
+  @include respond-to(desktop) {
+    right: 5%;
+    width: 200px;
+  }
+  @include respond-to(1100px) {
+    display: none;
+  }
+}

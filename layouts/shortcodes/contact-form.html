@@ -1,0 +1,156 @@
+{{- /*
+  Contact Form Shortcode (Web3Forms-compatible contact form with honeypot)
+  
+  Usage:
+    {{< contact-form >}}
+*/ -}}
+
+{{- $lang := .Page.Language.Lang | default "en" -}}
+{{- $isSpanish := eq $lang "es" -}}
+{{- $redirectURL := cond $isSpanish "/es/contactenos/thank-you/" "/contact-us/thank-you/" -}}
+
+{{- /* Spanish translations */ -}}
+{{- $nameLabel := cond $isSpanish "Nombre" "Name" -}}
+{{- $emailLabel := cond $isSpanish "Correo Electrónico" "Email" -}}
+{{- $phoneLabel := cond $isSpanish "Teléfono" "Phone" -}}
+{{- $subjectLabel := cond $isSpanish "Asunto" "Subject" -}}
+{{- $messageLabel := cond $isSpanish "Mensaje" "Message" -}}
+{{- $requiredText := cond $isSpanish "requerido" "required" -}}
+{{- $phonePlaceholder := cond $isSpanish "(954) 376-3086" "(416) 555-1234" -}}
+{{- $subjectPlaceholder := cond $isSpanish "p. ej., Consulta de reparación de nevera" "e.g., Refrigerator repair inquiry" -}}
+{{- $messagePlaceholder := cond $isSpanish "Cuéntenos sobre su problema de electrodoméstico o pregunta..." "Tell us about your appliance issue or question..." -}}
+{{- $sendMessageText := cond $isSpanish "Enviar Mensaje" "Send Message" -}}
+
+<form name="contact" method="POST" action="https://api.web3forms.com/submit" class="contact-form" novalidate>
+  <!-- Aria live region for form announcements -->
+  <div class="contact-form__live-region" role="status" aria-live="polite" aria-atomic="true" id="contact-live-region"></div>
+
+  <!-- Web3Forms access key -->
+  <input type="hidden" name="access_key" value="{{ .Site.Params.web3forms_access_key }}">
+  
+  <!-- Redirect after successful submission -->
+  <input type="hidden" name="redirect" value="{{ $redirectURL }}">
+
+  <!-- Honeypot field - hidden checkbox (invisible to users, bots may check it) -->
+  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" aria-hidden="true">
+
+  <!-- Form status messages -->
+  <div class="contact-form__status contact-form__status--error contact-form__status--hidden" id="contact-error" role="alert"></div>
+  <div class="contact-form__status contact-form__status--info contact-form__status--hidden" id="contact-info" role="status"></div>
+
+  <div class="contact-form__field">
+    <label for="name" class="contact-form__label">
+      {{ $nameLabel }} <span class="contact-form__required" aria-label="{{ $requiredText }}">*</span>
+    </label>
+    <input 
+      type="text" 
+      id="name" 
+      name="name" 
+      class="contact-form__input" 
+      required 
+      aria-required="true"
+      aria-describedby="name-error"
+      autocomplete="name"
+      maxlength="100"
+    />
+    <span class="contact-form__error" id="name-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__field">
+    <label for="email" class="contact-form__label">
+      {{ $emailLabel }} <span class="contact-form__required" aria-label="{{ $requiredText }}">*</span>
+    </label>
+    <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      class="contact-form__input" 
+      required 
+      aria-required="true"
+      aria-describedby="email-error"
+      autocomplete="email"
+      maxlength="255"
+    />
+    <span class="contact-form__error" id="email-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__field">
+    <label for="phone" class="contact-form__label">
+      {{ $phoneLabel }}
+    </label>
+    <input 
+      type="tel" 
+      id="phone" 
+      name="phone" 
+      class="contact-form__input"
+      aria-describedby="phone-error"
+      autocomplete="tel"
+      pattern="[0-9\s\-\+\(\)]+"
+      maxlength="20"
+      placeholder="{{ $phonePlaceholder }}"
+    />
+    <span class="contact-form__error" id="phone-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__field">
+    <label for="subject" class="contact-form__label">
+      {{ $subjectLabel }}
+    </label>
+    <input 
+      type="text" 
+      id="subject" 
+      name="subject" 
+      class="contact-form__input"
+      aria-describedby="subject-error"
+      autocomplete="off"
+      maxlength="200"
+      placeholder="{{ $subjectPlaceholder }}"
+    />
+    <span class="contact-form__error" id="subject-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__field">
+    <label for="message" class="contact-form__label">
+      {{ $messageLabel }} <span class="contact-form__required" aria-label="{{ $requiredText }}">*</span>
+    </label>
+    <textarea 
+      id="message" 
+      name="message" 
+      class="contact-form__textarea" 
+      rows="6" 
+      required 
+      aria-required="true"
+      aria-describedby="message-error"
+      autocomplete="off"
+      maxlength="2000"
+      placeholder="{{ $messagePlaceholder }}"
+    ></textarea>
+    <span class="contact-form__error" id="message-error" role="alert" aria-live="polite"></span>
+  </div>
+
+  <div class="contact-form__actions">
+    <button type="submit" class="btn btn--primary contact-form__submit" id="contact-submit" aria-describedby="contact-live-region">
+      <span class="btn__text">{{ $sendMessageText }}</span>
+    </button>
+  </div>
+</form>
+
+{{- /* Load contact form script only when this form is used */ -}}
+{{- with resources.Get "ts/contact-form-entry.ts" }}
+  {{- $opts := dict
+    "minify" (not hugo.IsDevelopment)
+    "sourceMap" (cond hugo.IsDevelopment "external" "")
+    "targetPath" "js/contact-form.js"
+    "target" "es2020"
+    "format" "esm"
+  }}
+  {{- with . | js.Build $opts }}
+    {{- if hugo.IsDevelopment }}
+      <script type="module" src="{{ .RelPermalink }}" defer></script>
+    {{- else }}
+      {{- with . | fingerprint }}
+        <script type="module" src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}

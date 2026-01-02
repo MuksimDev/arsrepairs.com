@@ -1,0 +1,78 @@
+{{- /*
+  Contact Info Shortcode
+  
+  Displays contact information from site params.
+  
+  Usage:
+    {{< contact-info >}}
+*/ -}}
+
+{{- $lang := .Page.Language.Lang | default "en" -}}
+{{- $isSpanish := eq $lang "es" -}}
+
+{{- /* Spanish translations */ -}}
+{{- $phoneLabel := cond $isSpanish "Teléfono:" "Phone:" -}}
+{{- $hoursLabel := cond $isSpanish "Horario:" "Hours:" -}}
+{{- $addressLabel := cond $isSpanish "Dirección:" "Address:" -}}
+{{- $emergencyText := cond $isSpanish "· Equipos de emergencia disponibles" "· Emergency crews on call" -}}
+
+{{- $phone := site.Params.phone -}}
+{{- $address := site.Params.address -}}
+{{- $openingHours := site.Params.openingHours | default slice -}}
+{{- $formattedPhone := partial "format-phone" $phone -}}
+
+<div class="contact-info">
+  {{- if $phone -}}
+  <div class="contact-info__item">
+    <span class="contact-info__label">{{ $phoneLabel }}</span>
+    <a href="tel:{{ $phone | replaceRE "[^0-9]" "" }}" class="contact-info__link">{{ $formattedPhone }}</a>
+  </div>
+  {{- end -}}
+
+  {{- if $openingHours -}}
+    {{- $hoursParts := slice -}}
+    {{- range $openingHours -}}
+      {{- $days := .dayOfWeek | default slice -}}
+      {{- $opens := .opens | default "" -}}
+      {{- $closes := .closes | default "" -}}
+      {{- if and $opens $closes -}}
+        {{- $openHourRaw := index (split $opens ":") 0 -}}
+        {{- $openMin := index (split $opens ":") 1 -}}
+        {{- $closeHourRaw := index (split $closes ":") 0 -}}
+        {{- $closeMin := index (split $closes ":") 1 -}}
+        {{- $openHourStr := $openHourRaw | replaceRE "^0+([0-9]+)$" "$1" | replaceRE "^$" "0" -}}
+        {{- $closeHourStr := $closeHourRaw | replaceRE "^0+([0-9]+)$" "$1" | replaceRE "^$" "0" -}}
+        {{- $openHour := int (cond (eq $openHourStr "") "0" $openHourStr) -}}
+        {{- $closeHour := int (cond (eq $closeHourStr "") "0" $closeHourStr) -}}
+        {{- $openPeriod := cond (ge $openHour 12) "PM" "AM" -}}
+        {{- $closePeriod := cond (ge $closeHour 12) "PM" "AM" -}}
+        {{- if eq $openHour 0 -}}
+          {{- $openHour = 12 -}}
+        {{- else if gt $openHour 12 -}}
+          {{- $openHour = sub $openHour 12 -}}
+        {{- end -}}
+        {{- if eq $closeHour 0 -}}
+          {{- $closeHour = 12 -}}
+        {{- else if gt $closeHour 12 -}}
+          {{- $closeHour = sub $closeHour 12 -}}
+        {{- end -}}
+        {{- $dayStr := cond (eq (len $days) 1) (index $days 0) (cond (eq (len $days) 2) (printf "%s & %s" (index $days 0) (index $days 1)) (printf "%s–%s" (index $days 0) (index $days (sub (len $days) 1)))) -}}
+        {{- $timeStr := printf "%s %d:%s %s–%d:%s %s" $dayStr $openHour $openMin $openPeriod $closeHour $closeMin $closePeriod -}}
+        {{- $hoursParts = $hoursParts | append $timeStr -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $hoursParts -}}
+  <div class="contact-info__item">
+    <span class="contact-info__label">{{ $hoursLabel }}</span>
+    <span class="contact-info__text">{{ delimit $hoursParts " · " }} {{ $emergencyText }}</span>
+  </div>
+    {{- end -}}
+  {{- end -}}
+
+  {{- if $address -}}
+  <div class="contact-info__item">
+    <span class="contact-info__label">{{ $addressLabel }}</span>
+    <span class="contact-info__text">{{ $address }}</span>
+  </div>
+  {{- end -}}
+</div>

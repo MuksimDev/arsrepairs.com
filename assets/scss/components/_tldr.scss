@@ -1,0 +1,112 @@
+// ============================================================================
+// TL;DR Component - AI-Friendly Page Summary
+// ============================================================================
+
+.tldr {
+  background: fade_out($tertiary, 0.95);
+  border-radius: $border-radius-default;
+  padding: $spacing-20;
+  border: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tldr__header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-10;
+}
+
+.tldr__title {
+  font-size: $font-size-body;
+  line-height: $line-height-body;
+  font-weight: 600;
+  margin: 0 0 $spacing-5 0;
+  color: $text-body;
+}
+
+.tldr__subtitle {
+  font-size: $font-size-body-sm;
+  line-height: $line-height-body-sm;
+  color: $text-grey;
+  margin: 0;
+  font-style: italic;
+}
+
+.tldr__content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-20;
+}
+
+.tldr__summary {
+  font-size: $font-size-body-sm;
+  color: $text-body;
+  
+  strong {
+    color: $text-body;
+    font-weight: 600;
+  }
+}
+
+.tldr__meta {
+  @include visually-hidden;
+}
+
+.tldr__key-points {
+  strong {
+    display: block;
+    margin-bottom: $spacing-10;
+    color: $text-body;
+    font-weight: 600;
+  }
+}
+
+.tldr__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-10;
+
+  li {
+    position: relative;
+    padding-left: $spacing-20;
+    color: $text-body;
+    line-height: $line-height-body;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: $primary;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  }
+}
+
+.tldr__details {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-10;
+  padding-top: $spacing-20;
+  border-top: 1px solid $border;
+  font-size: $font-size-body-sm;
+  color: $text-grey;
+}
+
+.tldr__detail-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-5;
+  line-height: $line-height-body-sm;
+
+  strong {
+    color: $text-body;
+    font-weight: 600;
+  }
+}
+

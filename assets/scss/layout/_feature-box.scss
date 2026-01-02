@@ -1,0 +1,290 @@
+// ============================================================================
+// Feature Box
+// ============================================================================
+
+.feature-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
+  gap: $spacing-40;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background: $background;
+  color: $text-body;
+  border-radius: $border-radius-default;
+  border: 1px solid $border;
+  width: 100%;
+  height: 100%;
+
+  &--title, h2, h3 {
+    padding-left: 0;
+    font-weight: 600;
+
+    &:after, &:before {
+      display: none;
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // Feature Box - Color Modifiers
+  // --------------------------------------------------------------------------
+
+  &--color-tertiary {
+    background: $tertiary;
+    box-shadow: 0 20px 20px lighten($tertiary, 30%);
+
+    &--title, h2, h3 {
+      color: $secondary-darker;
+    }
+  }
+
+  &--color-white {
+    background: $text-white;
+  }
+
+  &--color-off-white {
+    background: $off-white;
+    box-shadow: 0 20px 20px lighten($off-white, 30%);
+  }
+
+  &--color-dark-grey {
+    background: $text-body;
+    color: $text-white;
+    box-shadow: 0 20px 20px lighten($text-body, 80%);
+  }
+
+  &--color-primary {
+    background: $primary;
+    color: $text-white;
+    box-shadow: 0 20px 20px lighten($primary, 30%);
+
+    &--title, h2, h3 {
+      color: $text-white !important;
+    }
+  }
+
+  &--color-secondary {
+    background: $secondary;
+    box-shadow: 0 20px 20px lighten($secondary, 30%);
+    color: $text-white;
+    &--title, h2, h3 {
+      color: $tertiary !important;
+    }
+  }
+
+  &--color-secondary-dark {
+    background: $secondary-dark;
+    color: $text-white;
+    box-shadow: 0 20px 20px lighten($secondary-dark, 40%);
+
+    &--title, h2, h3 {
+      color: $tertiary;
+    }
+  }
+
+  &--color-secondary-darker {
+    background: $secondary-darker;
+    color: $text-white;
+    box-shadow: 0 20px 20px lighten($secondary-darker, 50%);
+
+    &--title, h2, h3 {
+      color: $tertiary;
+    }
+  }
+
+  &--color-secondary-darkest {
+    background: $secondary-darkest;
+    color: $text-white;
+    box-shadow: 0 20px 20px lighten($secondary-darkest, 60%);
+
+    &--title, h2, h3 {
+      color: $tertiary;
+    }
+  }
+
+  &--color-tertiary-dark {
+    background: $tertiary-dark;
+    color: $text-white;
+
+    &--title, h2, h3 {
+      color: $secondary-darker;
+    }
+  }
+
+  &--color-tertiary-darker {
+    background: $tertiary-darker;
+    color: $text-white;
+
+    &--title, h2, h3 {
+      color: $secondary-darker;
+    }
+  }
+
+  &--image,
+  &--content {
+    &:first-child {
+      padding: $spacing-40 0 $spacing-40 $spacing-40;
+    }
+    &:last-child {
+      padding: $spacing-40 $spacing-40 $spacing-40 0;
+    }
+
+    @include respond-to(laptop) {
+      &:first-child {
+        padding: $spacing-20 $spacing-20 0 $spacing-20;
+      }
+      &:last-child {
+        padding: 0 $spacing-20 $spacing-20 $spacing-20;
+      }
+    }
+  }
+
+  &--image {
+    flex: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &--rounded {
+      img {
+        border-radius: $border-radius-lg;
+        @include shadow-lg;
+      }
+    }
+
+    &--diagonal {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 120px 100%);
+
+      &,
+      &:first-child,
+      &:last-child {
+        padding: 0;
+      }
+
+      @include respond-to(laptop) {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+      }
+    }
+
+    &--faded {
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 1) 20%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 1) 20%
+      );
+
+      &,
+      &:first-child,
+      &:last-child {
+        padding: 0;
+      }
+
+      @include respond-to(laptop) {
+        -webkit-mask-image: linear-gradient(
+          to top,
+          transparent 0%,
+          rgba(0, 0, 0, 1) 20%
+        );
+        mask-image: linear-gradient(
+          to top,
+          transparent 0%,
+          rgba(0, 0, 0, 1) 20%
+        );
+      }
+    }
+  }
+
+  &--content {
+    flex: 1;
+    margin: $spacing-20 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-20;
+  }
+
+  &--title, h2, h3 {
+    font-size: $font-size-header-md;
+    line-height: $line-height-header-md;
+    font-weight: 600;
+  }
+
+  &--copy {
+    font-size: $font-size-body;
+    line-height: $line-height-body;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-20;
+  }
+
+  @include respond-to(laptop) {
+    flex-direction: column;
+    gap: $spacing-20;
+
+    &--content {
+      margin: 0;
+    }
+  }
+
+  // Column layout
+  &--col {
+    flex-direction: column;
+  }
+}
+
+.prose {
+  .feature-box {
+    margin-top: $spacing-20;
+    gap: 0;
+
+    &--image {
+      padding: $spacing-20 $spacing-20 0;
+
+      img {
+        max-height: 300px;
+      }
+
+      &--diagonal {
+        padding: 0;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+      }
+
+      &--faded {
+        padding: 0;
+        -webkit-mask-image: linear-gradient(
+          to top,
+          transparent 0%,
+          rgba(0, 0, 0, 1) 20%
+        );
+        mask-image: linear-gradient(
+          to top,
+          transparent 0%,
+          rgba(0, 0, 0, 1) 20%
+        );
+      }
+    }
+
+    &--title, h2, h3 {
+      font-size: $font-size-header-md;
+      line-height: $line-height-header-md;
+      font-weight: 400;
+      margin-top: $spacing-20;
+    }
+
+    &--content {
+      padding: 0 $spacing-20 $spacing-20;
+      margin: 0;
+    }
+  }
+}

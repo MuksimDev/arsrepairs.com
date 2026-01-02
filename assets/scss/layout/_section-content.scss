@@ -1,0 +1,307 @@
+// ============================================================================
+// Section Content
+// ============================================================================
+
+.section-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-20;
+  padding: $spacing-20 0;
+
+  @include respond-to(tablet) {
+    gap: $spacing-10;
+    padding: $spacing-10 0;
+  }
+
+  @include respond-to(phone) {
+    gap: $spacing-10;
+    padding: 0;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  // --------------------------------------------------------------------------
+  // Margin Modifiers - All Sides
+  // --------------------------------------------------------------------------
+
+  &--margin-20 {
+    margin: $spacing-20;
+
+    @include respond-to(phone) {
+      margin: $spacing-10;
+    }
+  }
+
+  &--margin-40 {
+    margin: $spacing-40;
+
+    @include respond-to(tablet) {
+      margin: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin: $spacing-10;
+    }
+  }
+
+  &--margin-60 {
+    margin: $spacing-60;
+
+    @include respond-to(tablet) {
+      margin: $spacing-40;
+    }
+
+    @include respond-to(phone) {
+      margin: $spacing-20;
+    }
+  }
+
+  &--margin-80 {
+    margin: $spacing-80;
+
+    @include respond-to(laptop) {
+      margin: $spacing-60;
+    }
+
+    @include respond-to(tablet) {
+      margin: $spacing-40;
+    }
+
+    @include respond-to(phone) {
+      margin: $spacing-20;
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // Margin Modifiers - Top/Bottom Only
+  // --------------------------------------------------------------------------
+
+  &--margin-ends-20 {
+    margin-top: $spacing-20;
+    margin-bottom: $spacing-20;
+
+    @include respond-to(phone) {
+      margin-top: $spacing-10;
+      margin-bottom: $spacing-10;
+    }
+  }
+
+  &--margin-ends-40 {
+    margin-top: $spacing-40;
+    margin-bottom: $spacing-40;
+
+    @include respond-to(tablet) {
+      margin-top: $spacing-20;
+      margin-bottom: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-top: $spacing-10;
+      margin-bottom: $spacing-10;
+    }
+  }
+
+  &--margin-ends-60 {
+    margin-top: $spacing-60;
+    margin-bottom: $spacing-60;
+
+    @include respond-to(tablet) {
+      margin-top: $spacing-40;
+      margin-bottom: $spacing-40;
+    }
+
+    @include respond-to(phone) {
+      margin-top: $spacing-20;
+      margin-bottom: $spacing-20;
+    }
+  }
+
+  &--margin-ends-80 {
+    margin-top: $spacing-80;
+    margin-bottom: $spacing-80;
+
+    @include respond-to(laptop) {
+      margin-top: $spacing-60;
+      margin-bottom: $spacing-60;
+    }
+
+    @include respond-to(tablet) {
+      margin-top: $spacing-40;
+      margin-bottom: $spacing-40;
+    }
+
+    @include respond-to(phone) {
+      margin-top: $spacing-20;
+      margin-bottom: $spacing-20;
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // Margin Modifiers - Left/Right Only
+  // --------------------------------------------------------------------------
+
+  &--margin-sides-20 {
+    margin-left: $spacing-20;
+    margin-right: $spacing-20;
+
+    @include respond-to(tablet) {
+      margin-left: $spacing-20;
+      margin-right: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-left: $spacing-10;
+      margin-right: $spacing-10;
+    }
+  }
+
+  &--margin-sides-40 {
+    margin-left: $spacing-40;
+    margin-right: $spacing-40;
+
+    @include respond-to(tablet) {
+      margin-left: $spacing-20;
+      margin-right: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-left: $spacing-10;
+      margin-right: $spacing-10;
+    }
+  }
+
+  &--margin-sides-60 {
+    margin-left: $spacing-60;
+    margin-right: $spacing-60;
+
+    @include respond-to(tablet) {
+      margin-left: $spacing-20;
+      margin-right: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-left: $spacing-10;
+      margin-right: $spacing-10;
+    }
+  }
+
+  &--margin-sides-80 {
+    margin-left: $spacing-80;
+    margin-right: $spacing-80;
+
+    @include respond-to(tablet) {
+      margin-left: $spacing-20;
+      margin-right: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-left: $spacing-10;
+      margin-right: $spacing-10;
+    }
+  }
+
+  &--margin-sides-left-20 {
+    margin-left: $spacing-20;
+
+    @include respond-to(tablet) {
+      margin-left: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-left: $spacing-10;
+    }
+  }
+
+  &--margin-sides-left-40 {
+    margin-left: $spacing-40;
+
+    @include respond-to(tablet) {
+      margin-left: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-left: $spacing-10;
+    }
+  }
+
+  &--margin-sides-left-60 {
+    margin-left: $spacing-60;
+
+    @include respond-to(tablet) {
+      margin-left: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-left: $spacing-10;
+    }
+  }
+
+  &--margin-sides-left-80 {
+    margin-left: $spacing-80;
+
+    @include respond-to(tablet) {
+      margin-left: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-left: $spacing-10;
+    }
+  }
+
+  &--margin-sides-right-20 {
+    margin-right: $spacing-20;
+
+    @include respond-to(tablet) {
+      margin-right: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-right: $spacing-10;
+    }
+  }
+
+  &--margin-sides-right-40 {
+    margin-right: $spacing-40;
+
+    @include respond-to(tablet) {
+      margin-right: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-right: $spacing-10;
+    }
+  }
+
+  &--margin-sides-right-60 {
+    margin-right: $spacing-60;
+
+    @include respond-to(tablet) {
+      margin-right: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-right: $spacing-10;
+    }
+  }
+
+  &--margin-sides-right-80 {
+    margin-right: $spacing-80;
+
+    @include respond-to(tablet) {
+      margin-right: $spacing-20;
+    }
+
+    @include respond-to(phone) {
+      margin-right: $spacing-10;
+    }
+  }
+}
+
+.prose {
+  .section-content {
+    padding: 0;
+  }
+}
